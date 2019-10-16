@@ -1,35 +1,50 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Token from "../../api/Token/"
 
 class Auth extends Component {
 
   state = {
-    name: '',
-    password: '369369'
+    login: 'test@test',
+    password: '369369',
+    prop: ''
   }
 
   handleChange = (e) => {
     this.setState({
-      name: e.target.value
+      login: e.target.value
     })
-
-    console.log(this.state.name)
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
 
     const user = {
-      login: "1",
-      password: "369369"
+      login: this.state.login,
+      password: this.state.password
     }
 
-    axios.get('http://localhost:5000/api/auth/login', user)
-      .then(res => console.log(res))
-        .catch(err => console.log(err))
+    axios.post('/api/auth/login', user)
+      .then(res => {
+          const { token } = res.data
+          localStorage.setItem('jwtToken', token);
+          Token(localStorage.jwtToken)
+        })
+        .catch(error => console.log(error))
+    
+  
   }
 
   render() {
+    const request = new XMLHttpRequest();
+    
+    request.onreadystatechange = function () {
+      return console.log(request.getAllResponseHeaders())
+    }
+
+    request.open('HEAD', document.location, true);
+    request.send(null);
+
     return (
       <form onSubmit={this.handleSubmit}>
         <input type="text" name="login" onChange={this.handleChange} placeholder="Логин"/>

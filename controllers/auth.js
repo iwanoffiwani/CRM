@@ -10,18 +10,25 @@ module.exports.login = async (req, res) => {
       login: req.body.login
     })
 
-  const passwordResult = bcrypt.compareSync(req.body.password, candidate.password)
- 
-  if (!candidate || !passwordResult)
+  if (!candidate)
     return res.status(404).json({
       message: `Неверный логин или пароль`
     })
 
+  const passwordResult = bcrypt.compareSync(req.body.password, candidate.password)
+
+  if (!passwordResult)
+    return res.status(404).json({
+      message: `Неверный логин или пароль2`
+    })
+
+  console.log(candidate)
+
   const token = jwt.sign({
-    login: candidate.email,
+    login: candidate.login,
     id: candidate._id  
   }, keys.JWT, {
-    expiresIn: 60 * 60 * 24
+    expiresIn: 10
   }) // Генерируем токен
 
   return res.status(200).json({
