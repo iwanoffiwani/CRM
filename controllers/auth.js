@@ -1,5 +1,6 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const errorHandler = require('../utils/errorHandler')
 
 const User = require('../models/User')
 const keys = require('../config/keys')
@@ -19,16 +20,14 @@ module.exports.login = async (req, res) => {
 
   if (!passwordResult)
     return res.status(404).json({
-      message: `Неверный логин или пароль2`
+      message: `Неверный логин или пароль`
     })
-
-  console.log(candidate)
 
   const token = jwt.sign({
     login: candidate.login,
-    id: candidate._id  
+    UserId: candidate._id  
   }, keys.JWT, {
-    expiresIn: 10
+    expiresIn: 60 * 60 * 24 // Время существования токена
   }) // Генерируем токен
 
   return res.status(200).json({
@@ -62,6 +61,6 @@ module.exports.register = async (req, res) => {
 
     return res.status(201).json(user)
   } catch(e) {
-    console.log(`При добавлении пользователя произошла ошибка`)
+    errorHandler(res, e)
   }
 }

@@ -4,8 +4,11 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const passport = require('passport')
 
 const authRouters = require('./routes/auth')
+const craterRouters = require('./routes/crater')
+const requestRouters = require('./routes/request')
 
 const keys = require('./config/keys')
 
@@ -15,8 +18,8 @@ mongoose.connect(keys.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: tr
 
 mongoose.set('useCreateIndex', true);
 
-// app.use(passport.initialize())
-// require('./middlewear/passport')(passport)
+app.use(passport.initialize())
+require('./middleware/passport')(passport)
 
 app.use(morgan('dev'))
 
@@ -26,5 +29,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.use('/api/auth', authRouters)
+app.use('/api/crater', craterRouters)
+app.use('/api/request', requestRouters)
 
 module.exports = app
