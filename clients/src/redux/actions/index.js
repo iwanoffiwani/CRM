@@ -1,16 +1,24 @@
-export const GET_ERRORS = 'GET_ERRORS'
-export const SET_CURRENT_USER = 'SET_CURRENT_USER'
+export const GET_ERROR = 'GET_ERROR'
+export const USER_LOGIN = 'USER_LOGIN'
+export const USER_LOGOUT = 'USER_LOGOUT'
 
-export const userCreator = (user) => {
+export function errorHandler(payload) {
   return {
-    type: SET_CURRENT_USER,
-    user
+    type: GET_ERROR,
+    payload
   }
 }
 
-export const errorCreator = (error) => {
+export function userLogin(payload) {
   return {
-    type: GET_ERRORS,
-    error
+    type: USER_LOGIN,
+    payload
+  } 
+}
+
+export function userLogout(payload) {
+  return {
+    type: USER_LOGOUT,
+    payload
   }
 }

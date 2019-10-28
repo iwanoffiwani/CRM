@@ -151,7 +151,7 @@ const Layout = ({ children }) => {
 
   const [ open, setOpen ] = React.useState(false)
 
-  const logoutHandler = () => {
+  const singOutHandler = () => {
     if (localStorage.jwtToken)
       localStorage.removeItem('jwtToken')
 
@@ -203,7 +203,7 @@ const Layout = ({ children }) => {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <Button color="inherit" onClick={logoutHandler}>Выйти</Button>
+          <Button color="inherit" onClick={singOutHandler}>Выйти</Button>
         </Toolbar>
       </AppBar>
       <Drawer

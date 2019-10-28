@@ -6,7 +6,19 @@ const filed = new Schema({
     type: String,
     required: true
   },
-
+  list: [
+    {
+      value: {
+        type: String
+      }
+    }
+  ],
+  multi: {
+    type: Boolean
+  },
+  requestId:{
+    type: String,
+  }
 })
 
 module.exports = mongoose.model('fileds', filed)

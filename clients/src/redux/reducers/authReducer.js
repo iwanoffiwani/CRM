@@ -1,12 +1,16 @@
-import { SET_CURRENT_USER } from '../actions'
+import { USER_LOGIN, USER_LOGOUT } from '../actions/'
 
-const initialState = { user: false }
+const initialState = {}
 
-export default (state = initialState, action) => {
+export default function loginUser(state = initialState, action) {
   switch(action.type) {
-    case SET_CURRENT_USER:
+    case USER_LOGIN: 
       return Object.assign({}, state, {
-        user: action.user
+        user: action.payload
+      })
+    case USER_LOGOUT:
+      return Object.assign({}, state, {
+        user: action.payload
       })
     default: 
       return state

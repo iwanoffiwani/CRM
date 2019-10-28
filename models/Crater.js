@@ -5,10 +5,7 @@ const crater = new Schema({
   name: {
     type: String,
     required: true
-  },
-  // color:{
-  //   type: String
-  // }
+  }
 })
 
 module.exports = mongoose.model('craters', crater)

@@ -15,8 +15,7 @@ const request = new Schema({
     type: Schema.Types.ObjectId
   },
   status:{
-    ref: 'craters',
-    type: Schema.Types.ObjectId
+    type: String
   }  
 })
 

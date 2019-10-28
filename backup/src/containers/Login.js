@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { errorCreator, userCreator } from '../redux/actions/'
+import store from '../redux/store'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
-import { userLogin } from '../redux/actions/'
-import { withStyles } from '@material-ui/core/styles'
+import setAuthToken from '../shared/setAuthToken'
+import history from '../history/'
+import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import FormGroup from '@material-ui/core/FormGroup'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import setAuthToken from '../shared/setAuthToken'
 
-const useStyles = theme => ({
+const useStyles = makeStyles({
   container: {
     display: 'flex',
-    minHeight:'100vh',
     alignItems: 'center',
+    minHeight: '100vh',
     marginTop: '-5%'
   },
   submit: {
@@ -23,51 +25,89 @@ const useStyles = theme => ({
   }
 })
 
+const MyContainer = ({ children }) => {
+  const classes = useStyles()
+
+  return (
+    <Container maxWidth='xs' className={classes.container}>
+      {children}
+    </Container>
+  )
+}
+
+const MySubmitButton = () => {
+  const classes = useStyles()
+
+  return (
+    <Button
+    type='submit'
+    size='medium'
+    color='primary'
+    variant='contained'
+    className={classes.submit}
+    >Войти</Button>
+  )
+}
+
 class Login extends Component {
-  state = {
-    login: '',
-    password: '',
-    error: ''
+  constructor() {
+    super()
+
+    this.changeHandler = this.changeHandler.bind(this)
+    this.submitHandler = this.submitHandler.bind(this)
+
+    this.state = {
+      login: '',
+      password: '',
+      error: ''
+    }
   }
 
-  changeHandler = (e) => {
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.auth) 
+      return this.props.history.push('/')
+
+    if (nextProps.error)
+      return this.setState({
+        error: nextProps.error.message
+      })
+  }
+
+  componentDidMount() {
+    if(this.props.auth) {
+        this.props.history.push('/');
+    }
+  }
+
+  changeHandler(e) {
     return this.setState({
       [e.target.name]: e.target.value
     })
   }
 
-  submitHandler = (e) => {
+  submitHandler(e) {
     e.preventDefault()
 
-    const user = {
-      login: this.state.login,
-      password: this.state.password
-    }
+    const user = this.state
 
     axios.post('/api/auth/login', user)
       .then(res => {
         const { token } = res.data
-        
+        const decoded = jwt_decode(token)
+
         localStorage.setItem('jwtToken', token)
         setAuthToken(token)
 
-        const decoded = jwt_decode(token)
-        this.props.autorization(decoded)
+        store.dispatch(userCreator(decoded))
 
-        return this.props.history.push('/')
+        return history.push('/')
       })
-      .catch(err => {
-        const { message } = err.response.data
-        return this.setState({ error: message })
-      })
+      .catch(err => store.dispatch(errorCreator(err.response.data)))
   }
   
   render() {
-
-    const { classes } = this.props
-
     return (
-      <Container maxWidth='xs' className={classes.container}>
+      <MyContainer>
         <form style={{ width: '100%' }} onSubmit={this.submitHandler}>
           {
             this.state.error ? 
@@ -106,25 +146,16 @@ class Login extends Component {
             placeholder='Введите ваш пароль'
             />
           </FormGroup>
-          <Button
-          type='submit'
-          size='medium'
-          color='primary'
-          variant='contained'
-          className={classes.submit}
-          >Войти</Button>
+          <MySubmitButton />
         </form>
-      </Container>
+      </MyContainer>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.authReduced
+const mapStateToProps = (state) => ({
+  auth: state.auth.payload,
+  error: state.error.payload
 })
 
-const mapDispatchToProps = dispatch => ({
-  autorization: user => dispatch(userLogin(user))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(Login))
+export default connect(mapStateToProps)(Login)

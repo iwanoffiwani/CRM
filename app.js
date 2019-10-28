@@ -7,6 +7,7 @@ const cors = require('cors')
 const passport = require('passport')
 
 const authRouters = require('./routes/auth')
+const fieldRouters = require('./routes/field')
 const craterRouters = require('./routes/crater')
 const requestRouters = require('./routes/request')
 
@@ -29,6 +30,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.use('/api/auth', authRouters)
+app.use('/api/field', fieldRouters)
 app.use('/api/crater', craterRouters)
 app.use('/api/request', requestRouters)
 
