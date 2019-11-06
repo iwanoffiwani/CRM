@@ -1,24 +1,15 @@
-export const GET_ERROR = 'GET_ERROR'
-export const USER_LOGIN = 'USER_LOGIN'
-export const USER_LOGOUT = 'USER_LOGOUT'
+import { ADD_CURRENT_USER, REMOVE_CURRENT_USER } from './types'
 
-export function errorHandler(payload) {
+export const addUser = user => {
   return {
-    type: GET_ERROR,
-    payload
+    type: ADD_CURRENT_USER,
+    user
   }
 }
 
-export function userLogin(payload) {
+export const removeUser = id => {
   return {
-    type: USER_LOGIN,
-    payload
-  } 
-}
-
-export function userLogout(payload) {
-  return {
-    type: USER_LOGOUT,
-    payload
+    type: REMOVE_CURRENT_USER,
+    id
   }
 }

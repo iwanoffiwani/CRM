@@ -155,7 +155,7 @@ const Layout = ({ children }) => {
     if (localStorage.jwtToken)
       localStorage.removeItem('jwtToken')
 
-    return window.location = '/login'
+    return window.location = '/auth'
   }
 
   const handleDrawerOpen = () => {

@@ -21,12 +21,19 @@ module.exports.getAll = async (req, res) => {
 module.exports.create = async (req, res) => {
   try {
 
-    const field = 
-      await new Field({
-        name: req.body.name,
-        list: req.body.list,
-        multi: req.body.multi
-      }).save()
+    const newField = { name: req.body.name, list: req.body.list }
+
+    // const typeField = req.body.field
+    // console.log('LIST', req.body.list);
+
+    // switch(typeField) {
+    //   case 1:
+    //     newField.list = req.body.list
+    //   default:
+    //     newField;
+    // }
+
+    const field = await new Field(newField).save()
 
     res.status(201).json(field)
   } catch(e) {

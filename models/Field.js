@@ -7,15 +7,12 @@ const filed = new Schema({
     required: true
   },
   list: [
-    {
-      value: {
+    { 
+      name: { 
         type: String
       }
     }
   ],
-  multi: {
-    type: Boolean
-  },
   requestId:{
     type: String,
   }

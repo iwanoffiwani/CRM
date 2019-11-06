@@ -1,18 +1,14 @@
-import { USER_LOGIN, USER_LOGOUT } from '../actions/'
+import { ADD_CURRENT_USER, REMOVE_CURRENT_USER } from '../actions/types'
 
-const initialState = {}
-
-export default function loginUser(state = initialState, action) {
+const user = (state = {}, action) => {
   switch(action.type) {
-    case USER_LOGIN: 
-      return Object.assign({}, state, {
-        user: action.payload
-      })
-    case USER_LOGOUT:
-      return Object.assign({}, state, {
-        user: action.payload
-      })
-    default: 
+    case ADD_CURRENT_USER:
+      return Object.assign({}, state, { user: action.user })
+    case REMOVE_CURRENT_USER:
+      return delete state.user
+    default:
       return state
   }
 }
+
+export default user

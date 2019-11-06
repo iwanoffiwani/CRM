@@ -1,23 +1,21 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { errorCreator, userCreator } from '../redux/actions/'
-import store from '../redux/store'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
-import setAuthToken from '../shared/setAuthToken'
-import history from '../history/'
-import { makeStyles } from '@material-ui/core/styles'
+import { connect } from 'react-redux'
+import { addUser } from '../redux/actions'
+import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import FormGroup from '@material-ui/core/FormGroup'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import setAuthToken from '../utils/setAuthToken'
 
-const useStyles = makeStyles({
+const useStyles = theme => ({
   container: {
     display: 'flex',
+    minHeight:'100vh',
     alignItems: 'center',
-    minHeight: '100vh',
     marginTop: '-5%'
   },
   submit: {
@@ -25,89 +23,52 @@ const useStyles = makeStyles({
   }
 })
 
-const MyContainer = ({ children }) => {
-  const classes = useStyles()
-
-  return (
-    <Container maxWidth='xs' className={classes.container}>
-      {children}
-    </Container>
-  )
-}
-
-const MySubmitButton = () => {
-  const classes = useStyles()
-
-  return (
-    <Button
-    type='submit'
-    size='medium'
-    color='primary'
-    variant='contained'
-    className={classes.submit}
-    >Войти</Button>
-  )
-}
-
-class Login extends Component {
-  constructor() {
-    super()
-
-    this.changeHandler = this.changeHandler.bind(this)
-    this.submitHandler = this.submitHandler.bind(this)
-
-    this.state = {
-      login: '',
-      password: '',
-      error: ''
-    }
+class Auth extends Component {
+  state = {
+    login: '',
+    password: '',
+    error: ''
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.auth) 
-      return this.props.history.push('/')
-
-    if (nextProps.error)
-      return this.setState({
-        error: nextProps.error.message
-      })
-  }
-
-  componentDidMount() {
-    if(this.props.auth) {
-        this.props.history.push('/');
-    }
-  }
-
-  changeHandler(e) {
+  changeHandler = (e) => {
     return this.setState({
       [e.target.name]: e.target.value
     })
   }
 
-  submitHandler(e) {
+  submitHandler = (e) => {
     e.preventDefault()
 
-    const user = this.state
+    const user = {
+      login: this.state.login,
+      password: this.state.password
+    }
 
     axios.post('/api/auth/login', user)
       .then(res => {
         const { token } = res.data
-        const decoded = jwt_decode(token)
 
         localStorage.setItem('jwtToken', token)
         setAuthToken(token)
 
-        store.dispatch(userCreator(decoded))
+        const decoded = jwt_decode(token)
+        const { auth } = this.props 
 
-        return history.push('/')
+        auth(decoded) // redux dispatch
+
+        return this.props.history.push('/')
       })
-      .catch(err => store.dispatch(errorCreator(err.response.data)))
+      .catch(err => {
+        const { message } = err.response.data
+        return this.setState({ error: message })
+      })
   }
   
   render() {
+    const { classes } = this.props
+
     return (
-      <MyContainer>
+      <Container maxWidth='xs' className={classes.container}>
         <form style={{ width: '100%' }} onSubmit={this.submitHandler}>
           {
             this.state.error ? 
@@ -146,16 +107,23 @@ class Login extends Component {
             placeholder='Введите ваш пароль'
             />
           </FormGroup>
-          <MySubmitButton />
+          <Button
+          type='submit'
+          size='medium'
+          color='primary'
+          variant='contained'
+          className={classes.submit}
+          >Войти</Button>
         </form>
-      </MyContainer>
+      </Container>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-  auth: state.auth.payload,
-  error: state.error.payload
-})
+const mapDispatchToProps = dispatch => {
+  return {
+    auth: user => dispatch(addUser(user))
+  }
+}
 
-export default connect(mapStateToProps)(Login)
+export default connect(null, mapDispatchToProps)(withStyles(useStyles)(Auth)) 
