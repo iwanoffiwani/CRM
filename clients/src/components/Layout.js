@@ -1,5 +1,7 @@
 import React from 'react'
-import { NavLink } from "react-router-dom"
+import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { removeCurrentUser } from '../redux/actions'
 import clsx from 'clsx'
 import { makeStyles, useTheme, fade } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
@@ -143,7 +145,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Layout = ({ children }) => {
+const Layout = props => {
 
   const classes = useStyles()
   
@@ -151,11 +153,13 @@ const Layout = ({ children }) => {
 
   const [ open, setOpen ] = React.useState(false)
 
-  const logoutHandler = () => {
-    if (localStorage.jwtToken)
-      localStorage.removeItem('jwtToken')
+  const logoutHandler = e => {
+    e.preventDefault()
 
-    return window.location = '/auth'
+    localStorage.removeItem('jwtToken')
+    props.logoutUser()
+
+    return window.location = '/'
   }
 
   const handleDrawerOpen = () => {
@@ -170,7 +174,7 @@ const Layout = ({ children }) => {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        position="fixed"
+        position='fixed'
         color='default'
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -178,24 +182,24 @@ const Layout = ({ children }) => {
       >
         <Toolbar>
           <IconButton
-            color="inherit"
-            aria-label="open drawer"
+            color='inherit'
+            aria-label='open drawer'
             onClick={handleDrawerOpen}
-            edge="start"
+            edge='start'
             className={clsx(classes.menuButton, {
               [classes.hide]: open,
             })}
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap></Typography>
-          <Button color="inherit"><AddIcon className={classes.addIcon} />Добавить</Button>
+          <Typography className={classes.title} variant='h6' noWrap></Typography>
+          <Button color='inherit'><AddIcon className={classes.addIcon} />Добавить</Button>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search…"
+              placeholder='Search…'
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -203,11 +207,11 @@ const Layout = ({ children }) => {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <Button color="inherit" onClick={logoutHandler}>Выйти</Button>
+          <Button color='inherit' onClick={logoutHandler}>Выйти</Button>
         </Toolbar>
       </AppBar>
       <Drawer
-        variant="permanent"
+        variant='permanent'
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open,
@@ -265,10 +269,16 @@ const Layout = ({ children }) => {
         <Divider />
       </Drawer>
       <main className={classes.content}>
-        {children}
+        {props.children}
       </main>
     </div>
   )
 }
 
-export default Layout
+const mapDispatchToProps = dispatch => {
+  return {
+    logoutUser: () => dispatch(removeCurrentUser())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Layout)

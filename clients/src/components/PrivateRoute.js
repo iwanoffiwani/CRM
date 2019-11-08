@@ -12,20 +12,20 @@ function PrivateRoute({ component: Component, ...rest }) {
       if (!currentUser) 
         return <Redirect
           to={{
-            pathname: '/login',
+            pathname: '/auth',
             from: location
           }}
         />
       
       setAuthToken(currentUser)
 
-      const decoded = jwt_decode
-      const currentTime = Date.now() / 1000;
+      const decoded = jwt_decode(currentUser)
+      const currentTime = Date.now() / 1000
 
       if (decoded.exp < currentTime)
         return <Redirect
           to={{
-            pathname: '/login'
+            pathname: '/auth'
           }}
         />
 

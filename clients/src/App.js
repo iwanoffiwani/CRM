@@ -1,23 +1,22 @@
 import React, { Component } from 'react'
-import store from './redux/store/'
-import { addUser } from './redux/actions/'
-import jwt_decode from 'jwt-decode'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { createBrowserHistory } from 'history'
+import { connect } from 'react-redux'
+import { updateCurrentUser } from './redux/actions'
+import { history } from './utils/history'
 import PrivateRoute from './components/PrivateRoute'
 import Tasks from './components/Tasks'
-import Auth from './containers/Auth'
-
-const jwtToken = localStorage.getItem('jwtToken')
-
-if (jwtToken) store.dispatch(addUser(jwt_decode(jwtToken)))
+import Login from './containers/Login'
 
 class App extends Component {
-  render() {
+  componentDidMount() {
+    this.props.updateCurrentUser()
+  }
+
+  render() { 
     return (
-      <Router history={createBrowserHistory()}>
+      <Router hisory={history}>
         <Switch>
-          <Route path='/auth' component={Auth} />
+          <Route path='/auth' component={Login} />
           <PrivateRoute path='/' exact component={Tasks} />
         </Switch>
       </Router>
@@ -25,4 +24,10 @@ class App extends Component {
   }
 }
 
-export default App
+const mapDispatchToProps = dispatch => {
+  return {
+    updateCurrentUser: () => dispatch(updateCurrentUser())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App)
