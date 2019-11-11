@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
 import { 
-  REQUIRE_CURRENT_USER, SUCCESS_CURRENT_USER, 
-  REMOVE_CURRENT_USER, FAILED_CURRENT_USER 
+  REQUIRE_CURRENT_USER, LOGIN_CURRENT_USER, 
+  UPDATE_CURRENT_USER, LOGOUT_CURRENT_USER, 
+  FAILED_CURRENT_USER
 } from '../actions'
 
 const authReducer = (state={ payload: {} }, action) => {
@@ -11,12 +12,17 @@ const authReducer = (state={ payload: {} }, action) => {
         ...state,
         payload: action.payload
       }
-    case SUCCESS_CURRENT_USER:
+    case LOGIN_CURRENT_USER:
       return {
         ...state,
         payload: action.payload
       }
-    case REMOVE_CURRENT_USER:
+    case UPDATE_CURRENT_USER:
+      return {
+        ...state,
+        payload: action.payload
+      }
+    case LOGOUT_CURRENT_USER:
       return {
         ...state,
         payload: action.payload

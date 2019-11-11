@@ -8,20 +8,29 @@ export const requireCurrentUser = payload => {
   }
 }
 
-export const SUCCESS_CURRENT_USER = 'SUCCESS_CURRENT_USER'
+export const LOGIN_CURRENT_USER = 'LOGIN_CURRENT_USER'
 
-export const successCurrentUser = payload => {
+export const loginCurrentUser = payload => {
   return {
-    type: SUCCESS_CURRENT_USER,
+    type: LOGIN_CURRENT_USER,
     payload
   }
 }
 
-export const REMOVE_CURRENT_USER = 'REMOVE_CURRENT_USER'
+export const UPDATE_CURRENT_USER = 'UPDATE_CURRENT_USER'
 
-export const removeCurrentUser = payload => {
+export const updateCurrentUser = payload => {
   return {
-    type: REMOVE_CURRENT_USER,
+    type: UPDATE_CURRENT_USER,
+    payload
+  }
+}
+
+export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER'
+
+export const logoutCurrentUser = payload => {
+  return {
+    type: LOGOUT_CURRENT_USER,
     payload
   }
 }
@@ -37,12 +46,12 @@ export const failedCurrentUser = payload => {
 
 /* --- THUNKS BLOCK --- */
 export const updateUser = () => dispatch => {
-  const jwtToken = localStorage.getItem('jwtToken')
+  const token = localStorage.getItem('jwtToken')
 
-  if (!jwtToken) return
+  if (!token) return
 
   const jwtDecoded = require('jwt-decode')
-  const decoded = jwtDecoded(jwtToken)
+  const decoded = jwtDecoded(token)
 
   const currentTime = Date.now() / 1000
 
@@ -50,7 +59,7 @@ export const updateUser = () => dispatch => {
   // Здесь только обновляется состояние хранилища
   if (decoded.exp < currentTime) return
 
-  return dispatch(successCurrentUser(decoded))
+  return dispatch(updateCurrentUser({ user: decoded, token }))
 }
 
 export const loginUser = (user, history) => dispatch => {    
@@ -62,11 +71,10 @@ export const loginUser = (user, history) => dispatch => {
     .then(res => {
       const { token } = res.data
 
-      localStorage.setItem('jwtToken', token)
       const jwtDecoded = require('jwt-decode')
       const decoded = jwtDecoded(token)
 
-      dispatch(successCurrentUser(decoded))
+      dispatch(loginCurrentUser({ user: decoded, token }))
       
       return history.push('/')
     })

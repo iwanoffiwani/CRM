@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
-import setAuthToken from '../utils/setAuthToken'
 
 function PrivateRoute({ component: Component, ...rest }) {
   return (
@@ -16,8 +15,6 @@ function PrivateRoute({ component: Component, ...rest }) {
             from: location
           }}
         />
-      
-      setAuthToken(currentUser)
 
       const decoded = jwt_decode(currentUser)
       const currentTime = Date.now() / 1000

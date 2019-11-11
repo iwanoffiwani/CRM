@@ -1,7 +1,7 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { removeCurrentUser } from '../redux/actions'
+import { logoutCurrentUser } from '../redux/actions'
 import clsx from 'clsx'
 import { makeStyles, useTheme, fade } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
@@ -156,9 +156,7 @@ const Layout = props => {
   const logoutHandler = e => {
     e.preventDefault()
 
-    localStorage.removeItem('jwtToken')
     props.logoutUser({})
-
     return window.location = '/'
   }
 
@@ -277,7 +275,7 @@ const Layout = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logoutUser: state => dispatch(removeCurrentUser(state))
+    logoutUser: state => dispatch(logoutCurrentUser(state))
   }
 }
 
