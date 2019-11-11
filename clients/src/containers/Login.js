@@ -24,7 +24,7 @@ const Login = props => {
 
   const classes = useStyles()
 
-  const { error, message, auth } = props
+  const { auth, error, message } = props
 
   const [ login, setLogin ] = useState('')
 
@@ -41,7 +41,7 @@ const Login = props => {
     <Container maxWidth='xs' className={classes.container}>
       <form style={{ width: '100%' }} onSubmit={submitHandler}>
         {
-          message ? 
+          error ? 
           <Typography
           color='error'
           variant='caption'
@@ -91,8 +91,8 @@ const Login = props => {
 
 const mapStateToProps = state => {
   return {
-    error: state.error.didInvalidate,
-    message: state.error.message
+    error: state.auth.payload.error,
+    message: state.auth.payload.message
   }
 }
 

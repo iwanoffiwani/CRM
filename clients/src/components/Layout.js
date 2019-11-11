@@ -157,7 +157,7 @@ const Layout = props => {
     e.preventDefault()
 
     localStorage.removeItem('jwtToken')
-    props.logoutUser()
+    props.logoutUser({})
 
     return window.location = '/'
   }
@@ -277,7 +277,7 @@ const Layout = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logoutUser: () => dispatch(removeCurrentUser())
+    logoutUser: state => dispatch(removeCurrentUser(state))
   }
 }
 

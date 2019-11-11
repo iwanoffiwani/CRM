@@ -1,31 +1,42 @@
-export const SET_CURRENT_USER = 'SET_CURRENT_USER'
+/* --- ACTIONS BLOCK --- */
+export const REQUIRE_CURRENT_USER = 'REQUIRE_CURRENT_USER'
 
-export const setCurrentUser = user => {
+export const requireCurrentUser = payload => {
   return {
-    type: SET_CURRENT_USER,
-    user
+    type: REQUIRE_CURRENT_USER,
+    payload
+  }
+}
+
+export const SUCCESS_CURRENT_USER = 'SUCCESS_CURRENT_USER'
+
+export const successCurrentUser = payload => {
+  return {
+    type: SUCCESS_CURRENT_USER,
+    payload
   }
 }
 
 export const REMOVE_CURRENT_USER = 'REMOVE_CURRENT_USER'
 
-export const removeCurrentUser = () => {
+export const removeCurrentUser = payload => {
   return {
-    type: REMOVE_CURRENT_USER
+    type: REMOVE_CURRENT_USER,
+    payload
   }
 }
 
-export const GET_ERROR = 'GET_ERROR'
+export const FAILED_CURRENT_USER = 'FAILED_CURRENT_USER'
 
-export const errorHandler = (didInvalidate, message) => {
+export const failedCurrentUser = payload => {
   return {
-    type: GET_ERROR,
-    didInvalidate,
-    message
+    type: FAILED_CURRENT_USER,
+    payload
   }
 }
 
-export const updateCurrentUser = () => dispatch => {
+/* --- THUNKS BLOCK --- */
+export const updateUser = () => dispatch => {
   const jwtToken = localStorage.getItem('jwtToken')
 
   if (!jwtToken) return
@@ -35,15 +46,17 @@ export const updateCurrentUser = () => dispatch => {
 
   const currentTime = Date.now() / 1000
 
-  // Если время жизни все, то с этим разберется privateRoute.
+  // Если время истекло, то с этим разберется privateRoute.
   // Здесь только обновляется состояние хранилища
   if (decoded.exp < currentTime) return
 
-  return dispatch(setCurrentUser(decoded))
+  return dispatch(successCurrentUser(decoded))
 }
 
 export const loginUser = (user, history) => dispatch => {    
   const axios = require('axios')
+
+  dispatch(requireCurrentUser(user))
 
   axios.post('/api/auth/login', user)
     .then(res => {
@@ -53,13 +66,14 @@ export const loginUser = (user, history) => dispatch => {
       const jwtDecoded = require('jwt-decode')
       const decoded = jwtDecoded(token)
 
-      dispatch(setCurrentUser(decoded))
+      dispatch(successCurrentUser(decoded))
+      
       return history.push('/')
     })
     .catch(err => {
       const { message } = err.response.data
 
-      dispatch(errorHandler(true, message))
+      dispatch(failedCurrentUser({ error: true, message }))
       return localStorage.removeItem('jwtToken')
     })
 }

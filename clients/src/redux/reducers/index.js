@@ -1,40 +1,36 @@
 import { combineReducers } from 'redux'
-import { SET_CURRENT_USER, REMOVE_CURRENT_USER, GET_ERROR } from '../actions'
+import { 
+  REQUIRE_CURRENT_USER, SUCCESS_CURRENT_USER, 
+  REMOVE_CURRENT_USER, FAILED_CURRENT_USER 
+} from '../actions'
 
-const authReducer = (state={ user: {} }, action) => {
+const authReducer = (state={ payload: {} }, action) => {
   switch(action.type) {
-    case SET_CURRENT_USER:
+    case REQUIRE_CURRENT_USER:
       return {
         ...state,
-        user: action.user
+        payload: action.payload
+      }
+    case SUCCESS_CURRENT_USER:
+      return {
+        ...state,
+        payload: action.payload
       }
     case REMOVE_CURRENT_USER:
       return {
         ...state,
-        user: {}
+        payload: action.payload
+      }
+    case FAILED_CURRENT_USER:
+      return {
+        ...state,
+        payload: action.payload
       }
     default: 
       return state
   }
 }
 
-const errorReducer = (state={ 
-  didInvalidate: false, 
-  message: '' }, 
-  action) => {
-  switch(action.type) {
-    case GET_ERROR:
-      return {
-        ...state,
-        didInvalidate: action.didInvalidate,
-        message: action.message
-      }
-    default:
-      return state
-  }
-}
-
 export const rootReducer = combineReducers({
-  auth: authReducer,
-  error: errorReducer
+  auth: authReducer
 })
