@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Redirect } from 'react-router-dom'
+import { NavLink, Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logoutCurrentUser } from '../redux/actions'
 import clsx from 'clsx'
@@ -153,11 +153,23 @@ const Layout = props => {
 
   const [ open, setOpen ] = React.useState(false)
 
+  // Изменяем состояние и вызываем функцию для перехода на роут авторизации
+  const [ redirect, setRedirect ] = React.useState(false)
+
   const logoutHandler = e => {
     e.preventDefault()
 
     props.logoutUser({})
-    return window.location = '/'
+    return setRedirect(true)
+  }
+
+  const renderRedirect = () => {
+    if (redirect) 
+      return <Redirect 
+        to={{
+          pathname: '/auth'
+        }}
+      />
   }
 
   const handleDrawerOpen = () => {
@@ -170,6 +182,7 @@ const Layout = props => {
 
   return (
     <div className={classes.root}>
+      {renderRedirect()}
       <CssBaseline />
       <AppBar
         position='fixed'
