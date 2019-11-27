@@ -1,87 +1,64 @@
-/* --- ACTIONS BLOCK --- */
-export const REQUIRE_CURRENT_USER = 'REQUIRE_CURRENT_USER'
+export {
+  REQUIRE_CURRENT_USER,
+  LOGIN_CURRENT_USER,
+  UPDATE_CURRENT_USER,
+  LOGOUT_CURRENT_USER,
+  FAILED_CURRENT_USER,
+  REQUIRE_ORDER_FIELDS,
+  ADD_ORDER_FIELDS,
+  FAILED_ORDER_FIELDS,
+  REQUIRE_ORDER_STATUSES,
+  ADD_ORDER_STATUSES,
+  FAILED_ORDER_STATUSES,
+  REQUIRE_CREATE_ORDER,
+  ADD_CREATE_ORDER,
+  FAILED_CREATE_ORDER,
+  REQUIRE_ORDER_LIST,
+  ADD_ORDER_LIST,
+  FAILED_ORDER_LIST,
+  UPDATE_ORDER_LIST,
+  SEARCH_ORDER 
+} from './types'
 
-export const requireCurrentUser = payload => {
-  return {
-    type: REQUIRE_CURRENT_USER,
-    payload
-  }
-}
+export {
+  requireCurrentUser,
+  loginCurrentUser,
+  updateCurrentUser,
+  logoutCurrentUser,
+  failedCurrentUser
+} from './user'
 
-export const LOGIN_CURRENT_USER = 'LOGIN_CURRENT_USER'
+export {
+  requireOrderFields,
+  addOrderFields,
+  failedOrderFields
+} from './fields'
 
-export const loginCurrentUser = payload => {
-  return {
-    type: LOGIN_CURRENT_USER,
-    payload
-  }
-}
+export {
+  requireOrderStatuses,
+  addOrderStatuses,
+  failedOrderStatuses
+} from './statuses'
 
-export const UPDATE_CURRENT_USER = 'UPDATE_CURRENT_USER'
+export {
+  requireCreateOrder,
+  addCreateOrder,
+  failedCreateOrder,
+  requireOrderList,
+  addOrderList,
+  failedOrderList,
+  updateOrderList
+} from './orders'
 
-export const updateCurrentUser = payload => {
-  return {
-    type: UPDATE_CURRENT_USER,
-    payload
-  }
-}
+export {
+  searchOrder
+} from './search'
 
-export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER'
-
-export const logoutCurrentUser = payload => {
-  return {
-    type: LOGOUT_CURRENT_USER,
-    payload
-  }
-}
-
-export const FAILED_CURRENT_USER = 'FAILED_CURRENT_USER'
-
-export const failedCurrentUser = payload => {
-  return {
-    type: FAILED_CURRENT_USER,
-    payload
-  }
-}
-
-/* --- THUNKS BLOCK --- */
-export const updateUser = () => dispatch => {
-  const token = localStorage.getItem('jwtToken')
-
-  if (!token) return
-
-  const jwtDecoded = require('jwt-decode')
-  const decoded = jwtDecoded(token)
-
-  const currentTime = Date.now() / 1000
-
-  // Если время истекло, то с этим разберется privateRoute.
-  // Здесь только обновляется состояние хранилища
-  if (decoded.exp < currentTime) return
-
-  return dispatch(updateCurrentUser({ user: decoded, token }))
-}
-
-export const loginUser = (user, history) => dispatch => {    
-  const axios = require('axios')
-
-  dispatch(requireCurrentUser(user))
-
-  axios.post('/api/auth/login', user)
-    .then(res => {
-      const { token } = res.data
-
-      const jwtDecoded = require('jwt-decode')
-      const decoded = jwtDecoded(token)
-
-      dispatch(loginCurrentUser({ user: decoded, token }))
-      
-      return history.push('/')
-    })
-    .catch(err => {
-      const { message } = err.response.data
-
-      dispatch(failedCurrentUser({ error: true, message }))
-      return localStorage.removeItem('jwtToken')
-    })
-}
+export {
+  updateUser,
+  loginUser,
+  fetchFields,
+  fetchStatuses,
+  fetchOrderList,
+  fetchUpdateOrderList
+} from './thunks'

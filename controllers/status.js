@@ -1,4 +1,4 @@
-const Craters = require('../models/Crater')
+const Status = require('../models/Status')
 const mongoose = require('mongoose')
 const errorHandler = require('../utils/errorHandler')
 
@@ -6,31 +6,23 @@ module.exports.getAll = async (req, res) => {
   try {
     const craters = 
       await mongoose
-        .model('craters')
-          .find({}, null)
+        .model('statuses')
+          .find({})
 
-    res.status(200).json(craters)  
+    return res.status(200).json(craters)  
   } catch(e) {
     errorHandler(res, e)
   }
 }
 
-// module.exports.getById = async (req, res) => {
-//   try {
-
-//   } catch(e) {
-    
-//   }
-// }
-
 module.exports.create = async (req, res) => {
   try {
     const crater = 
-      await new Craters({
+      await new Status({
         name: req.body.name
       }).save()
 
-    res.status(201).json(crater)
+    return res.status(201).json(crater)
   } catch(e) {
     errorHandler(res, e)
   }
@@ -39,10 +31,10 @@ module.exports.create = async (req, res) => {
 module.exports.remove = async (req, res) => {
   try {
     await mongoose
-      .model('craters')
+      .model('statuses')
         .deleteOne({ _id: req.params.id })
 
-    res.status(200).json({ message: `Категория удалена` })
+    return res.status(200).json({ message: `Категория удалена` })
   } catch(e) {
     errorHandler(res, e)
   }
@@ -50,17 +42,13 @@ module.exports.remove = async (req, res) => {
 
 module.exports.update = async (req, res) => {
   try {
-    const updated = {
-      name: req.body.name      
-    }
-
     const crater = await Craters.findOneAndUpdate(
       { _id: req.params.id },
-      { $set: updated },
+      { $set: { name: req.body.name } },
       { new: true }
     )
     
-    res.status(200).json(crater)
+    return res.status(200).json(crater)
   } catch(e) {
     errorHandler(res, e)
   }

@@ -2,13 +2,31 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
 import logger from 'redux-logger'
 import { rootReducer } from '../reducers'
-import { localStorageMiddleware } from '../middleware'
+import { 
+  localStorageMiddleware,
+  fetchOrderFieldsMiddleware,
+  fetchOrderStatusesMiddleware,
+  fetchOrderListMiddleware
+} from '../middleware'
 
 const getMiddleware = () => {
   if (process.env.NODE_ENV === 'production') {
-    return compose(applyMiddleware(localStorageMiddleware, thunk))
+    return compose(applyMiddleware(
+      localStorageMiddleware,
+      fetchOrderFieldsMiddleware,
+      fetchOrderStatusesMiddleware,
+      fetchOrderListMiddleware,
+      thunk
+    ))
   } else {
-    return compose(applyMiddleware(localStorageMiddleware, thunk, logger))
+    return compose(applyMiddleware(
+      localStorageMiddleware,
+      fetchOrderFieldsMiddleware,
+      fetchOrderStatusesMiddleware,
+      fetchOrderListMiddleware,
+      thunk, 
+      logger
+    ))
   }
 }
 

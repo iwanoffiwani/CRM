@@ -1,42 +1,14 @@
 import { combineReducers } from 'redux'
-import { 
-  REQUIRE_CURRENT_USER, LOGIN_CURRENT_USER, 
-  UPDATE_CURRENT_USER, LOGOUT_CURRENT_USER, 
-  FAILED_CURRENT_USER
-} from '../actions'
-
-const authReducer = (state={ payload: {} }, action) => {
-  switch(action.type) {
-    case REQUIRE_CURRENT_USER:
-      return {
-        ...state,
-        payload: action.payload
-      }
-    case LOGIN_CURRENT_USER:
-      return {
-        ...state,
-        payload: action.payload
-      }
-    case UPDATE_CURRENT_USER:
-      return {
-        ...state,
-        payload: action.payload
-      }
-    case LOGOUT_CURRENT_USER:
-      return {
-        ...state,
-        payload: action.payload
-      }
-    case FAILED_CURRENT_USER:
-      return {
-        ...state,
-        payload: action.payload
-      }
-    default: 
-      return state
-  }
-}
+import authReducer from './authReducer'
+import fieldsReducer from './fieldsReducer'
+import statusesReducer from './statusesReducer'
+import ordersReducer from './ordersReducer'
+import searchReducer from './searchReducer'
 
 export const rootReducer = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  fields: fieldsReducer,
+  crater: statusesReducer,
+  orders: ordersReducer,
+  search: searchReducer
 })

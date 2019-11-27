@@ -1,5 +1,5 @@
-import React from 'react'
-import { NavLink, Redirect} from 'react-router-dom'
+import React, { useState } from 'react'
+import { Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logoutCurrentUser } from '../redux/actions'
 import clsx from 'clsx'
@@ -8,8 +8,6 @@ import Drawer from '@material-ui/core/Drawer'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
-import InputBase from '@material-ui/core/InputBase'
-import List from '@material-ui/core/List'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
@@ -17,17 +15,14 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import MailOutlineOutlinedIcon from '@material-ui/icons/MailOutlineOutlined'
-import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered'
-import TimelineIcon from '@material-ui/icons/Timeline'
-import SettingsIcon from '@material-ui/icons/Settings'
-import SearchIcon from '@material-ui/icons/Search'
 import AddIcon from '@material-ui/icons/Add'
+import CreateOrder from '../containers/CreateOrder'
+import NavBar from './NavBar'
+import SearchBar from '../containers/SearchBar'
 
-const drawerWidth = 240
+const sidebarWidth = 240
+
+const requestWidth = 540
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,8 +36,8 @@ const useStyles = makeStyles(theme => ({
     }),
   },
   appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: sidebarWidth,
+    width: `calc(100% - ${sidebarWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -54,19 +49,37 @@ const useStyles = makeStyles(theme => ({
   hide: {
     display: 'none',
   },
-  drawer: {
-    width: drawerWidth,
+  sidebar: {
+    width: sidebarWidth,
     flexShrink: 0,
     whiteSpace: 'nowrap',
   },
-  drawerOpen: {
-    width: drawerWidth,
+  request: {
+    width: requestWidth
+  },
+  requestOpen: {
+    width: requestWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen
+    })
+  },
+  requestClose: {
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    width: 0
+  },
+  sidebarOpen: {
+    width: sidebarWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  drawerClose: {
+  sidebarClose: {
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -132,13 +145,6 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
-
-  link: {
-    display: 'flex',
-    alignItems: 'center',
-    textDecoration: 'none',
-    color: 'inherit'
-  },
   content: {
     flexGrow: 1,
     padding: '96px 1em 1em',
@@ -151,10 +157,11 @@ const Layout = props => {
   
   const theme = useTheme()
 
-  const [ open, setOpen ] = React.useState(false)
+  const [ request, setRequest ] = useState(false) 
 
-  // Изменяем состояние и вызываем функцию для перехода на роут авторизации
-  const [ redirect, setRedirect ] = React.useState(false)
+  const [ sidebar, setSidebar ] = useState(false)
+
+  const [ redirect, setRedirect ] = useState(false)
 
   const logoutHandler = e => {
     e.preventDefault()
@@ -172,12 +179,20 @@ const Layout = props => {
       />
   }
 
-  const handleDrawerOpen = () => {
-    setOpen(true)
+  const handleRequest = () => {
+    if (request === false) {
+      setRequest(true)
+    } else {
+      setRequest(false)
+    }
   }
 
-  const handleDrawerClose = () => {
-    setOpen(false)
+  const handleSideBar = () => {
+    if (sidebar === false) {
+      return setSidebar(true)
+    } else {
+      return setSidebar(false)
+    }
   }
 
   return (
@@ -188,96 +203,75 @@ const Layout = props => {
         position='fixed'
         color='default'
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color='inherit'
-            aria-label='open drawer'
-            onClick={handleDrawerOpen}
-            edge='start'
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant='h6' noWrap></Typography>
-          <Button color='inherit'><AddIcon className={classes.addIcon} />Добавить</Button>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder='Search…'
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-          <Button color='inherit' onClick={logoutHandler}>Выйти</Button>
-        </Toolbar>
+          [classes.appBarShift]: sidebar,
+        })}>
+      <Toolbar>
+        <IconButton
+          edge='start'
+          color='inherit'
+          aria-label='open drawer'
+          onClick={handleSideBar}
+          className={clsx(classes.menuButton, {
+            [classes.hide]: sidebar,
+          })}>
+          <MenuIcon />
+        </IconButton>
+        <Typography 
+        className={classes.title} 
+        variant='h6' 
+        noWrap>
+        </Typography>
+        <Button 
+          color='inherit' 
+          onClick={handleRequest}>
+        <AddIcon 
+          className={classes.addIcon}
+        />Добавить</Button>
+        <SearchBar />
+        <Button 
+          color='inherit' 
+          onClick={logoutHandler}
+        >Выйти</Button>
+      </Toolbar>
       </AppBar>
       <Drawer
         variant='permanent'
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
+        className={clsx(classes.sidebar, {
+          [classes.sidebarOpen]: sidebar,
+          [classes.sidebarClose]: !sidebar,
         })}
         classes={{
           paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
+            [classes.sidebarOpen]: sidebar,
+            [classes.sidebarClose]: !sidebar,
           }),
         }}
-        open={open}
-      >
-        <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
+        open={sidebar}>
+        <Toolbar className={classes.toolbar}>
+          <IconButton onClick={handleSideBar}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
-        </div>
+        </Toolbar>
         <Divider />
-          <nav className='navbar'>
-            <List>
-              <ListItem>
-                <NavLink to='/' className={classes.link}>
-                  <ListItemIcon>
-                    <MailOutlineOutlinedIcon />
-                  </ListItemIcon>
-                  <ListItemText primary='Задачи' />
-                </NavLink>
-              </ListItem>
-              <ListItem>
-                <NavLink to='/requires' className={classes.link}>
-                  <ListItemIcon>
-                    <FormatListNumberedIcon />
-                  </ListItemIcon>
-                  <ListItemText primary='Заявки' />
-                </NavLink>
-              </ListItem>
-              <ListItem>
-                <NavLink to='/analytics' className={classes.link}>
-                  <ListItemIcon>
-                    <TimelineIcon />
-                  </ListItemIcon>
-                  <ListItemText primary='Аналитика' />
-                </NavLink>
-              </ListItem>
-              <ListItem>
-                <NavLink to='/settings' className={classes.link}>
-                  <ListItemIcon>
-                    <SettingsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary='Настройки' />
-                </NavLink>
-              </ListItem>
-            </List>
-          </nav>
+          <NavBar />
         <Divider />
+      </Drawer>
+      <Drawer 
+        open={request}
+        className={classes.request} 
+        classes={{
+          paper: clsx({
+            [classes.requestOpen]: request,
+            [classes.requestClose]: !request,
+          }),
+        }}>
+        <Toolbar className={classes.toolbar}>
+          <IconButton onClick={handleRequest}>
+            <ChevronLeftIcon />
+          </IconButton>
+        </Toolbar>
+        <Divider />
+        <CreateOrder />
       </Drawer>
       <main className={classes.content}>
         {props.children}

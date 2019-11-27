@@ -1,3 +1,4 @@
+const compression = require('compression')
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
@@ -8,8 +9,8 @@ const passport = require('passport')
 
 const authRouters = require('./routes/auth')
 const fieldRouters = require('./routes/field')
-const craterRouters = require('./routes/crater')
-const requestRouters = require('./routes/request')
+const craterRouters = require('./routes/status')
+const requestRouters = require('./routes/order')
 
 const keys = require('./config/keys')
 
@@ -24,14 +25,16 @@ require('./middleware/passport')(passport)
 
 app.use(morgan('dev'))
 
+app.use(compression())
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.use(cors())
 
 app.use('/api/auth', authRouters)
-app.use('/api/field', fieldRouters)
-app.use('/api/crater', craterRouters)
-app.use('/api/request', requestRouters)
+app.use('/api/fields', fieldRouters)
+app.use('/api/statuses', craterRouters)
+app.use('/api/orders', requestRouters)
 
 module.exports = app

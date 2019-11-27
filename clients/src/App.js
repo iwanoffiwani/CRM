@@ -4,20 +4,19 @@ import { connect } from 'react-redux'
 import { updateUser } from './redux/actions'
 import { history } from './utils/history'
 import PrivateRoute from './components/PrivateRoute'
-import Tasks from './components/Tasks'
+import OrderList from './containers/OrderList'
 import Login from './containers/Login'
 
 class App extends Component {
-  componentDidMount() {
+  UNSAFE_componentWillMount() {
     this.props.updateUser()
   }
-
   render() { 
     return (
       <Router hisory={history}>
         <Switch>
           <Route path='/auth' component={Login} />
-          <PrivateRoute path='/' exact component={Tasks} />
+          <PrivateRoute path='/' exact component={OrderList} />
         </Switch>
       </Router>
     )

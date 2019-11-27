@@ -1,21 +1,15 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const filed = new Schema({
+const field = new Schema({
   name: {
     type: String,
     required: true
   },
-  list: [
-    { 
-      name: { 
-        type: String
-      }
-    }
-  ],
-  requestId:{
+  value: {
     type: String,
+    default: ''
   }
 })
 
-module.exports = mongoose.model('fileds', filed)
+module.exports = mongoose.model('fields', field)
