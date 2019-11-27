@@ -100,6 +100,30 @@ const OrderList = props => {
       </TableRow>
     )
 
+  const search = props.search
+  .slice(
+    state.pagination.page * state.pagination.rowsPerPage, 
+    state.pagination.page * state.pagination.rowsPerPage + 
+    state.pagination.rowsPerPage
+  )
+  .map(order =>
+    <TableRow hover role='checkbox' tabIndex={-1} key={order._id}>
+      <TableCell>
+        {order.name}
+      </TableCell>
+      <TableCell>
+        {order.status}
+      </TableCell>
+      {order.fields.map(field => 
+        <TableCell 
+          key={field._id}
+          align='right'
+        >{field.value}
+        </TableCell>
+      )}
+    </TableRow>
+  )
+
   return (
     <Layout>
       <Paper className={classes.root} component='section' elevation='7'>
@@ -121,14 +145,14 @@ const OrderList = props => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {orders}
+              {props.search.length === 0 ? orders : search}
             </TableBody>
           </Table>
         </div>
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component='div'
-          count={props.orders.length}
+          count={props.search.length === 0 ? props.orders.length : props.search.length}
           rowsPerPage={state.pagination.rowsPerPage}
           page={state.pagination.page}
           onChangePage={handleChangePage}
@@ -143,7 +167,8 @@ const mapStateToProps = state => {
   return {
     fields: state.fields.payload,
     statuses: state.crater.payload,
-    orders: state.orders.payload
+    orders: state.orders.payload,
+    search: state.search.payload
   }
 }
 

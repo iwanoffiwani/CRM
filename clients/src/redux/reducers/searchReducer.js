@@ -1,14 +1,15 @@
 import { SEARCH_ORDER } from '../actions'
 
 const initialState = {
-  payload: ''
+  payload: []
 }
 
 const searchReducer = (state = initialState, action) => {
   switch(action.type) {
     case SEARCH_ORDER:
       return {
-        ...state
+        ...state,
+        payload: action.payload
       }
     default: 
       return state

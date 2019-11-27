@@ -89,7 +89,7 @@ const SearchBar = props => {
         // Обязательная проверка условия, иначе  
         // метод возвращает первый результат
         if (field.indexOf(replace) !== -1) {
-          return field.indexOf(replace)
+          return field.indexOf(replace) !== -1
         }
       }
     })
@@ -97,7 +97,7 @@ const SearchBar = props => {
     if (fields.length !== 0)
       result = fields
 
-    console.log(result)
+    props.result(result)
 
     return setState(e.target.value)
   }
