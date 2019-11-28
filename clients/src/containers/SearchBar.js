@@ -92,6 +92,8 @@ const SearchBar = props => {
           return field.indexOf(replace) !== -1
         }
       }
+
+      return false // Убираем варнинг, стрелочная функция ожидает return
     })
 
     if (fields.length !== 0)

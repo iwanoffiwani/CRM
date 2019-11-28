@@ -15,10 +15,12 @@ const requestRouters = require('./routes/order')
 const keys = require('./config/keys')
 
 mongoose.connect(keys.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connected'))
+  .then(() => console.log('MongoDB has been connected'))
     .catch(error => console.log(error))
 
-mongoose.set('useCreateIndex', true);
+mongoose.set('useCreateIndex', true)
+
+mongoose.set('useFindAndModify', false)
 
 app.use(passport.initialize())
 require('./middleware/passport')(passport)

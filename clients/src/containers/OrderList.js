@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import axios from 'axios'
+import { fetchUpdateOrderList } from '../redux/actions'
 import { withStyles, makeStyles } from '@material-ui/core/styles'
 import Layout from '../components/Layout'
 import Paper from '@material-ui/core/Paper'
@@ -9,6 +11,8 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TablePagination from '@material-ui/core/TablePagination'
 import TableRow from '@material-ui/core/TableRow'
+import MenuItem from '@material-ui/core/MenuItem'
+import Select from '@material-ui/core/Select'
 import green from '@material-ui/core/colors/green'
 
 const StyledTableCell = withStyles(theme => ({
@@ -32,6 +36,9 @@ const useStyles = makeStyles({
   },
   tabelCell: {
     minWidth: 60
+  },
+  tabelSelect: {
+    padding: '14px 12px'
   }
 })
 
@@ -67,6 +74,28 @@ const OrderList = props => {
     })
   }
 
+  const changeStatusHandler = e => {
+    // На прямую получить _id заявки нельзя,
+    // потому вытаскиваем через переданые свойства
+    const stateNode = e._targetInst.stateNode
+
+    const orderID = stateNode.dataset.order
+    
+    const data = {
+      [e.target.name]: e.target.value
+    }
+
+    axios({
+      method: 'PATCH',
+      url: `/api/orders/`,
+      params: {
+        id: orderID 
+      },
+      data,
+    })
+    .then(() => props.update())
+  }
+
   const fields = props.fields.map(field => 
     <StyledTableCell
       key={field._id}
@@ -77,6 +106,52 @@ const OrderList = props => {
   )
 
   const orders = props.orders
+    .slice(
+      state.pagination.page * state.pagination.rowsPerPage, 
+      state.pagination.page * state.pagination.rowsPerPage + 
+      state.pagination.rowsPerPage
+    )
+    .map(order =>
+      <TableRow hover role='checkbox' tabIndex={-1} key={order._id}>
+        <TableCell>
+          {order.name}
+        </TableCell>
+        <TableCell>
+          <Select
+            id="demo-simple-select-outlined"
+            value={order.status}
+            variant='outlined'
+            onChange={changeStatusHandler}
+            fullWidth={true}
+            inputProps={{ 
+              name: 'status'
+            }}>
+            <MenuItem 
+              value={order.status}
+              className={classes.tabelSelect}>
+            </MenuItem>
+            {props.status.map((item, index) => 
+              <MenuItem 
+                id={item._id}
+                key={index}
+                value={item.name}
+                data-order={order._id}
+              >{item.name}
+              </MenuItem>
+            ) }
+          </Select>
+        </TableCell>
+        {order.fields.map(field => 
+          <TableCell 
+            key={field._id}
+            align='right'
+          >{field.value}
+          </TableCell>
+        )}
+      </TableRow>
+    )
+
+  const search = props.search
     .slice(
       state.pagination.page * state.pagination.rowsPerPage, 
       state.pagination.page * state.pagination.rowsPerPage + 
@@ -99,30 +174,6 @@ const OrderList = props => {
         )}
       </TableRow>
     )
-
-  const search = props.search
-  .slice(
-    state.pagination.page * state.pagination.rowsPerPage, 
-    state.pagination.page * state.pagination.rowsPerPage + 
-    state.pagination.rowsPerPage
-  )
-  .map(order =>
-    <TableRow hover role='checkbox' tabIndex={-1} key={order._id}>
-      <TableCell>
-        {order.name}
-      </TableCell>
-      <TableCell>
-        {order.status}
-      </TableCell>
-      {order.fields.map(field => 
-        <TableCell 
-          key={field._id}
-          align='right'
-        >{field.value}
-        </TableCell>
-      )}
-    </TableRow>
-  )
 
   return (
     <Layout>
@@ -166,10 +217,16 @@ const OrderList = props => {
 const mapStateToProps = state => {
   return {
     fields: state.fields.payload,
-    statuses: state.crater.payload,
+    status: state.crater.payload,
     orders: state.orders.payload,
     search: state.search.payload
   }
 }
 
-export default connect(mapStateToProps)(OrderList)
+const mapDispatchToProps = dispatch => {
+  return {
+    update: () => dispatch(fetchUpdateOrderList())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderList)
