@@ -13,6 +13,7 @@ import TablePagination from '@material-ui/core/TablePagination'
 import TableRow from '@material-ui/core/TableRow'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
+import Preloader from '../components/Preloader'
 import green from '@material-ui/core/colors/green'
 
 const StyledTableCell = withStyles(theme => ({
@@ -126,10 +127,6 @@ const OrderList = props => {
             inputProps={{ 
               name: 'status'
             }}>
-            <MenuItem 
-              value={order.status}
-              className={classes.tabelSelect}>
-            </MenuItem>
             {props.status.map((item, index) => 
               <MenuItem 
                 id={item._id}
@@ -163,7 +160,25 @@ const OrderList = props => {
           {order.name}
         </TableCell>
         <TableCell>
-          {order.status}
+          <Select
+            id="demo-simple-select-outlined"
+            value={order.status}
+            variant='outlined'
+            onChange={changeStatusHandler}
+            fullWidth={true}
+            inputProps={{ 
+              name: 'status'
+            }}>
+            {props.status.map((item, index) => 
+              <MenuItem 
+                id={item._id}
+                key={index}
+                value={item.name}
+                data-order={order._id}
+              >{item.name}
+              </MenuItem>
+            ) }
+          </Select>
         </TableCell>
         {order.fields.map(field => 
           <TableCell 
@@ -177,39 +192,40 @@ const OrderList = props => {
 
   return (
     <Layout>
-      <Paper className={classes.root} component='section' elevation='7'>
-        <div className={classes.tableWrapper}>
-          <Table stickyHeader aria-label='sticky table'>
-            <TableHead>
-              <TableRow>
-                <StyledTableCell 
-                  className={classes.tabelCell}
-                >
-                  Имя
-                </StyledTableCell>
-                <StyledTableCell 
-                  className={classes.tabelCell}
-                >
-                  Статус
-                </StyledTableCell>
-                {fields}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {props.search.length === 0 ? orders : search}
-            </TableBody>
-          </Table>
-        </div>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component='div'
-          count={props.search.length === 0 ? props.orders.length : props.search.length}
-          rowsPerPage={state.pagination.rowsPerPage}
-          page={state.pagination.page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
-        />
-      </Paper>
+      {props.orders.length === 0 ? <Preloader /> :
+        <Paper className={classes.root} component='section' elevation={7}>
+          <div className={classes.tableWrapper}>
+            <Table stickyHeader aria-label='sticky table'>
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell 
+                    className={classes.tabelCell}
+                  >Имя
+                  </StyledTableCell>
+                  <StyledTableCell 
+                    className={classes.tabelCell}
+                  >Статус
+                  </StyledTableCell>
+                  {fields}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {props.search.length === 0 ? orders : search}
+              </TableBody>
+            </Table>
+          </div>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component='div'
+            count={props.search.length === 0 ? props.orders.length : props.search.length}
+            rowsPerPage={state.pagination.rowsPerPage}
+            page={state.pagination.page}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
+          />
+        </Paper>
+      }
+      
     </Layout>
   )
 }

@@ -200,9 +200,6 @@ const CreateOrder = props => {
           onChange={changeHandler}
           fullWidth={true}
           inputProps={{ name: 'status' }}>
-          <MenuItem 
-            value={state.query.status}>
-          </MenuItem>
           {statuses}
         </Select>
         <Divider 
@@ -216,8 +213,7 @@ const CreateOrder = props => {
         {fields}
         <Divider 
           className={classes.divider}/>
-        {
-          state.query.name.length < 1 ? 
+        {state.query.name.length < 1 ? 
           <Button 
             variant='contained' 
             disabled>
@@ -228,8 +224,7 @@ const CreateOrder = props => {
           color='primary' 
           type='submit'>
             Добавить заявку
-          </Button>
-        }
+          </Button>}
       </Container>
     </form>
   )

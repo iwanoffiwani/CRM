@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { searchOrder } from '../redux/actions'
 import { makeStyles, fade } from '@material-ui/core/styles'
@@ -48,8 +48,6 @@ const useStyles = makeStyles(theme => ({
 const SearchBar = props => {
   const classes = useStyles()
 
-  const [ state, setState ] = useState('')
-
   const searchHandler = e => {
     const value = e.target.value.toLowerCase()
     const trim = value.trim()
@@ -58,8 +56,7 @@ const SearchBar = props => {
     // В методе .filter() будем использовать то же регулярное выражение.
     const replace = trim.replace(/[^A-Za-zА-Яа-яЁё\d]/g, "")
 
-    // Сохраняем результат поиска в переменную
-    let result = null
+    let result = []
 
     const names = props.orders.filter(order => {
       const name = order.name.toLowerCase()
@@ -93,15 +90,17 @@ const SearchBar = props => {
         }
       }
 
-      return false // Убираем варнинг, стрелочная функция ожидает return
+      return false
     })
 
     if (fields.length !== 0)
       result = fields
 
-    props.result(result)
+    if (value.length === 0)
+      return props.result([])
 
-    return setState(e.target.value)
+    if (result.length !== 0)
+      return props.result(result)
   }
 
   return (
@@ -111,7 +110,6 @@ const SearchBar = props => {
       </div>
       <InputBase
         name='search'
-        value={state}
         onChange={searchHandler}
         placeholder='Search…'
         classes={{
