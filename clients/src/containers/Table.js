@@ -97,64 +97,44 @@ const OrderList = props => {
     .then(() => props.update())
   }
 
-  const fields = props.fields.map(field => 
-    <StyledTableCell
-      key={field._id}
-      align='right'
-      className={classes.tabelCell}
-    >{field.name}
-    </StyledTableCell>
+  const otherFields = 
+    props.fields.map(field => 
+      <StyledTableCell
+        key={field._id}
+        align='right'
+        className={classes.tabelCell}
+      >{field.name}
+      </StyledTableCell>
+    )
+
+  const otherStatuses = orderID => (
+    props.status.map(item => 
+      <MenuItem 
+        id={item._id}
+        key={item._id}
+        value={item.name}
+        data-order={orderID}
+      >{item.name}
+      </MenuItem>
+    )
   )
 
-  const orders = props.orders
-    .slice(
-      state.pagination.page * state.pagination.rowsPerPage, 
-      state.pagination.page * state.pagination.rowsPerPage + 
-      state.pagination.rowsPerPage
+  const otherOrderFields = fields => (
+    fields.map(field => 
+      <TableCell 
+        key={field._id}
+        align='right'
+      >{field.value}
+      </TableCell>
     )
-    .map(order =>
-      <TableRow hover role='checkbox' tabIndex={-1} key={order._id}>
-        <TableCell>
-          {order.name}
-        </TableCell>
-        <TableCell>
-          <Select
-            id="demo-simple-select-outlined"
-            value={order.status}
-            variant='outlined'
-            onChange={changeStatusHandler}
-            fullWidth={true}
-            inputProps={{ 
-              name: 'status'
-            }}>
-            {props.status.map((item, index) => 
-              <MenuItem 
-                id={item._id}
-                key={index}
-                value={item.name}
-                data-order={order._id}
-              >{item.name}
-              </MenuItem>
-            ) }
-          </Select>
-        </TableCell>
-        {order.fields.map(field => 
-          <TableCell 
-            key={field._id}
-            align='right'
-          >{field.value}
-          </TableCell>
-        )}
-      </TableRow>
-    )
+  )
 
-  const search = props.search
-    .slice(
+  const orders = orders => (
+    orders.slice(
       state.pagination.page * state.pagination.rowsPerPage, 
       state.pagination.page * state.pagination.rowsPerPage + 
       state.pagination.rowsPerPage
-    )
-    .map(order =>
+    ).map(order => 
       <TableRow hover role='checkbox' tabIndex={-1} key={order._id}>
         <TableCell>
           {order.name}
@@ -168,27 +148,14 @@ const OrderList = props => {
             fullWidth={true}
             inputProps={{ 
               name: 'status'
-            }}>
-            {props.status.map((item, index) => 
-              <MenuItem 
-                id={item._id}
-                key={index}
-                value={item.name}
-                data-order={order._id}
-              >{item.name}
-              </MenuItem>
-            ) }
+            }}
+          >{otherStatuses(order._id)}
           </Select>
         </TableCell>
-        {order.fields.map(field => 
-          <TableCell 
-            key={field._id}
-            align='right'
-          >{field.value}
-          </TableCell>
-        )}
+        {otherOrderFields(order.fields)}
       </TableRow>
     )
+  )
 
   return (
     <Layout>
@@ -206,11 +173,12 @@ const OrderList = props => {
                     className={classes.tabelCell}
                   >Статус
                   </StyledTableCell>
-                  {fields}
+                  {otherFields}
                 </TableRow>
               </TableHead>
               <TableBody>
-                {props.search.length === 0 ? orders : search}
+                {props.search.length === 0 ? orders(props.orders) : 
+                orders(props.search)}
               </TableBody>
             </Table>
           </div>
@@ -233,7 +201,7 @@ const OrderList = props => {
 const mapStateToProps = state => {
   return {
     fields: state.fields.payload,
-    status: state.crater.payload,
+    status: state.status.payload,
     orders: state.orders.payload,
     search: state.search.payload
   }

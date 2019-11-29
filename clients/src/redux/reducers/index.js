@@ -8,7 +8,7 @@ import searchReducer from './searchReducer'
 export const rootReducer = combineReducers({
   auth: authReducer,
   fields: fieldsReducer,
-  crater: statusesReducer,
+  status: statusesReducer,
   orders: ordersReducer,
   search: searchReducer
 })

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { updateUser } from './redux/actions'
 import { history } from './utils/history'
 import PrivateRoute from './components/PrivateRoute'
-import OrderList from './containers/OrderList'
+import Table from './containers/Table'
 import Login from './containers/Login'
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
       <Router hisory={history}>
         <Switch>
           <Route path='/auth' component={Login} />
-          <PrivateRoute path='/' exact component={OrderList} />
+          <PrivateRoute path='/' exact component={Table} />
         </Switch>
       </Router>
     )
