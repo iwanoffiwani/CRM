@@ -232,7 +232,7 @@ const CreateOrder = props => {
 
 const mapStateToProps = state => {
   return {
-    statuses: state.status.payload,
+    statuses: state.statuses.payload,
     fields: state.fields.payload
   }
 }

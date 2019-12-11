@@ -22,7 +22,7 @@ import SearchBar from '../containers/SearchBar'
 
 const sidebarWidth = 240
 
-const requestWidth = 540
+const createOrderDrawerWidth = 540
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -54,17 +54,17 @@ const useStyles = makeStyles(theme => ({
     flexShrink: 0,
     whiteSpace: 'nowrap',
   },
-  request: {
-    width: requestWidth
+  createOrderDrawer: {
+    width: createOrderDrawerWidth
   },
-  requestOpen: {
-    width: requestWidth,
+  createOrderDrawerOpen: {
+    width: createOrderDrawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
     })
   },
-  requestClose: {
+  createOrderDrawerClose: {
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -157,7 +157,7 @@ const Layout = props => {
   
   const theme = useTheme()
 
-  const [ request, setRequest ] = useState(false) 
+  const [ createOrderDrawer, setcreateOrderDrawer ] = useState(false) 
 
   const [ sidebar, setSidebar ] = useState(false)
 
@@ -179,11 +179,11 @@ const Layout = props => {
       />
   }
 
-  const handleRequest = () => {
-    if (request === false) {
-      setRequest(true)
+  const handlecreateOrderDrawer = () => {
+    if (createOrderDrawer === false) {
+      setcreateOrderDrawer(true)
     } else {
-      setRequest(false)
+      setcreateOrderDrawer(false)
     }
   }
 
@@ -223,7 +223,7 @@ const Layout = props => {
         </Typography>
         <Button 
           color='inherit' 
-          onClick={handleRequest}>
+          onClick={handlecreateOrderDrawer}>
         <AddIcon 
           className={classes.addIcon}
         />Добавить</Button>
@@ -257,16 +257,16 @@ const Layout = props => {
         <Divider />
       </Drawer>
       <Drawer 
-        open={request}
-        className={classes.request} 
+        open={createOrderDrawer}
+        className={classes.createOrderDrawer} 
         classes={{
           paper: clsx({
-            [classes.requestOpen]: request,
-            [classes.requestClose]: !request,
+            [classes.createOrderDrawerOpen]: createOrderDrawer,
+            [classes.createOrderDrawerClose]: !createOrderDrawer,
           }),
         }}>
         <Toolbar className={classes.toolbar}>
-          <IconButton onClick={handleRequest}>
+          <IconButton onClick={handlecreateOrderDrawer}>
             <ChevronLeftIcon />
           </IconButton>
         </Toolbar>

@@ -3,11 +3,23 @@ const errorHandler = require('../utils/errorHandler')
 
 module.exports.getAll = async (req, res) => {
   try {
-    const requests = 
+    const order = 
       await Order.find({ user: req.user.id })
         .sort({ data: -1 }) //Sort by Date Added DESC
           
-    return res.status(200).json(requests)
+    return res.status(200).json(order)
+  } catch(e) {
+    errorHandler(res, e)
+  }
+}
+
+module.exports.getById = async (req, res) => {
+  try {
+    const order = 
+      await Order.findOne({ _id: req.params.id })
+
+    return res.status(200).json(order)
+
   } catch(e) {
     errorHandler(res, e)
   }
@@ -44,11 +56,17 @@ module.exports.update = async (req, res) => {
     const order = 
       await Order.findOneAndUpdate(
         { _id: req.query.id },
-        { ...req.body },
+        { $set: {
+            ...req.body
+          }
+        },
         { new: true } 
       )
 
-    return res.status(200).json(order)
+    const update = 
+      await Order.findOne({ _id: req.query.id })
+
+    return res.status(200).json(update)
   } catch(e) {
     errorHandler(e)
   }

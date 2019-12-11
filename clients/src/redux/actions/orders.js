@@ -5,7 +5,7 @@ import {
   REQUIRE_ORDER_LIST,
   ADD_ORDER_LIST,
   FAILED_ORDER_LIST,
-  UPDATE_ORDER_LIST   
+  UPDATE_ORDER_LIST
 } from './types'
 
 export const requireCreateOrder = () => {
