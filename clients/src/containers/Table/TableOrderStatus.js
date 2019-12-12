@@ -26,8 +26,8 @@ const TableOrderStatus = props => {
         changes: [
           ...props.order.changes,
           {
-            user: props.user,
-            previousState: {
+            user: props.user.data.login,
+            previousState: { // Свойство должно именоваться именно так, иначе будут серьезные проблемы
               status: props.order.status
             },
             nextState: {
@@ -68,7 +68,7 @@ const TableOrderStatus = props => {
 
 const mapStateToProps = state => {
   return {
-    user: state.auth.payload.user.login,
+    user: state.authorization.payload,
     statuses: state.statuses.payload
   }
 }

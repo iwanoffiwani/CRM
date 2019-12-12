@@ -40,7 +40,7 @@ export const updateUser = () => dispatch => {
   // Здесь только обновляется состояние хранилища
   if (decoded.exp < currentTime) return
 
-  return dispatch(updateCurrentUser({ user: decoded, token }))
+  return dispatch(updateCurrentUser({ data: decoded, token }))
 }
 
 export const loginUser = (user, history) => dispatch => {  
@@ -53,7 +53,7 @@ export const loginUser = (user, history) => dispatch => {
       const jwtDecoded = require('jwt-decode')
       const decoded = jwtDecoded(token)
 
-      dispatch(loginCurrentUser({ user: decoded, token }))
+      dispatch(loginCurrentUser({ data: decoded, token }))
       
       return history.push('/')
     })

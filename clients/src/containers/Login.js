@@ -24,17 +24,19 @@ const Login = props => {
 
   const classes = useStyles()
 
-  const { auth, error, message } = props
+  const { error, message } = props
 
   const [ login, setLogin ] = useState('')
 
   const [ password, setPassword ] = useState('')
-
+  
   const submitHandler = async e => {
     e.preventDefault()
-
-    const user = { login, password }
-    return auth(user, props.history)
+ 
+    return props.authorization({ 
+      login, 
+      password 
+    }, props.history)
   }
 
   return (
@@ -91,14 +93,14 @@ const Login = props => {
 
 const mapStateToProps = state => {
   return {
-    error: state.auth.payload.error,
-    message: state.auth.payload.message
+    error: state.authorization.payload.error,
+    message: state.authorization.payload.message
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    auth: (user, history) => dispatch(loginUser(user, history))
+    authorization: (user, history) => dispatch(loginUser(user, history))
   }
 }
 

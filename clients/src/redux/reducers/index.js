@@ -7,7 +7,7 @@ import searchReducer from './searchReducer'
 import editReducer from './editReducer'
 
 export const rootReducer = combineReducers({
-  auth: authReducer,
+  authorization: authReducer,
   fields: fieldsReducer,
   statuses: statusesReducer,
   orders: ordersReducer,

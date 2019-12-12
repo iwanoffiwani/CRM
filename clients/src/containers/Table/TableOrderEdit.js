@@ -166,12 +166,12 @@ const EditOrder = props => {
 
     const nextState = changes.nextState
 
-    let filter = { user: props.user, previousState: {}, nextState: {} }
+    let filter = { user: props.user.data.login, previousState: {}, nextState: {} }
 
     if (nextState.name && nextState.name !== previousState.name) 
       filter = {
         ...filter,
-        previousState: {
+        previousState: { // Свойство должно именоваться именно так, иначе будут серьезные проблемы
           name: previousState.name
         },
         nextState: {
@@ -295,7 +295,7 @@ const EditOrder = props => {
         comments: [
           ...state.edit.comments,
           {   
-            user: props.user,
+            user: props.user.data.login,
             content: state.comment 
           }
         ]
@@ -546,7 +546,7 @@ const EditOrder = props => {
 
 const mapStateToProps = state => {
   return {
-    user: state.auth.payload.user.login,
+    user: state.authorization.payload,
     edit: state.edit.payload,
     statuses: state.statuses.payload
   }
