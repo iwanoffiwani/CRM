@@ -20,12 +20,12 @@ const ordersReducer = (state = initialState, action) => {
         ...state,
         payload: action.payload
       }
-    case FAILED_ORDER_LIST:
+    case UPDATE_ORDER_LIST:
       return {
         ...state,
         payload: action.payload
       }
-    case UPDATE_ORDER_LIST:
+    case FAILED_ORDER_LIST:
       return {
         ...state,
         payload: action.payload

@@ -64,7 +64,9 @@ const CreateOrder = props => {
       }
     },
     query: {
-      status: props.statuses[0].name,
+      status: {
+        name: props.statuses[0].name
+      },
       name: '',
       fields: [...props.fields]
     }
@@ -72,12 +74,24 @@ const CreateOrder = props => {
 
   const [ state, setState ] = useState(initialState)
 
-  const changeHandler = e => {
+  const changeNameHandler = e => {
     return setState({
       ...state,
       query: {
         ...state.query,
-        [e.target.name]: e.target.value
+        name: e.target.value
+      }
+    })
+  }
+
+  const changeStatusHandler = e => {
+    return setState({
+      ...state,
+      query: {
+        ...state.query,
+        status: {
+          name: e.target.value
+        }
       }
     })
   }
@@ -182,7 +196,7 @@ const CreateOrder = props => {
           value={state.query.name}
           margin='normal'
           variant='outlined'
-          onChange={changeHandler}
+          onChange={changeNameHandler}
           fullWidth={true}
           className={classes.textField}
         />
@@ -195,11 +209,10 @@ const CreateOrder = props => {
         </Typography >
         <Select
           id="demo-simple-select-outlined"
-          value={state.query.status}
+          value={state.query.status.name}
           variant='outlined'
-          onChange={changeHandler}
-          fullWidth={true}
-          inputProps={{ name: 'status' }}>
+          onChange={changeStatusHandler}
+          fullWidth={true}>
           {statuses}
         </Select>
         <Divider 

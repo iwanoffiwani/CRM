@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import { fetchUpdateOrderList } from '../../redux/actions'
@@ -53,7 +53,9 @@ const useStyles = makeStyles(theme => ({
     width: 720
   },
   list: {
-    padding: 0
+    padding: 0,
+    height: 500,
+    overflowX: 'hidden'
   },
   listItem: {
     paddingRight: 0,
@@ -101,7 +103,7 @@ const EditOrder = props => {
         ...state.changes,
         nextState: {
           ...state.changes.nextState,
-          [e.target.name]: e.target.value
+          name: e.target.value
         }
       }
     })
@@ -112,13 +114,15 @@ const EditOrder = props => {
       ...state,
       edit: {
         ...state.edit,
-        [e.target.name]: e.target.value
+        status: {
+          name: e.target.value
+        }
       },
       changes: {
         ...state.changes,
         nextState: {
           ...state.changes.nextState,
-          [e.target.name]: e.target.value
+          status: e.target.value
         }
       }
     })
@@ -184,7 +188,7 @@ const EditOrder = props => {
         ...filter,
         previousState: {
           ...filter.previousState,
-          status: previousState.status
+          status: previousState.status.name
         },
         nextState: {
           ...filter.nextState,
@@ -426,6 +430,12 @@ const EditOrder = props => {
 
     })
 
+  const commentsList = React.createRef()
+
+  useEffect(() => {
+    commentsList.current.scrollTop = commentsList.current.scrollHeight
+  })
+
   return (
     <Box className={classes.wrapper}>
       <form onSubmit={submitHandler}>
@@ -472,7 +482,7 @@ const EditOrder = props => {
           </Typography >
           <Select
             id='demo-simple-select-outlined'
-            value={state.edit.status}
+            value={state.edit.status.name}
             variant='outlined'
             onChange={changeStatusHandler}
             fullWidth={true}
@@ -511,7 +521,7 @@ const EditOrder = props => {
           noWrap
         >Комментарии
         </Typography>
-        <List className={classes.list}>
+        <List className={classes.list} ref={commentsList}>
           {comments}
         </List>
         <form className={classes.comment} onSubmit={submitComment}>

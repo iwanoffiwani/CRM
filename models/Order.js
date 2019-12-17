@@ -21,8 +21,12 @@ const order = new Schema({
     required: true
   },
   status: {
-    type: String,
-    required: true
+    name: {
+      type: String
+    },
+    color: {
+      type: String
+    }
   },
   fields: [
     {

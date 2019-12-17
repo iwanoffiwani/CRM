@@ -5,6 +5,9 @@ const status = new Schema({
   name: {
     type: String,
     required: true
+  },
+  color: {
+    type: String
   }
 })
 

@@ -27,15 +27,15 @@ module.exports.getById = async (req, res) => {
 
 module.exports.create = async (req, res) => {
   try {
-    const order = 
-      await new Order({
-        name: req.body.name,
-        user: req.user.id,
-        fields: req.body.fields,
-        status: req.body.status
-      }).save()
+    await new Order({
+      name: req.body.name,
+      user: req.user.id,
+      fields: req.body.fields,
+      status: { ...req.body.status }
+    }).save()
     
-    return res.status(201).json('Ваша заявка успешно добавлена')
+    return res.status(201)
+      .json('Ваша заявка успешно добавлена')
   } catch(e) {
     errorHandler(res, e)
   }

@@ -111,7 +111,7 @@ const SearchBar = props => {
       <InputBase
         name='search'
         onChange={searchHandler}
-        placeholder='Search…'
+        placeholder='Поиск…'
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,

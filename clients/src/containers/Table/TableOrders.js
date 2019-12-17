@@ -32,15 +32,6 @@ const TableOrders = props => {
       })
   }
 
-  const otherOrderFields = fields => 
-    fields.map(field => 
-      <TableCell 
-        key={field._id}
-        align='right'
-      >{field.value}
-      </TableCell>
-    )
-
   return (
     props.orders.map(order => 
       <TableRow hover role='checkbox' tabIndex={-1} key={order._id}>
@@ -62,7 +53,13 @@ const TableOrders = props => {
             order={order}
           />
         </TableCell>
-        {otherOrderFields(order.fields)}
+        {order.fields.map(field => 
+          <TableCell 
+            key={field._id}
+            align='right'
+          >{field.value}
+          </TableCell>
+        )}
       </TableRow>
     )
   )

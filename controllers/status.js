@@ -17,7 +17,8 @@ module.exports.create = async (req, res) => {
   try {
     const status = 
       await new Status({
-        name: req.body.name
+        name: req.body.name,
+        color: req.body.color
       }).save()
 
     return res.status(201).json(status)
@@ -28,7 +29,7 @@ module.exports.create = async (req, res) => {
 
 module.exports.remove = async (req, res) => {
   try {
-    await Status.deleteOne({ _id: req.params.id })
+    await Status.deleteOne({ _id: req.query.id })
 
     return res.status(200).json({ message: `Категория удалена` })
   } catch(e) {
@@ -40,7 +41,7 @@ module.exports.update = async (req, res) => {
   try {
     const crater = await Status.findOneAndUpdate(
       { _id: req.query.id },
-      { $set: { name: req.body.name } },
+      { $set: { ...req.body } },
       { new: true }
     )
     

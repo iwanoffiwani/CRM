@@ -22,13 +22,15 @@ const TableOrderStatus = props => {
         id: orderID 
       },
       data: {
-        status,
+        status: {
+          name: status
+        },
         changes: [
           ...props.order.changes,
           {
             user: props.user.data.login,
             previousState: { // Свойство должно именоваться именно так, иначе будут серьезные проблемы
-              status: props.order.status
+              status: props.order.status.name
             },
             nextState: {
               status
@@ -54,7 +56,7 @@ const TableOrderStatus = props => {
   return (
     <Select
       id='demo-simple-select-outlined'
-      value={props.order.status}
+      value={props.order.status.name}
       variant='outlined'
       onChange={changeStatusHandler}
       fullWidth={true}
