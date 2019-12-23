@@ -8,54 +8,11 @@ import DeleteStatus from './DeleteStatus'
 import CreateStatus from './CreateStatus'
 
 const SettingStatuses = props => {
-  
-  const handlerEditStatus = id => {
-    return setState({
-      ...state,
-      status: {
-        ...state.status,
-        edit: {
-          id: !id ? null : id
-        }
-      }
-    })
-  }
-
-  const handlerDeleteStatus = id => {
-    return setState({
-      ...state,
-      status: {
-        ...state.status,
-        delete: {
-          id: !id ? null : id
-        }
-      }
-    })
-  }
-
-  const handlerCreateStatus = () => {
-    return setState({
-      ...state,
-      status: {
-        ...state.status,
-        create: {
-          init: true
-        }
-      }
-    })
-  }
-
-  const togglerDefaultState = () => {
-    return setState({
-      ...initialState
-    })
-  }
 
   const initialState = {
     status: {
       edit: {
-        id: null,
-        name: null
+        id: null
       },
       delete: {
         id: null
@@ -65,10 +22,34 @@ const SettingStatuses = props => {
       }
     },
     func: {
-      create: handlerCreateStatus,
-      edit: handlerEditStatus,
-      delete: handlerDeleteStatus,
-      default: togglerDefaultState
+      create: () => setState({
+        ...state,
+        status: {
+          ...state.field,
+          create: {
+            init: true
+          }
+        }
+      }),
+      edit: id => setState({ 
+        ...state, 
+        status: { 
+          ...state.field, 
+          edit: { 
+            id 
+          } 
+        } 
+      }),
+      delete: id => setState({
+        ...state,
+        status: {
+          ...state.field,
+          delete: {
+            id
+          }
+        }
+      }),
+      default: () => setState({ ...initialState })
     }
   }
 

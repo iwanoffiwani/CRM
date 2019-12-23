@@ -8,54 +8,11 @@ import DeleteField from './DeleteField'
 import CreateField from './CreateField'
 
 const SettingFields = props => {
-  
-  const handlerEditField = id => {
-    return setState({
-      ...state,
-      field: {
-        ...state.field,
-        edit: {
-          id: !id ? null : id
-        }
-      }
-    })
-  }
-
-  const handlerDeleteField = id => {
-    return setState({
-      ...state,
-      field: {
-        ...state.field,
-        delete: {
-          id: !id ? null : id
-        }
-      }
-    })
-  }
-
-  const handlerCreateField = () => {
-    return setState({
-      ...state,
-      field: {
-        ...state.field,
-        create: {
-          init: true
-        }
-      }
-    })
-  }
-
-  const togglerDefaultState = () => {
-    return setState({
-      ...initialState
-    })
-  }
 
   const initialState = {
     field: {
       edit: {
-        id: null,
-        name: null
+        id: null
       },
       delete: {
         id: null
@@ -65,10 +22,34 @@ const SettingFields = props => {
       }
     },
     func: {
-      create: handlerCreateField,
-      edit: handlerEditField,
-      delete: handlerDeleteField,
-      default: togglerDefaultState
+      create: () => setState({
+        ...state,
+        field: {
+          ...state.field,
+          create: {
+            init: true
+          }
+        }
+      }),
+      edit: id => setState({ 
+        ...state, 
+        field: { 
+          ...state.field, 
+          edit: { 
+            id 
+          } 
+        } 
+      }),
+      delete: id => setState({
+        ...state,
+        field: {
+          ...state.field,
+          delete: {
+            id
+          }
+        }
+      }),
+      default: () => setState({ ...initialState })
     }
   }
 
