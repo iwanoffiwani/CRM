@@ -5,6 +5,7 @@ import { updateUser } from './redux/actions'
 import { history } from './utils/history'
 import PrivateRoute from './components/PrivateRoute'
 import Login from './containers/Login'
+import Table from './containers/Table/'
 import Settings from './containers/Settings/'
 
 // const styles = theme => ({
@@ -31,7 +32,8 @@ class App extends Component {
       <Router hisory={history}>
         <Switch>
           <Route path='/auth' component={Login} />
-          <PrivateRoute path='/' exact component={Settings} />
+          <PrivateRoute path='/' exact component={Table} />
+          <PrivateRoute path='/settings' component={Settings} />
         </Switch>
       </Router>
     )

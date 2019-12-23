@@ -21,13 +21,8 @@ const order = new Schema({
     required: true
   },
   status: {
-    name: {
-      type: String
-    },
-    color: {
-      type: String
-    }
-  },
+    type: Object
+  }, // { name: value, color: value, _id: value }
   fields: [
     {
       name: {

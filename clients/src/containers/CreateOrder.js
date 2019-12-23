@@ -65,7 +65,7 @@ const CreateOrder = props => {
     },
     query: {
       status: {
-        name: props.statuses[0].name
+        ...props.statuses[0]
       },
       name: '',
       fields: [...props.fields]
@@ -85,12 +85,20 @@ const CreateOrder = props => {
   }
 
   const changeStatusHandler = e => {
+    const { 
+      stateNode: { 
+        id: _id 
+      } 
+    } = e._targetInst // Получаем id статуса для последующего поиска его редактирования
+
     return setState({
       ...state,
       query: {
         ...state.query,
         status: {
-          name: e.target.value
+          ...state.query.status,
+          name: e.target.value,
+          _id
         }
       }
     })
@@ -208,7 +216,7 @@ const CreateOrder = props => {
           Статус заявки
         </Typography >
         <Select
-          id="demo-simple-select-outlined"
+          id='demo-simple-select-outlined'
           value={state.query.status.name}
           variant='outlined'
           onChange={changeStatusHandler}

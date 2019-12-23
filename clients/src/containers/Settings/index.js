@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Fields from './Fields'
+import Fields from './Fields/'
 import Statuses from './Statuses'
 
 import { makeStyles } from '@material-ui/core/styles'

@@ -27,11 +27,13 @@ module.exports.getById = async (req, res) => {
 
 module.exports.create = async (req, res) => {
   try {
+    console.log(req.body.status)
+
     await new Order({
       name: req.body.name,
       user: req.user.id,
       fields: req.body.fields,
-      status: { ...req.body.status }
+      status: req.body.status
     }).save()
     
     return res.status(201)
@@ -53,18 +55,16 @@ module.exports.remove = async (req, res) => {
 
 module.exports.update = async (req, res) => {
   try {
-    const order = 
-      await Order.findOneAndUpdate(
-        { _id: req.query.id },
-        { $set: {
-            ...req.body
-          }
-        },
-        { new: true } 
-      )
+    await Order.findOneAndUpdate(
+      { _id: req.query.id },
+      { $set: {
+          ...req.body
+        }
+      },
+      { new: true } 
+    )
 
-    const update = 
-      await Order.findOne({ _id: req.query.id })
+    const update = await Order.findOne({ _id: req.query.id })
 
     return res.status(200).json(update)
   } catch(e) {

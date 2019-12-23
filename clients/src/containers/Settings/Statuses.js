@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import axios from 'axios'
+import { fetchUpdateOrderList, fetchStatuses } from '../../redux/actions'
 import { makeStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -10,6 +12,7 @@ import CheckIcon from '@material-ui/icons/Check'
 import ClearIcon from '@material-ui/icons/Clear'
 import ListItemText from '@material-ui/core/ListItemText'
 import TextField from '@material-ui/core/TextField'
+import AddIcon from '@material-ui/icons/Add'
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -63,6 +66,30 @@ const EditStatus = props => {
   )
 }
 
+const AddStatus = props => {
+  const classes = useStyles()
+
+  const initialState = { name: '' }
+
+  const [ state, setState ] = useState(initialState)
+
+  return (
+    <ListItem>
+      <Fab className={classes.icon} onClick={() => props.addStatus(state.name)}>
+        <CheckIcon />
+      </Fab>
+      <Fab className={classes.icon} onClick={() => props.cancelEdit()}>
+        <ClearIcon />
+      </Fab>
+      <TextField
+        value={state.name}
+        onChange={e => setState({ ...state, name: e.target.value })}
+        placeholder='Введите имя поля'
+      />
+    </ListItem>
+  )
+}
+
 const EditStatuses = props => {
   const classes = useStyles()
 
@@ -100,32 +127,64 @@ const EditStatuses = props => {
   }
 
   const handlerEditStatus = name => {
-    return setState({
-      ...state,
-      query: props.statuses.map(status => {
-        if (status._id === state.edit.id) 
-          return {
-            ...status,
-            name
-          }
-        
-        return status
-      })
+    return axios({
+      method: 'PATCH',
+      url: `/api/statuses/`,
+      params: {
+        id: state.edit.id
+      },
+      data: {
+        name
+      }
     })
+    .then(() => setState({ 
+      ...initialState 
+    })) 
+    .then(() => props.statusesUpdate())
+    .then(() => props.ordersUpdate())
   }
 
-  const handlerDeleteStatus = id => {
-    return setState({
-      ...state,
-      query: props.statuses.filter(status => 
-        status._id !== state.delete.id)
+  const handlerDeleteStatus = () => {
+    return axios({
+      method: 'DELETE',
+      url: `/api/statuses/`,
+      params: {
+        id: state.delete.id
+      }
     })
+    .then(() => setState({ 
+      ...initialState 
+    })) 
+    .then(() => props.statusesUpdate())
+    .then(() => props.ordersUpdate())
   }
 
   const handlerCancel = () => {
     return setState({ 
       ...initialState 
     })
+  }
+
+  const handlerClickAddStatus = () => {
+    return setState({
+      ...state,
+      add: true
+    })
+  }
+
+  const handlerAddStatus = name => {
+    return axios({
+      method: 'POST',
+      url: `/api/statuses/`,
+      data: {
+        name
+      }
+    })
+    .then(() => setState({ 
+      ...initialState 
+    })) 
+    .then(() => props.statusesUpdate())
+    .then(() => props.ordersUpdate())
   }
 
   return (
@@ -193,6 +252,21 @@ const EditStatuses = props => {
             )
           )
       })()}
+      {
+        !state.add ? 
+        <ListItem>
+          <Fab className={classes.icon} onClick={handlerClickAddStatus}>
+            <AddIcon />
+          </Fab>
+          <ListItemText>
+            Добавить поле
+          </ListItemText>
+        </ListItem>
+        : <AddStatus 
+            addStatus={handlerAddStatus}
+            cancelEdit={handlerCancel}
+          />
+      }
     </List>
   )
 }
@@ -203,4 +277,11 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(EditStatuses)
+const mapDispatchToProps = dispatch => {
+  return {
+    statusesUpdate: () => dispatch(fetchStatuses()),
+    ordersUpdate: () => dispatch(fetchUpdateOrderList())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditStatuses)

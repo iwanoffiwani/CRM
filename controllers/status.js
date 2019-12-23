@@ -1,5 +1,5 @@
 const Status = require('../models/Status')
-const mongoose = require('mongoose')
+const Order = require('../models/Order')
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.getAll = async (req, res) => {
@@ -39,13 +39,19 @@ module.exports.remove = async (req, res) => {
 
 module.exports.update = async (req, res) => {
   try {
-    const crater = await Status.findOneAndUpdate(
+    await Status.findOneAndUpdate(
       { _id: req.query.id },
       { $set: { ...req.body } },
       { new: true }
     )
-    
-    return res.status(200).json(crater)
+
+    await Order.updateMany(
+      { 'status._id': req.query.id }, 
+      { '$set': { 'status.name': req.body.name } }, 
+      { isDeleted: true }
+    )
+
+    return res.status(200).json('Статус успешно обновлен')
   } catch(e) {
     errorHandler(res, e)
   }

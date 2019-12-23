@@ -7,11 +7,11 @@ import Select from '@material-ui/core/Select'
 
 const TableOrderStatus = props => {
   const changeStatusHandler = e => {
-    // На прямую получить id заявки нельзя,
-    // потому вытаскиваем через переданые свойства
-    const stateNode = e._targetInst.stateNode
-
-    const orderID = stateNode.dataset.order
+    const { 
+      stateNode: { 
+        id 
+      } 
+    } = e._targetInst
     
     const status = e.target.value
 
@@ -19,7 +19,7 @@ const TableOrderStatus = props => {
       method: 'PATCH',
       url: '/api/orders/',
       params: {
-        id: orderID 
+        id 
       },
       data: {
         status: {
@@ -45,10 +45,9 @@ const TableOrderStatus = props => {
   const otherStatuses = orderID => 
     props.statuses.map(status =>
       <MenuItem 
-        id={status._id}
+        id={orderID}
         key={status._id}
         value={status.name}
-        data-order={orderID}
       >{status.name}
       </MenuItem>
     )
