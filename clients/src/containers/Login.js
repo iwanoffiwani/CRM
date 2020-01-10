@@ -20,23 +20,58 @@ const useStyles = makeStyles({
   }
 })
 
-const Login = props => {
+export const Login = props => {
 
   const classes = useStyles()
 
   const { error, message } = props
 
-  const [ login, setLogin ] = useState('')
+  const initialState = {
+    user: {
+      data: {
+        login: '',
+        password: ''
+      }
+    }
+  }
 
-  const [ password, setPassword ] = useState('')
-  
-  const submitHandler = async e => {
+  const [ state, setState ] = useState(initialState)
+
+  const changeLoginHandler = e => {
+    return setState({
+      ...state,
+      user: {
+        ...state.user,
+        data: {
+          ...state.user.data,
+          login: e.target.value
+        }
+      }
+    })
+  }
+
+  const changePasswordHandler = e => {
+    return setState({
+      ...state,
+      user: {
+        ...state.user,
+        data: {
+          ...state.user.data,
+          password: e.target.value
+        }
+      }
+    })
+  }
+
+  const submitHandler = e => {
     e.preventDefault()
- 
-    return props.authorization({ 
-      login, 
-      password 
-    }, props.history)
+
+    const { login, password } = state.user.data
+    props.authorization({ login, password }, props.history)
+
+    return setState({
+      ...initialState
+    })
   }
 
   return (
@@ -59,10 +94,10 @@ const Login = props => {
           name='login'
           label='Логин'
           error={error}
-          value={login}
+          value={state.user.data.login}
           margin='normal'
           variant='outlined'
-          onChange={e => setLogin(e.target.value)}
+          onChange={changeLoginHandler}
           placeholder='Введите ваш логин'
           />
         </FormGroup>
@@ -72,10 +107,10 @@ const Login = props => {
           name='password'
           label='Пароль'
           error={error}
-          value={password}
+          value={state.user.data.password}
           margin='normal'
           variant='outlined'
-          onChange={e => setPassword(e.target.value)}
+          onChange={changePasswordHandler}
           placeholder='Введите ваш пароль'
           />
         </FormGroup>

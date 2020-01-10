@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing the Login component +++ renderer component with error message 1`] = `
+<WithStyles(ForwardRef(Container))
+  className="makeStyles-container-1"
+  maxWidth="xs"
+>
+  <form
+    onSubmit={[Function]}
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <WithStyles(ForwardRef(Typography))
+      color="error"
+      variant="caption"
+    >
+      Some text for error message
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      color="textPrimary"
+      variant="h5"
+    >
+      Вход в систему
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(FormGroup))>
+      <WithStyles(ForwardRef(TextField))
+        error={true}
+        label="Логин"
+        margin="normal"
+        name="login"
+        onChange={[Function]}
+        placeholder="Введите ваш логин"
+        type="text"
+        value=""
+        variant="outlined"
+      />
+    </WithStyles(ForwardRef(FormGroup))>
+    <WithStyles(ForwardRef(FormGroup))>
+      <WithStyles(ForwardRef(TextField))
+        error={true}
+        label="Пароль"
+        margin="normal"
+        name="password"
+        onChange={[Function]}
+        placeholder="Введите ваш пароль"
+        type="password"
+        value=""
+        variant="outlined"
+      />
+    </WithStyles(ForwardRef(FormGroup))>
+    <WithStyles(ForwardRef(Button))
+      className="makeStyles-submit-2"
+      color="primary"
+      size="medium"
+      type="submit"
+      variant="contained"
+    >
+      Войти
+    </WithStyles(ForwardRef(Button))>
+  </form>
+</WithStyles(ForwardRef(Container))>
+`;
+
+exports[`Testing the Login component +++ renderer component without props 1`] = `
+<WithStyles(ForwardRef(Container))
+  className="makeStyles-container-1"
+  maxWidth="xs"
+>
+  <form
+    onSubmit={[Function]}
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <WithStyles(ForwardRef(Typography))
+      color="textPrimary"
+      variant="h5"
+    >
+      Вход в систему
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(FormGroup))>
+      <WithStyles(ForwardRef(TextField))
+        label="Логин"
+        margin="normal"
+        name="login"
+        onChange={[Function]}
+        placeholder="Введите ваш логин"
+        type="text"
+        value=""
+        variant="outlined"
+      />
+    </WithStyles(ForwardRef(FormGroup))>
+    <WithStyles(ForwardRef(FormGroup))>
+      <WithStyles(ForwardRef(TextField))
+        label="Пароль"
+        margin="normal"
+        name="password"
+        onChange={[Function]}
+        placeholder="Введите ваш пароль"
+        type="password"
+        value=""
+        variant="outlined"
+      />
+    </WithStyles(ForwardRef(FormGroup))>
+    <WithStyles(ForwardRef(Button))
+      className="makeStyles-submit-2"
+      color="primary"
+      size="medium"
+      type="submit"
+      variant="contained"
+    >
+      Войти
+    </WithStyles(ForwardRef(Button))>
+  </form>
+</WithStyles(ForwardRef(Container))>
+`;

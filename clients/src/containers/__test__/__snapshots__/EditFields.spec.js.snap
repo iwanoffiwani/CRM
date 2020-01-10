@@ -1,0 +1,1763 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing the EditFields component +++renderer component 1`] = `
+<EditFields
+  fields={
+    Array [
+      Object {
+        "__v": 0,
+        "_id": "5dcac8a093dd3b05f8cb0adc",
+        "name": "Мобильный телефон",
+        "value": "",
+      },
+      Object {
+        "__v": 0,
+        "_id": "5df9f19e1607be20381256e8",
+        "name": "Номер паспорта",
+        "value": "",
+      },
+      Object {
+        "__v": 0,
+        "_id": "5dfa29e98ef6f51a186c395e",
+        "name": "Домашний телефон",
+        "value": "",
+      },
+      Object {
+        "__v": 0,
+        "_id": "5e00b1bfa63229263405fd21",
+        "name": "Паспорт",
+        "value": "",
+      },
+    ]
+  }
+  fieldsUpdate={[MockFunction]}
+  ordersListUpdate={[MockFunction]}
+>
+  <WithStyles(ForwardRef(List))>
+    <ForwardRef(List)
+      classes={
+        Object {
+          "dense": "MuiList-dense",
+          "padding": "MuiList-padding",
+          "root": "MuiList-root",
+          "subheader": "MuiList-subheader",
+        }
+      }
+    >
+      <ul
+        className="MuiList-root MuiList-padding"
+      >
+        <WithStyles(ForwardRef(ListItem))
+          key="0"
+        >
+          <ForwardRef(ListItem)
+            classes={
+              Object {
+                "alignItemsFlexStart": "MuiListItem-alignItemsFlexStart",
+                "button": "MuiListItem-button",
+                "container": "MuiListItem-container",
+                "dense": "MuiListItem-dense",
+                "disabled": "Mui-disabled",
+                "divider": "MuiListItem-divider",
+                "focusVisible": "Mui-focusVisible",
+                "gutters": "MuiListItem-gutters",
+                "root": "MuiListItem-root",
+                "secondaryAction": "MuiListItem-secondaryAction",
+                "selected": "Mui-selected",
+              }
+            }
+          >
+            <li
+              className="MuiListItem-root MuiListItem-gutters"
+              disabled={false}
+            >
+              <WithStyles(ForwardRef(Fab))
+                className="makeStyles-icon-1"
+                key=".0"
+                onClick={[Function]}
+              >
+                <ForwardRef(Fab)
+                  className="makeStyles-icon-1"
+                  classes={
+                    Object {
+                      "colorInherit": "MuiFab-colorInherit",
+                      "disabled": "Mui-disabled",
+                      "extended": "MuiFab-extended",
+                      "focusVisible": "Mui-focusVisible",
+                      "label": "MuiFab-label",
+                      "primary": "MuiFab-primary",
+                      "root": "MuiFab-root",
+                      "secondary": "MuiFab-secondary",
+                      "sizeMedium": "MuiFab-sizeMedium",
+                      "sizeSmall": "MuiFab-sizeSmall",
+                    }
+                  }
+                  onClick={[Function]}
+                >
+                  <WithStyles(ForwardRef(ButtonBase))
+                    className="MuiFab-root makeStyles-icon-1"
+                    component="button"
+                    disabled={false}
+                    focusRipple={true}
+                    focusVisibleClassName="Mui-focusVisible"
+                    onClick={[Function]}
+                  >
+                    <ForwardRef(ButtonBase)
+                      className="MuiFab-root makeStyles-icon-1"
+                      classes={
+                        Object {
+                          "disabled": "Mui-disabled",
+                          "focusVisible": "Mui-focusVisible",
+                          "root": "MuiButtonBase-root",
+                        }
+                      }
+                      component="button"
+                      disabled={false}
+                      focusRipple={true}
+                      focusVisibleClassName="Mui-focusVisible"
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="MuiButtonBase-root MuiFab-root makeStyles-icon-1"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onDragLeave={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <span
+                          className="MuiFab-label"
+                        >
+                          <ForwardRef>
+                            <WithStyles(ForwardRef(SvgIcon))>
+                              <ForwardRef(SvgIcon)
+                                classes={
+                                  Object {
+                                    "colorAction": "MuiSvgIcon-colorAction",
+                                    "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                    "colorError": "MuiSvgIcon-colorError",
+                                    "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                    "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                    "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                    "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                    "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                    "root": "MuiSvgIcon-root",
+                                  }
+                                }
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className="MuiSvgIcon-root"
+                                  focusable="false"
+                                  role="presentation"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                                  />
+                                </svg>
+                              </ForwardRef(SvgIcon)>
+                            </WithStyles(ForwardRef(SvgIcon))>
+                          </ForwardRef>
+                        </span>
+                        <NoSsr>
+                          <WithStyles(undefined)
+                            center={false}
+                          >
+                            <ForwardRef(TouchRipple)
+                              center={false}
+                              classes={
+                                Object {
+                                  "child": "MuiTouchRipple-child",
+                                  "childLeaving": "MuiTouchRipple-childLeaving",
+                                  "childPulsate": "MuiTouchRipple-childPulsate",
+                                  "ripple": "MuiTouchRipple-ripple",
+                                  "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                  "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                  "root": "MuiTouchRipple-root",
+                                }
+                              }
+                            >
+                              <span
+                                className="MuiTouchRipple-root"
+                              >
+                                <TransitionGroup
+                                  childFactory={[Function]}
+                                  component={null}
+                                  exit={true}
+                                />
+                              </span>
+                            </ForwardRef(TouchRipple)>
+                          </WithStyles(undefined)>
+                        </NoSsr>
+                      </button>
+                    </ForwardRef(ButtonBase)>
+                  </WithStyles(ForwardRef(ButtonBase))>
+                </ForwardRef(Fab)>
+              </WithStyles(ForwardRef(Fab))>
+              <WithStyles(ForwardRef(Fab))
+                className="makeStyles-icon-1"
+                key=".1"
+                onClick={[Function]}
+              >
+                <ForwardRef(Fab)
+                  className="makeStyles-icon-1"
+                  classes={
+                    Object {
+                      "colorInherit": "MuiFab-colorInherit",
+                      "disabled": "Mui-disabled",
+                      "extended": "MuiFab-extended",
+                      "focusVisible": "Mui-focusVisible",
+                      "label": "MuiFab-label",
+                      "primary": "MuiFab-primary",
+                      "root": "MuiFab-root",
+                      "secondary": "MuiFab-secondary",
+                      "sizeMedium": "MuiFab-sizeMedium",
+                      "sizeSmall": "MuiFab-sizeSmall",
+                    }
+                  }
+                  onClick={[Function]}
+                >
+                  <WithStyles(ForwardRef(ButtonBase))
+                    className="MuiFab-root makeStyles-icon-1"
+                    component="button"
+                    disabled={false}
+                    focusRipple={true}
+                    focusVisibleClassName="Mui-focusVisible"
+                    onClick={[Function]}
+                  >
+                    <ForwardRef(ButtonBase)
+                      className="MuiFab-root makeStyles-icon-1"
+                      classes={
+                        Object {
+                          "disabled": "Mui-disabled",
+                          "focusVisible": "Mui-focusVisible",
+                          "root": "MuiButtonBase-root",
+                        }
+                      }
+                      component="button"
+                      disabled={false}
+                      focusRipple={true}
+                      focusVisibleClassName="Mui-focusVisible"
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="MuiButtonBase-root MuiFab-root makeStyles-icon-1"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onDragLeave={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <span
+                          className="MuiFab-label"
+                        >
+                          <ForwardRef>
+                            <WithStyles(ForwardRef(SvgIcon))>
+                              <ForwardRef(SvgIcon)
+                                classes={
+                                  Object {
+                                    "colorAction": "MuiSvgIcon-colorAction",
+                                    "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                    "colorError": "MuiSvgIcon-colorError",
+                                    "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                    "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                    "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                    "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                    "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                    "root": "MuiSvgIcon-root",
+                                  }
+                                }
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className="MuiSvgIcon-root"
+                                  focusable="false"
+                                  role="presentation"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z"
+                                  />
+                                </svg>
+                              </ForwardRef(SvgIcon)>
+                            </WithStyles(ForwardRef(SvgIcon))>
+                          </ForwardRef>
+                        </span>
+                        <NoSsr>
+                          <WithStyles(undefined)
+                            center={false}
+                          >
+                            <ForwardRef(TouchRipple)
+                              center={false}
+                              classes={
+                                Object {
+                                  "child": "MuiTouchRipple-child",
+                                  "childLeaving": "MuiTouchRipple-childLeaving",
+                                  "childPulsate": "MuiTouchRipple-childPulsate",
+                                  "ripple": "MuiTouchRipple-ripple",
+                                  "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                  "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                  "root": "MuiTouchRipple-root",
+                                }
+                              }
+                            >
+                              <span
+                                className="MuiTouchRipple-root"
+                              >
+                                <TransitionGroup
+                                  childFactory={[Function]}
+                                  component={null}
+                                  exit={true}
+                                />
+                              </span>
+                            </ForwardRef(TouchRipple)>
+                          </WithStyles(undefined)>
+                        </NoSsr>
+                      </button>
+                    </ForwardRef(ButtonBase)>
+                  </WithStyles(ForwardRef(ButtonBase))>
+                </ForwardRef(Fab)>
+              </WithStyles(ForwardRef(Fab))>
+              <WithStyles(ForwardRef(ListItemText))
+                key=".2"
+                primary="Мобильный телефон"
+              >
+                <ForwardRef(ListItemText)
+                  classes={
+                    Object {
+                      "dense": "MuiListItemText-dense",
+                      "inset": "MuiListItemText-inset",
+                      "multiline": "MuiListItemText-multiline",
+                      "primary": "MuiListItemText-primary",
+                      "root": "MuiListItemText-root",
+                      "secondary": "MuiListItemText-secondary",
+                    }
+                  }
+                  primary="Мобильный телефон"
+                >
+                  <div
+                    className="MuiListItemText-root"
+                  >
+                    <WithStyles(ForwardRef(Typography))
+                      className="MuiListItemText-primary"
+                      component="span"
+                      variant="body1"
+                    >
+                      <ForwardRef(Typography)
+                        className="MuiListItemText-primary"
+                        classes={
+                          Object {
+                            "alignCenter": "MuiTypography-alignCenter",
+                            "alignJustify": "MuiTypography-alignJustify",
+                            "alignLeft": "MuiTypography-alignLeft",
+                            "alignRight": "MuiTypography-alignRight",
+                            "body1": "MuiTypography-body1",
+                            "body2": "MuiTypography-body2",
+                            "button": "MuiTypography-button",
+                            "caption": "MuiTypography-caption",
+                            "colorError": "MuiTypography-colorError",
+                            "colorInherit": "MuiTypography-colorInherit",
+                            "colorPrimary": "MuiTypography-colorPrimary",
+                            "colorSecondary": "MuiTypography-colorSecondary",
+                            "colorTextPrimary": "MuiTypography-colorTextPrimary",
+                            "colorTextSecondary": "MuiTypography-colorTextSecondary",
+                            "displayBlock": "MuiTypography-displayBlock",
+                            "displayInline": "MuiTypography-displayInline",
+                            "gutterBottom": "MuiTypography-gutterBottom",
+                            "h1": "MuiTypography-h1",
+                            "h2": "MuiTypography-h2",
+                            "h3": "MuiTypography-h3",
+                            "h4": "MuiTypography-h4",
+                            "h5": "MuiTypography-h5",
+                            "h6": "MuiTypography-h6",
+                            "noWrap": "MuiTypography-noWrap",
+                            "overline": "MuiTypography-overline",
+                            "paragraph": "MuiTypography-paragraph",
+                            "root": "MuiTypography-root",
+                            "srOnly": "MuiTypography-srOnly",
+                            "subtitle1": "MuiTypography-subtitle1",
+                            "subtitle2": "MuiTypography-subtitle2",
+                          }
+                        }
+                        component="span"
+                        variant="body1"
+                      >
+                        <span
+                          className="MuiTypography-root MuiListItemText-primary MuiTypography-body1"
+                        >
+                          Мобильный телефон
+                        </span>
+                      </ForwardRef(Typography)>
+                    </WithStyles(ForwardRef(Typography))>
+                  </div>
+                </ForwardRef(ListItemText)>
+              </WithStyles(ForwardRef(ListItemText))>
+            </li>
+          </ForwardRef(ListItem)>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))
+          key="1"
+        >
+          <ForwardRef(ListItem)
+            classes={
+              Object {
+                "alignItemsFlexStart": "MuiListItem-alignItemsFlexStart",
+                "button": "MuiListItem-button",
+                "container": "MuiListItem-container",
+                "dense": "MuiListItem-dense",
+                "disabled": "Mui-disabled",
+                "divider": "MuiListItem-divider",
+                "focusVisible": "Mui-focusVisible",
+                "gutters": "MuiListItem-gutters",
+                "root": "MuiListItem-root",
+                "secondaryAction": "MuiListItem-secondaryAction",
+                "selected": "Mui-selected",
+              }
+            }
+          >
+            <li
+              className="MuiListItem-root MuiListItem-gutters"
+              disabled={false}
+            >
+              <WithStyles(ForwardRef(Fab))
+                className="makeStyles-icon-1"
+                key=".0"
+                onClick={[Function]}
+              >
+                <ForwardRef(Fab)
+                  className="makeStyles-icon-1"
+                  classes={
+                    Object {
+                      "colorInherit": "MuiFab-colorInherit",
+                      "disabled": "Mui-disabled",
+                      "extended": "MuiFab-extended",
+                      "focusVisible": "Mui-focusVisible",
+                      "label": "MuiFab-label",
+                      "primary": "MuiFab-primary",
+                      "root": "MuiFab-root",
+                      "secondary": "MuiFab-secondary",
+                      "sizeMedium": "MuiFab-sizeMedium",
+                      "sizeSmall": "MuiFab-sizeSmall",
+                    }
+                  }
+                  onClick={[Function]}
+                >
+                  <WithStyles(ForwardRef(ButtonBase))
+                    className="MuiFab-root makeStyles-icon-1"
+                    component="button"
+                    disabled={false}
+                    focusRipple={true}
+                    focusVisibleClassName="Mui-focusVisible"
+                    onClick={[Function]}
+                  >
+                    <ForwardRef(ButtonBase)
+                      className="MuiFab-root makeStyles-icon-1"
+                      classes={
+                        Object {
+                          "disabled": "Mui-disabled",
+                          "focusVisible": "Mui-focusVisible",
+                          "root": "MuiButtonBase-root",
+                        }
+                      }
+                      component="button"
+                      disabled={false}
+                      focusRipple={true}
+                      focusVisibleClassName="Mui-focusVisible"
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="MuiButtonBase-root MuiFab-root makeStyles-icon-1"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onDragLeave={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <span
+                          className="MuiFab-label"
+                        >
+                          <ForwardRef>
+                            <WithStyles(ForwardRef(SvgIcon))>
+                              <ForwardRef(SvgIcon)
+                                classes={
+                                  Object {
+                                    "colorAction": "MuiSvgIcon-colorAction",
+                                    "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                    "colorError": "MuiSvgIcon-colorError",
+                                    "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                    "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                    "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                    "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                    "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                    "root": "MuiSvgIcon-root",
+                                  }
+                                }
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className="MuiSvgIcon-root"
+                                  focusable="false"
+                                  role="presentation"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                                  />
+                                </svg>
+                              </ForwardRef(SvgIcon)>
+                            </WithStyles(ForwardRef(SvgIcon))>
+                          </ForwardRef>
+                        </span>
+                        <NoSsr>
+                          <WithStyles(undefined)
+                            center={false}
+                          >
+                            <ForwardRef(TouchRipple)
+                              center={false}
+                              classes={
+                                Object {
+                                  "child": "MuiTouchRipple-child",
+                                  "childLeaving": "MuiTouchRipple-childLeaving",
+                                  "childPulsate": "MuiTouchRipple-childPulsate",
+                                  "ripple": "MuiTouchRipple-ripple",
+                                  "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                  "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                  "root": "MuiTouchRipple-root",
+                                }
+                              }
+                            >
+                              <span
+                                className="MuiTouchRipple-root"
+                              >
+                                <TransitionGroup
+                                  childFactory={[Function]}
+                                  component={null}
+                                  exit={true}
+                                />
+                              </span>
+                            </ForwardRef(TouchRipple)>
+                          </WithStyles(undefined)>
+                        </NoSsr>
+                      </button>
+                    </ForwardRef(ButtonBase)>
+                  </WithStyles(ForwardRef(ButtonBase))>
+                </ForwardRef(Fab)>
+              </WithStyles(ForwardRef(Fab))>
+              <WithStyles(ForwardRef(Fab))
+                className="makeStyles-icon-1"
+                key=".1"
+                onClick={[Function]}
+              >
+                <ForwardRef(Fab)
+                  className="makeStyles-icon-1"
+                  classes={
+                    Object {
+                      "colorInherit": "MuiFab-colorInherit",
+                      "disabled": "Mui-disabled",
+                      "extended": "MuiFab-extended",
+                      "focusVisible": "Mui-focusVisible",
+                      "label": "MuiFab-label",
+                      "primary": "MuiFab-primary",
+                      "root": "MuiFab-root",
+                      "secondary": "MuiFab-secondary",
+                      "sizeMedium": "MuiFab-sizeMedium",
+                      "sizeSmall": "MuiFab-sizeSmall",
+                    }
+                  }
+                  onClick={[Function]}
+                >
+                  <WithStyles(ForwardRef(ButtonBase))
+                    className="MuiFab-root makeStyles-icon-1"
+                    component="button"
+                    disabled={false}
+                    focusRipple={true}
+                    focusVisibleClassName="Mui-focusVisible"
+                    onClick={[Function]}
+                  >
+                    <ForwardRef(ButtonBase)
+                      className="MuiFab-root makeStyles-icon-1"
+                      classes={
+                        Object {
+                          "disabled": "Mui-disabled",
+                          "focusVisible": "Mui-focusVisible",
+                          "root": "MuiButtonBase-root",
+                        }
+                      }
+                      component="button"
+                      disabled={false}
+                      focusRipple={true}
+                      focusVisibleClassName="Mui-focusVisible"
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="MuiButtonBase-root MuiFab-root makeStyles-icon-1"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onDragLeave={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <span
+                          className="MuiFab-label"
+                        >
+                          <ForwardRef>
+                            <WithStyles(ForwardRef(SvgIcon))>
+                              <ForwardRef(SvgIcon)
+                                classes={
+                                  Object {
+                                    "colorAction": "MuiSvgIcon-colorAction",
+                                    "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                    "colorError": "MuiSvgIcon-colorError",
+                                    "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                    "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                    "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                    "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                    "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                    "root": "MuiSvgIcon-root",
+                                  }
+                                }
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className="MuiSvgIcon-root"
+                                  focusable="false"
+                                  role="presentation"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z"
+                                  />
+                                </svg>
+                              </ForwardRef(SvgIcon)>
+                            </WithStyles(ForwardRef(SvgIcon))>
+                          </ForwardRef>
+                        </span>
+                        <NoSsr>
+                          <WithStyles(undefined)
+                            center={false}
+                          >
+                            <ForwardRef(TouchRipple)
+                              center={false}
+                              classes={
+                                Object {
+                                  "child": "MuiTouchRipple-child",
+                                  "childLeaving": "MuiTouchRipple-childLeaving",
+                                  "childPulsate": "MuiTouchRipple-childPulsate",
+                                  "ripple": "MuiTouchRipple-ripple",
+                                  "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                  "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                  "root": "MuiTouchRipple-root",
+                                }
+                              }
+                            >
+                              <span
+                                className="MuiTouchRipple-root"
+                              >
+                                <TransitionGroup
+                                  childFactory={[Function]}
+                                  component={null}
+                                  exit={true}
+                                />
+                              </span>
+                            </ForwardRef(TouchRipple)>
+                          </WithStyles(undefined)>
+                        </NoSsr>
+                      </button>
+                    </ForwardRef(ButtonBase)>
+                  </WithStyles(ForwardRef(ButtonBase))>
+                </ForwardRef(Fab)>
+              </WithStyles(ForwardRef(Fab))>
+              <WithStyles(ForwardRef(ListItemText))
+                key=".2"
+                primary="Номер паспорта"
+              >
+                <ForwardRef(ListItemText)
+                  classes={
+                    Object {
+                      "dense": "MuiListItemText-dense",
+                      "inset": "MuiListItemText-inset",
+                      "multiline": "MuiListItemText-multiline",
+                      "primary": "MuiListItemText-primary",
+                      "root": "MuiListItemText-root",
+                      "secondary": "MuiListItemText-secondary",
+                    }
+                  }
+                  primary="Номер паспорта"
+                >
+                  <div
+                    className="MuiListItemText-root"
+                  >
+                    <WithStyles(ForwardRef(Typography))
+                      className="MuiListItemText-primary"
+                      component="span"
+                      variant="body1"
+                    >
+                      <ForwardRef(Typography)
+                        className="MuiListItemText-primary"
+                        classes={
+                          Object {
+                            "alignCenter": "MuiTypography-alignCenter",
+                            "alignJustify": "MuiTypography-alignJustify",
+                            "alignLeft": "MuiTypography-alignLeft",
+                            "alignRight": "MuiTypography-alignRight",
+                            "body1": "MuiTypography-body1",
+                            "body2": "MuiTypography-body2",
+                            "button": "MuiTypography-button",
+                            "caption": "MuiTypography-caption",
+                            "colorError": "MuiTypography-colorError",
+                            "colorInherit": "MuiTypography-colorInherit",
+                            "colorPrimary": "MuiTypography-colorPrimary",
+                            "colorSecondary": "MuiTypography-colorSecondary",
+                            "colorTextPrimary": "MuiTypography-colorTextPrimary",
+                            "colorTextSecondary": "MuiTypography-colorTextSecondary",
+                            "displayBlock": "MuiTypography-displayBlock",
+                            "displayInline": "MuiTypography-displayInline",
+                            "gutterBottom": "MuiTypography-gutterBottom",
+                            "h1": "MuiTypography-h1",
+                            "h2": "MuiTypography-h2",
+                            "h3": "MuiTypography-h3",
+                            "h4": "MuiTypography-h4",
+                            "h5": "MuiTypography-h5",
+                            "h6": "MuiTypography-h6",
+                            "noWrap": "MuiTypography-noWrap",
+                            "overline": "MuiTypography-overline",
+                            "paragraph": "MuiTypography-paragraph",
+                            "root": "MuiTypography-root",
+                            "srOnly": "MuiTypography-srOnly",
+                            "subtitle1": "MuiTypography-subtitle1",
+                            "subtitle2": "MuiTypography-subtitle2",
+                          }
+                        }
+                        component="span"
+                        variant="body1"
+                      >
+                        <span
+                          className="MuiTypography-root MuiListItemText-primary MuiTypography-body1"
+                        >
+                          Номер паспорта
+                        </span>
+                      </ForwardRef(Typography)>
+                    </WithStyles(ForwardRef(Typography))>
+                  </div>
+                </ForwardRef(ListItemText)>
+              </WithStyles(ForwardRef(ListItemText))>
+            </li>
+          </ForwardRef(ListItem)>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))
+          key="2"
+        >
+          <ForwardRef(ListItem)
+            classes={
+              Object {
+                "alignItemsFlexStart": "MuiListItem-alignItemsFlexStart",
+                "button": "MuiListItem-button",
+                "container": "MuiListItem-container",
+                "dense": "MuiListItem-dense",
+                "disabled": "Mui-disabled",
+                "divider": "MuiListItem-divider",
+                "focusVisible": "Mui-focusVisible",
+                "gutters": "MuiListItem-gutters",
+                "root": "MuiListItem-root",
+                "secondaryAction": "MuiListItem-secondaryAction",
+                "selected": "Mui-selected",
+              }
+            }
+          >
+            <li
+              className="MuiListItem-root MuiListItem-gutters"
+              disabled={false}
+            >
+              <WithStyles(ForwardRef(Fab))
+                className="makeStyles-icon-1"
+                key=".0"
+                onClick={[Function]}
+              >
+                <ForwardRef(Fab)
+                  className="makeStyles-icon-1"
+                  classes={
+                    Object {
+                      "colorInherit": "MuiFab-colorInherit",
+                      "disabled": "Mui-disabled",
+                      "extended": "MuiFab-extended",
+                      "focusVisible": "Mui-focusVisible",
+                      "label": "MuiFab-label",
+                      "primary": "MuiFab-primary",
+                      "root": "MuiFab-root",
+                      "secondary": "MuiFab-secondary",
+                      "sizeMedium": "MuiFab-sizeMedium",
+                      "sizeSmall": "MuiFab-sizeSmall",
+                    }
+                  }
+                  onClick={[Function]}
+                >
+                  <WithStyles(ForwardRef(ButtonBase))
+                    className="MuiFab-root makeStyles-icon-1"
+                    component="button"
+                    disabled={false}
+                    focusRipple={true}
+                    focusVisibleClassName="Mui-focusVisible"
+                    onClick={[Function]}
+                  >
+                    <ForwardRef(ButtonBase)
+                      className="MuiFab-root makeStyles-icon-1"
+                      classes={
+                        Object {
+                          "disabled": "Mui-disabled",
+                          "focusVisible": "Mui-focusVisible",
+                          "root": "MuiButtonBase-root",
+                        }
+                      }
+                      component="button"
+                      disabled={false}
+                      focusRipple={true}
+                      focusVisibleClassName="Mui-focusVisible"
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="MuiButtonBase-root MuiFab-root makeStyles-icon-1"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onDragLeave={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <span
+                          className="MuiFab-label"
+                        >
+                          <ForwardRef>
+                            <WithStyles(ForwardRef(SvgIcon))>
+                              <ForwardRef(SvgIcon)
+                                classes={
+                                  Object {
+                                    "colorAction": "MuiSvgIcon-colorAction",
+                                    "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                    "colorError": "MuiSvgIcon-colorError",
+                                    "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                    "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                    "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                    "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                    "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                    "root": "MuiSvgIcon-root",
+                                  }
+                                }
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className="MuiSvgIcon-root"
+                                  focusable="false"
+                                  role="presentation"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                                  />
+                                </svg>
+                              </ForwardRef(SvgIcon)>
+                            </WithStyles(ForwardRef(SvgIcon))>
+                          </ForwardRef>
+                        </span>
+                        <NoSsr>
+                          <WithStyles(undefined)
+                            center={false}
+                          >
+                            <ForwardRef(TouchRipple)
+                              center={false}
+                              classes={
+                                Object {
+                                  "child": "MuiTouchRipple-child",
+                                  "childLeaving": "MuiTouchRipple-childLeaving",
+                                  "childPulsate": "MuiTouchRipple-childPulsate",
+                                  "ripple": "MuiTouchRipple-ripple",
+                                  "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                  "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                  "root": "MuiTouchRipple-root",
+                                }
+                              }
+                            >
+                              <span
+                                className="MuiTouchRipple-root"
+                              >
+                                <TransitionGroup
+                                  childFactory={[Function]}
+                                  component={null}
+                                  exit={true}
+                                />
+                              </span>
+                            </ForwardRef(TouchRipple)>
+                          </WithStyles(undefined)>
+                        </NoSsr>
+                      </button>
+                    </ForwardRef(ButtonBase)>
+                  </WithStyles(ForwardRef(ButtonBase))>
+                </ForwardRef(Fab)>
+              </WithStyles(ForwardRef(Fab))>
+              <WithStyles(ForwardRef(Fab))
+                className="makeStyles-icon-1"
+                key=".1"
+                onClick={[Function]}
+              >
+                <ForwardRef(Fab)
+                  className="makeStyles-icon-1"
+                  classes={
+                    Object {
+                      "colorInherit": "MuiFab-colorInherit",
+                      "disabled": "Mui-disabled",
+                      "extended": "MuiFab-extended",
+                      "focusVisible": "Mui-focusVisible",
+                      "label": "MuiFab-label",
+                      "primary": "MuiFab-primary",
+                      "root": "MuiFab-root",
+                      "secondary": "MuiFab-secondary",
+                      "sizeMedium": "MuiFab-sizeMedium",
+                      "sizeSmall": "MuiFab-sizeSmall",
+                    }
+                  }
+                  onClick={[Function]}
+                >
+                  <WithStyles(ForwardRef(ButtonBase))
+                    className="MuiFab-root makeStyles-icon-1"
+                    component="button"
+                    disabled={false}
+                    focusRipple={true}
+                    focusVisibleClassName="Mui-focusVisible"
+                    onClick={[Function]}
+                  >
+                    <ForwardRef(ButtonBase)
+                      className="MuiFab-root makeStyles-icon-1"
+                      classes={
+                        Object {
+                          "disabled": "Mui-disabled",
+                          "focusVisible": "Mui-focusVisible",
+                          "root": "MuiButtonBase-root",
+                        }
+                      }
+                      component="button"
+                      disabled={false}
+                      focusRipple={true}
+                      focusVisibleClassName="Mui-focusVisible"
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="MuiButtonBase-root MuiFab-root makeStyles-icon-1"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onDragLeave={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <span
+                          className="MuiFab-label"
+                        >
+                          <ForwardRef>
+                            <WithStyles(ForwardRef(SvgIcon))>
+                              <ForwardRef(SvgIcon)
+                                classes={
+                                  Object {
+                                    "colorAction": "MuiSvgIcon-colorAction",
+                                    "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                    "colorError": "MuiSvgIcon-colorError",
+                                    "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                    "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                    "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                    "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                    "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                    "root": "MuiSvgIcon-root",
+                                  }
+                                }
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className="MuiSvgIcon-root"
+                                  focusable="false"
+                                  role="presentation"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z"
+                                  />
+                                </svg>
+                              </ForwardRef(SvgIcon)>
+                            </WithStyles(ForwardRef(SvgIcon))>
+                          </ForwardRef>
+                        </span>
+                        <NoSsr>
+                          <WithStyles(undefined)
+                            center={false}
+                          >
+                            <ForwardRef(TouchRipple)
+                              center={false}
+                              classes={
+                                Object {
+                                  "child": "MuiTouchRipple-child",
+                                  "childLeaving": "MuiTouchRipple-childLeaving",
+                                  "childPulsate": "MuiTouchRipple-childPulsate",
+                                  "ripple": "MuiTouchRipple-ripple",
+                                  "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                  "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                  "root": "MuiTouchRipple-root",
+                                }
+                              }
+                            >
+                              <span
+                                className="MuiTouchRipple-root"
+                              >
+                                <TransitionGroup
+                                  childFactory={[Function]}
+                                  component={null}
+                                  exit={true}
+                                />
+                              </span>
+                            </ForwardRef(TouchRipple)>
+                          </WithStyles(undefined)>
+                        </NoSsr>
+                      </button>
+                    </ForwardRef(ButtonBase)>
+                  </WithStyles(ForwardRef(ButtonBase))>
+                </ForwardRef(Fab)>
+              </WithStyles(ForwardRef(Fab))>
+              <WithStyles(ForwardRef(ListItemText))
+                key=".2"
+                primary="Домашний телефон"
+              >
+                <ForwardRef(ListItemText)
+                  classes={
+                    Object {
+                      "dense": "MuiListItemText-dense",
+                      "inset": "MuiListItemText-inset",
+                      "multiline": "MuiListItemText-multiline",
+                      "primary": "MuiListItemText-primary",
+                      "root": "MuiListItemText-root",
+                      "secondary": "MuiListItemText-secondary",
+                    }
+                  }
+                  primary="Домашний телефон"
+                >
+                  <div
+                    className="MuiListItemText-root"
+                  >
+                    <WithStyles(ForwardRef(Typography))
+                      className="MuiListItemText-primary"
+                      component="span"
+                      variant="body1"
+                    >
+                      <ForwardRef(Typography)
+                        className="MuiListItemText-primary"
+                        classes={
+                          Object {
+                            "alignCenter": "MuiTypography-alignCenter",
+                            "alignJustify": "MuiTypography-alignJustify",
+                            "alignLeft": "MuiTypography-alignLeft",
+                            "alignRight": "MuiTypography-alignRight",
+                            "body1": "MuiTypography-body1",
+                            "body2": "MuiTypography-body2",
+                            "button": "MuiTypography-button",
+                            "caption": "MuiTypography-caption",
+                            "colorError": "MuiTypography-colorError",
+                            "colorInherit": "MuiTypography-colorInherit",
+                            "colorPrimary": "MuiTypography-colorPrimary",
+                            "colorSecondary": "MuiTypography-colorSecondary",
+                            "colorTextPrimary": "MuiTypography-colorTextPrimary",
+                            "colorTextSecondary": "MuiTypography-colorTextSecondary",
+                            "displayBlock": "MuiTypography-displayBlock",
+                            "displayInline": "MuiTypography-displayInline",
+                            "gutterBottom": "MuiTypography-gutterBottom",
+                            "h1": "MuiTypography-h1",
+                            "h2": "MuiTypography-h2",
+                            "h3": "MuiTypography-h3",
+                            "h4": "MuiTypography-h4",
+                            "h5": "MuiTypography-h5",
+                            "h6": "MuiTypography-h6",
+                            "noWrap": "MuiTypography-noWrap",
+                            "overline": "MuiTypography-overline",
+                            "paragraph": "MuiTypography-paragraph",
+                            "root": "MuiTypography-root",
+                            "srOnly": "MuiTypography-srOnly",
+                            "subtitle1": "MuiTypography-subtitle1",
+                            "subtitle2": "MuiTypography-subtitle2",
+                          }
+                        }
+                        component="span"
+                        variant="body1"
+                      >
+                        <span
+                          className="MuiTypography-root MuiListItemText-primary MuiTypography-body1"
+                        >
+                          Домашний телефон
+                        </span>
+                      </ForwardRef(Typography)>
+                    </WithStyles(ForwardRef(Typography))>
+                  </div>
+                </ForwardRef(ListItemText)>
+              </WithStyles(ForwardRef(ListItemText))>
+            </li>
+          </ForwardRef(ListItem)>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))
+          key="3"
+        >
+          <ForwardRef(ListItem)
+            classes={
+              Object {
+                "alignItemsFlexStart": "MuiListItem-alignItemsFlexStart",
+                "button": "MuiListItem-button",
+                "container": "MuiListItem-container",
+                "dense": "MuiListItem-dense",
+                "disabled": "Mui-disabled",
+                "divider": "MuiListItem-divider",
+                "focusVisible": "Mui-focusVisible",
+                "gutters": "MuiListItem-gutters",
+                "root": "MuiListItem-root",
+                "secondaryAction": "MuiListItem-secondaryAction",
+                "selected": "Mui-selected",
+              }
+            }
+          >
+            <li
+              className="MuiListItem-root MuiListItem-gutters"
+              disabled={false}
+            >
+              <WithStyles(ForwardRef(Fab))
+                className="makeStyles-icon-1"
+                key=".0"
+                onClick={[Function]}
+              >
+                <ForwardRef(Fab)
+                  className="makeStyles-icon-1"
+                  classes={
+                    Object {
+                      "colorInherit": "MuiFab-colorInherit",
+                      "disabled": "Mui-disabled",
+                      "extended": "MuiFab-extended",
+                      "focusVisible": "Mui-focusVisible",
+                      "label": "MuiFab-label",
+                      "primary": "MuiFab-primary",
+                      "root": "MuiFab-root",
+                      "secondary": "MuiFab-secondary",
+                      "sizeMedium": "MuiFab-sizeMedium",
+                      "sizeSmall": "MuiFab-sizeSmall",
+                    }
+                  }
+                  onClick={[Function]}
+                >
+                  <WithStyles(ForwardRef(ButtonBase))
+                    className="MuiFab-root makeStyles-icon-1"
+                    component="button"
+                    disabled={false}
+                    focusRipple={true}
+                    focusVisibleClassName="Mui-focusVisible"
+                    onClick={[Function]}
+                  >
+                    <ForwardRef(ButtonBase)
+                      className="MuiFab-root makeStyles-icon-1"
+                      classes={
+                        Object {
+                          "disabled": "Mui-disabled",
+                          "focusVisible": "Mui-focusVisible",
+                          "root": "MuiButtonBase-root",
+                        }
+                      }
+                      component="button"
+                      disabled={false}
+                      focusRipple={true}
+                      focusVisibleClassName="Mui-focusVisible"
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="MuiButtonBase-root MuiFab-root makeStyles-icon-1"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onDragLeave={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <span
+                          className="MuiFab-label"
+                        >
+                          <ForwardRef>
+                            <WithStyles(ForwardRef(SvgIcon))>
+                              <ForwardRef(SvgIcon)
+                                classes={
+                                  Object {
+                                    "colorAction": "MuiSvgIcon-colorAction",
+                                    "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                    "colorError": "MuiSvgIcon-colorError",
+                                    "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                    "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                    "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                    "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                    "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                    "root": "MuiSvgIcon-root",
+                                  }
+                                }
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className="MuiSvgIcon-root"
+                                  focusable="false"
+                                  role="presentation"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                                  />
+                                </svg>
+                              </ForwardRef(SvgIcon)>
+                            </WithStyles(ForwardRef(SvgIcon))>
+                          </ForwardRef>
+                        </span>
+                        <NoSsr>
+                          <WithStyles(undefined)
+                            center={false}
+                          >
+                            <ForwardRef(TouchRipple)
+                              center={false}
+                              classes={
+                                Object {
+                                  "child": "MuiTouchRipple-child",
+                                  "childLeaving": "MuiTouchRipple-childLeaving",
+                                  "childPulsate": "MuiTouchRipple-childPulsate",
+                                  "ripple": "MuiTouchRipple-ripple",
+                                  "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                  "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                  "root": "MuiTouchRipple-root",
+                                }
+                              }
+                            >
+                              <span
+                                className="MuiTouchRipple-root"
+                              >
+                                <TransitionGroup
+                                  childFactory={[Function]}
+                                  component={null}
+                                  exit={true}
+                                />
+                              </span>
+                            </ForwardRef(TouchRipple)>
+                          </WithStyles(undefined)>
+                        </NoSsr>
+                      </button>
+                    </ForwardRef(ButtonBase)>
+                  </WithStyles(ForwardRef(ButtonBase))>
+                </ForwardRef(Fab)>
+              </WithStyles(ForwardRef(Fab))>
+              <WithStyles(ForwardRef(Fab))
+                className="makeStyles-icon-1"
+                key=".1"
+                onClick={[Function]}
+              >
+                <ForwardRef(Fab)
+                  className="makeStyles-icon-1"
+                  classes={
+                    Object {
+                      "colorInherit": "MuiFab-colorInherit",
+                      "disabled": "Mui-disabled",
+                      "extended": "MuiFab-extended",
+                      "focusVisible": "Mui-focusVisible",
+                      "label": "MuiFab-label",
+                      "primary": "MuiFab-primary",
+                      "root": "MuiFab-root",
+                      "secondary": "MuiFab-secondary",
+                      "sizeMedium": "MuiFab-sizeMedium",
+                      "sizeSmall": "MuiFab-sizeSmall",
+                    }
+                  }
+                  onClick={[Function]}
+                >
+                  <WithStyles(ForwardRef(ButtonBase))
+                    className="MuiFab-root makeStyles-icon-1"
+                    component="button"
+                    disabled={false}
+                    focusRipple={true}
+                    focusVisibleClassName="Mui-focusVisible"
+                    onClick={[Function]}
+                  >
+                    <ForwardRef(ButtonBase)
+                      className="MuiFab-root makeStyles-icon-1"
+                      classes={
+                        Object {
+                          "disabled": "Mui-disabled",
+                          "focusVisible": "Mui-focusVisible",
+                          "root": "MuiButtonBase-root",
+                        }
+                      }
+                      component="button"
+                      disabled={false}
+                      focusRipple={true}
+                      focusVisibleClassName="Mui-focusVisible"
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="MuiButtonBase-root MuiFab-root makeStyles-icon-1"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onDragLeave={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <span
+                          className="MuiFab-label"
+                        >
+                          <ForwardRef>
+                            <WithStyles(ForwardRef(SvgIcon))>
+                              <ForwardRef(SvgIcon)
+                                classes={
+                                  Object {
+                                    "colorAction": "MuiSvgIcon-colorAction",
+                                    "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                    "colorError": "MuiSvgIcon-colorError",
+                                    "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                    "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                    "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                    "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                    "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                    "root": "MuiSvgIcon-root",
+                                  }
+                                }
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className="MuiSvgIcon-root"
+                                  focusable="false"
+                                  role="presentation"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z"
+                                  />
+                                </svg>
+                              </ForwardRef(SvgIcon)>
+                            </WithStyles(ForwardRef(SvgIcon))>
+                          </ForwardRef>
+                        </span>
+                        <NoSsr>
+                          <WithStyles(undefined)
+                            center={false}
+                          >
+                            <ForwardRef(TouchRipple)
+                              center={false}
+                              classes={
+                                Object {
+                                  "child": "MuiTouchRipple-child",
+                                  "childLeaving": "MuiTouchRipple-childLeaving",
+                                  "childPulsate": "MuiTouchRipple-childPulsate",
+                                  "ripple": "MuiTouchRipple-ripple",
+                                  "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                  "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                  "root": "MuiTouchRipple-root",
+                                }
+                              }
+                            >
+                              <span
+                                className="MuiTouchRipple-root"
+                              >
+                                <TransitionGroup
+                                  childFactory={[Function]}
+                                  component={null}
+                                  exit={true}
+                                />
+                              </span>
+                            </ForwardRef(TouchRipple)>
+                          </WithStyles(undefined)>
+                        </NoSsr>
+                      </button>
+                    </ForwardRef(ButtonBase)>
+                  </WithStyles(ForwardRef(ButtonBase))>
+                </ForwardRef(Fab)>
+              </WithStyles(ForwardRef(Fab))>
+              <WithStyles(ForwardRef(ListItemText))
+                key=".2"
+                primary="Паспорт"
+              >
+                <ForwardRef(ListItemText)
+                  classes={
+                    Object {
+                      "dense": "MuiListItemText-dense",
+                      "inset": "MuiListItemText-inset",
+                      "multiline": "MuiListItemText-multiline",
+                      "primary": "MuiListItemText-primary",
+                      "root": "MuiListItemText-root",
+                      "secondary": "MuiListItemText-secondary",
+                    }
+                  }
+                  primary="Паспорт"
+                >
+                  <div
+                    className="MuiListItemText-root"
+                  >
+                    <WithStyles(ForwardRef(Typography))
+                      className="MuiListItemText-primary"
+                      component="span"
+                      variant="body1"
+                    >
+                      <ForwardRef(Typography)
+                        className="MuiListItemText-primary"
+                        classes={
+                          Object {
+                            "alignCenter": "MuiTypography-alignCenter",
+                            "alignJustify": "MuiTypography-alignJustify",
+                            "alignLeft": "MuiTypography-alignLeft",
+                            "alignRight": "MuiTypography-alignRight",
+                            "body1": "MuiTypography-body1",
+                            "body2": "MuiTypography-body2",
+                            "button": "MuiTypography-button",
+                            "caption": "MuiTypography-caption",
+                            "colorError": "MuiTypography-colorError",
+                            "colorInherit": "MuiTypography-colorInherit",
+                            "colorPrimary": "MuiTypography-colorPrimary",
+                            "colorSecondary": "MuiTypography-colorSecondary",
+                            "colorTextPrimary": "MuiTypography-colorTextPrimary",
+                            "colorTextSecondary": "MuiTypography-colorTextSecondary",
+                            "displayBlock": "MuiTypography-displayBlock",
+                            "displayInline": "MuiTypography-displayInline",
+                            "gutterBottom": "MuiTypography-gutterBottom",
+                            "h1": "MuiTypography-h1",
+                            "h2": "MuiTypography-h2",
+                            "h3": "MuiTypography-h3",
+                            "h4": "MuiTypography-h4",
+                            "h5": "MuiTypography-h5",
+                            "h6": "MuiTypography-h6",
+                            "noWrap": "MuiTypography-noWrap",
+                            "overline": "MuiTypography-overline",
+                            "paragraph": "MuiTypography-paragraph",
+                            "root": "MuiTypography-root",
+                            "srOnly": "MuiTypography-srOnly",
+                            "subtitle1": "MuiTypography-subtitle1",
+                            "subtitle2": "MuiTypography-subtitle2",
+                          }
+                        }
+                        component="span"
+                        variant="body1"
+                      >
+                        <span
+                          className="MuiTypography-root MuiListItemText-primary MuiTypography-body1"
+                        >
+                          Паспорт
+                        </span>
+                      </ForwardRef(Typography)>
+                    </WithStyles(ForwardRef(Typography))>
+                  </div>
+                </ForwardRef(ListItemText)>
+              </WithStyles(ForwardRef(ListItemText))>
+            </li>
+          </ForwardRef(ListItem)>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))>
+          <ForwardRef(ListItem)
+            classes={
+              Object {
+                "alignItemsFlexStart": "MuiListItem-alignItemsFlexStart",
+                "button": "MuiListItem-button",
+                "container": "MuiListItem-container",
+                "dense": "MuiListItem-dense",
+                "disabled": "Mui-disabled",
+                "divider": "MuiListItem-divider",
+                "focusVisible": "Mui-focusVisible",
+                "gutters": "MuiListItem-gutters",
+                "root": "MuiListItem-root",
+                "secondaryAction": "MuiListItem-secondaryAction",
+                "selected": "Mui-selected",
+              }
+            }
+          >
+            <li
+              className="MuiListItem-root MuiListItem-gutters"
+              disabled={false}
+            >
+              <WithStyles(ForwardRef(Fab))
+                className="makeStyles-icon-1"
+                key=".0"
+                onClick={[Function]}
+              >
+                <ForwardRef(Fab)
+                  className="makeStyles-icon-1"
+                  classes={
+                    Object {
+                      "colorInherit": "MuiFab-colorInherit",
+                      "disabled": "Mui-disabled",
+                      "extended": "MuiFab-extended",
+                      "focusVisible": "Mui-focusVisible",
+                      "label": "MuiFab-label",
+                      "primary": "MuiFab-primary",
+                      "root": "MuiFab-root",
+                      "secondary": "MuiFab-secondary",
+                      "sizeMedium": "MuiFab-sizeMedium",
+                      "sizeSmall": "MuiFab-sizeSmall",
+                    }
+                  }
+                  onClick={[Function]}
+                >
+                  <WithStyles(ForwardRef(ButtonBase))
+                    className="MuiFab-root makeStyles-icon-1"
+                    component="button"
+                    disabled={false}
+                    focusRipple={true}
+                    focusVisibleClassName="Mui-focusVisible"
+                    onClick={[Function]}
+                  >
+                    <ForwardRef(ButtonBase)
+                      className="MuiFab-root makeStyles-icon-1"
+                      classes={
+                        Object {
+                          "disabled": "Mui-disabled",
+                          "focusVisible": "Mui-focusVisible",
+                          "root": "MuiButtonBase-root",
+                        }
+                      }
+                      component="button"
+                      disabled={false}
+                      focusRipple={true}
+                      focusVisibleClassName="Mui-focusVisible"
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="MuiButtonBase-root MuiFab-root makeStyles-icon-1"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onDragLeave={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <span
+                          className="MuiFab-label"
+                        >
+                          <ForwardRef>
+                            <WithStyles(ForwardRef(SvgIcon))>
+                              <ForwardRef(SvgIcon)
+                                classes={
+                                  Object {
+                                    "colorAction": "MuiSvgIcon-colorAction",
+                                    "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                    "colorError": "MuiSvgIcon-colorError",
+                                    "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                    "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                    "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                    "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                    "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                    "root": "MuiSvgIcon-root",
+                                  }
+                                }
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className="MuiSvgIcon-root"
+                                  focusable="false"
+                                  role="presentation"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                                  />
+                                </svg>
+                              </ForwardRef(SvgIcon)>
+                            </WithStyles(ForwardRef(SvgIcon))>
+                          </ForwardRef>
+                        </span>
+                        <NoSsr>
+                          <WithStyles(undefined)
+                            center={false}
+                          >
+                            <ForwardRef(TouchRipple)
+                              center={false}
+                              classes={
+                                Object {
+                                  "child": "MuiTouchRipple-child",
+                                  "childLeaving": "MuiTouchRipple-childLeaving",
+                                  "childPulsate": "MuiTouchRipple-childPulsate",
+                                  "ripple": "MuiTouchRipple-ripple",
+                                  "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                  "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                  "root": "MuiTouchRipple-root",
+                                }
+                              }
+                            >
+                              <span
+                                className="MuiTouchRipple-root"
+                              >
+                                <TransitionGroup
+                                  childFactory={[Function]}
+                                  component={null}
+                                  exit={true}
+                                />
+                              </span>
+                            </ForwardRef(TouchRipple)>
+                          </WithStyles(undefined)>
+                        </NoSsr>
+                      </button>
+                    </ForwardRef(ButtonBase)>
+                  </WithStyles(ForwardRef(ButtonBase))>
+                </ForwardRef(Fab)>
+              </WithStyles(ForwardRef(Fab))>
+              <WithStyles(ForwardRef(ListItemText))
+                key=".1"
+                primary="Добавить поле"
+              >
+                <ForwardRef(ListItemText)
+                  classes={
+                    Object {
+                      "dense": "MuiListItemText-dense",
+                      "inset": "MuiListItemText-inset",
+                      "multiline": "MuiListItemText-multiline",
+                      "primary": "MuiListItemText-primary",
+                      "root": "MuiListItemText-root",
+                      "secondary": "MuiListItemText-secondary",
+                    }
+                  }
+                  primary="Добавить поле"
+                >
+                  <div
+                    className="MuiListItemText-root"
+                  >
+                    <WithStyles(ForwardRef(Typography))
+                      className="MuiListItemText-primary"
+                      component="span"
+                      variant="body1"
+                    >
+                      <ForwardRef(Typography)
+                        className="MuiListItemText-primary"
+                        classes={
+                          Object {
+                            "alignCenter": "MuiTypography-alignCenter",
+                            "alignJustify": "MuiTypography-alignJustify",
+                            "alignLeft": "MuiTypography-alignLeft",
+                            "alignRight": "MuiTypography-alignRight",
+                            "body1": "MuiTypography-body1",
+                            "body2": "MuiTypography-body2",
+                            "button": "MuiTypography-button",
+                            "caption": "MuiTypography-caption",
+                            "colorError": "MuiTypography-colorError",
+                            "colorInherit": "MuiTypography-colorInherit",
+                            "colorPrimary": "MuiTypography-colorPrimary",
+                            "colorSecondary": "MuiTypography-colorSecondary",
+                            "colorTextPrimary": "MuiTypography-colorTextPrimary",
+                            "colorTextSecondary": "MuiTypography-colorTextSecondary",
+                            "displayBlock": "MuiTypography-displayBlock",
+                            "displayInline": "MuiTypography-displayInline",
+                            "gutterBottom": "MuiTypography-gutterBottom",
+                            "h1": "MuiTypography-h1",
+                            "h2": "MuiTypography-h2",
+                            "h3": "MuiTypography-h3",
+                            "h4": "MuiTypography-h4",
+                            "h5": "MuiTypography-h5",
+                            "h6": "MuiTypography-h6",
+                            "noWrap": "MuiTypography-noWrap",
+                            "overline": "MuiTypography-overline",
+                            "paragraph": "MuiTypography-paragraph",
+                            "root": "MuiTypography-root",
+                            "srOnly": "MuiTypography-srOnly",
+                            "subtitle1": "MuiTypography-subtitle1",
+                            "subtitle2": "MuiTypography-subtitle2",
+                          }
+                        }
+                        component="span"
+                        variant="body1"
+                      >
+                        <span
+                          className="MuiTypography-root MuiListItemText-primary MuiTypography-body1"
+                        >
+                          Добавить поле
+                        </span>
+                      </ForwardRef(Typography)>
+                    </WithStyles(ForwardRef(Typography))>
+                  </div>
+                </ForwardRef(ListItemText)>
+              </WithStyles(ForwardRef(ListItemText))>
+            </li>
+          </ForwardRef(ListItem)>
+        </WithStyles(ForwardRef(ListItem))>
+      </ul>
+    </ForwardRef(List)>
+  </WithStyles(ForwardRef(List))>
+</EditFields>
+`;

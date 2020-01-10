@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const CreateOrder = props => {
+export const CreateOrder = props => {
   const classes = useStyles()
 
   const initialState = {

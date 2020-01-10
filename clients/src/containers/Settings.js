@@ -1,19 +1,14 @@
 import React from 'react'
-
-import Fields from './Fields/'
-import Statuses from './Statuses'
-
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import Layout from '../components/Layout'
 import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
+import EditFields from './EditFields'
+import EditStatuses from './EditStatuses'
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    padding: '2em 0'
-    // display: 'flex',
-    // minHeight: '100vh'
-  },
   box: {
     marginBottom: theme.spacing(4)
   },
@@ -27,20 +22,30 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Settings = props => {
-  const classes = useStyles()
+const mapStateToProps = state => {
+  return {
+    fields: state.fields.payload,
+    statuses: state.statuses.payload
+  }
+}
 
+export const Settings = props => {
+  
+  const classes = useStyles()
+  
   return (
-    <Container maxWidth='xl'>
+    <Layout>
       <div className={classes.root}>
         <Box className={classes.box}>
           <Typography 
-            className={classes.title} 
+            className={classes.title}
             variant='h2' 
             noWrap>
             Редактирование полей
           </Typography>
-          <Fields />
+          <EditFields 
+            fields={props.fields}
+          />
         </Box>
         <Box>
           <Typography 
@@ -49,11 +54,18 @@ const Settings = props => {
             noWrap>
             Редактирование статусов
           </Typography>
-          <Statuses />
+          <EditStatuses 
+            statuses={props.statuses}
+          />
         </Box>
       </div>
-    </Container>
+    </Layout>
   )
 }
 
-export default Settings
+Settings.propTypes = {
+  fields: PropTypes.array.isRequired,
+  statuses: PropTypes.array.isRequired
+}
+
+export default connect(mapStateToProps)(Settings)

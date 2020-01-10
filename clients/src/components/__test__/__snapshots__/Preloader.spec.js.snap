@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing the Preloader component +++ renderer component 1`] = `
+<div
+  className="preloader"
+>
+  <WithStyles(ForwardRef(LinearProgress)) />
+</div>
+`;

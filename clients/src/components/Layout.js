@@ -151,79 +151,106 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Layout = props => {
+export const Layout = props => {
 
   const classes = useStyles()
   
   const theme = useTheme()
 
-  const [ createOrderDrawer, setcreateOrderDrawer ] = useState(false) 
+  const initialState = {
+    drawer: {
+      open: false
+    },
+    sidebar: {
+      open: false
+    },
+    redirect: false
+  }
 
-  const [ sidebar, setSidebar ] = useState(false)
-
-  const [ redirect, setRedirect ] = useState(false)
+  const [ state, setState ] = useState(initialState)
 
   const logoutHandler = e => {
     e.preventDefault()
 
     props.logoutUser({})
-    return setRedirect(true)
+
+    return setState({
+      ...initialState,
+      redirect: true
+    })
   }
 
-  const renderRedirect = () => {
-    if (redirect) 
-      return <Redirect 
-        to={{
-          pathname: '/auth'
-        }}
-      />
+  const handlerCreateOrderDrawer = () => {
+    if (state.drawer.open === false)
+      return setState({
+        ...state,
+        drawer: {
+          open: true
+        }
+      })
+    else 
+      return setState({
+        ...state,
+        drawer: {
+          open: false
+        }
+      })
   }
 
-  const handlecreateOrderDrawer = () => {
-    if (createOrderDrawer === false) {
-      setcreateOrderDrawer(true)
-    } else {
-      setcreateOrderDrawer(false)
-    }
-  }
-
-  const handleSideBar = () => {
-    if (sidebar === false) {
-      return setSidebar(true)
-    } else {
-      return setSidebar(false)
-    }
+  const handlerSideBar = () => {
+    if (state.sidebar.open === false)
+      return setState({
+        ...state,
+        sidebar: {
+          open: true
+        }
+      })
+    else 
+      return setState({
+        ...state,
+        sidebar: {
+          open: false
+        }
+      })
   }
 
   return (
     <div className={classes.root}>
-      {renderRedirect()}
+      {(() => {
+        if (state.redirect) 
+          return <Redirect 
+            to={{
+              pathname: '/auth'
+            }}
+          />
+      })()}
       <CssBaseline />
       <AppBar
         position='fixed'
         color='default'
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: sidebar,
+          [classes.appBarShift]: state.sidebar.open,
         })}>
       <Toolbar>
         <IconButton
           edge='start'
           color='inherit'
           aria-label='open drawer'
-          onClick={handleSideBar}
+          onClick={handlerSideBar}
           className={clsx(classes.menuButton, {
-            [classes.hide]: sidebar,
+            [classes.hide]: state.sidebar.open,
           })}>
           <MenuIcon />
         </IconButton>
         <Typography 
-        className={classes.title} 
-        variant='h6' 
-        noWrap>
+          className={classes.title} 
+          variant='h6' 
+          noWrap
+        >
         </Typography>
         <Button 
           color='inherit' 
-          onClick={handlecreateOrderDrawer}>
+          onClick={handlerCreateOrderDrawer}>
         <AddIcon 
           className={classes.addIcon}
         />Добавить</Button>
@@ -237,18 +264,18 @@ const Layout = props => {
       <Drawer
         variant='permanent'
         className={clsx(classes.sidebar, {
-          [classes.sidebarOpen]: sidebar,
-          [classes.sidebarClose]: !sidebar,
+          [classes.sidebarOpen]: state.sidebar.open,
+          [classes.sidebarClose]: !state.sidebar.open,
         })}
         classes={{
           paper: clsx({
-            [classes.sidebarOpen]: sidebar,
-            [classes.sidebarClose]: !sidebar,
+            [classes.sidebarOpen]: state.sidebar.open,
+            [classes.sidebarClose]: !state.sidebar.open,
           }),
         }}
-        open={sidebar}>
+        open={state.sidebar.open}>
         <Toolbar className={classes.toolbar}>
-          <IconButton onClick={handleSideBar}>
+          <IconButton onClick={handlerSideBar}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </Toolbar>
@@ -257,16 +284,16 @@ const Layout = props => {
         <Divider />
       </Drawer>
       <Drawer 
-        open={createOrderDrawer}
+        open={state.drawer.open}
         className={classes.createOrderDrawer} 
         classes={{
           paper: clsx({
-            [classes.createOrderDrawerOpen]: createOrderDrawer,
-            [classes.createOrderDrawerClose]: !createOrderDrawer,
+            [classes.createOrderDrawerOpen]: state.drawer.open,
+            [classes.createOrderDrawerClose]: !state.drawer.open,
           }),
         }}>
         <Toolbar className={classes.toolbar}>
-          <IconButton onClick={handlecreateOrderDrawer}>
+          <IconButton onClick={handlerCreateOrderDrawer}>
             <ChevronLeftIcon />
           </IconButton>
         </Toolbar>

@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing CreateOrder component +++ renderer CreateOrder component with props 1`] = `
+<form
+  className="makeStyles-root-1"
+  onSubmit={[Function]}
+>
+  <WithStyles(ForwardRef(Container))>
+    <WithStyles(ForwardRef(Typography))
+      className="makeStyles-title-6"
+      noWrap={true}
+      variant="h2"
+    >
+      Новая заявка
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(TextField))
+      className="makeStyles-textField-5"
+      fullWidth={true}
+      label="Название заявки"
+      margin="normal"
+      name="name"
+      onChange={[Function]}
+      type="text"
+      value=""
+      variant="outlined"
+    />
+    <WithStyles(ForwardRef(Divider))
+      className="makeStyles-divider-7"
+    />
+    <WithStyles(ForwardRef(Typography))
+      className="makeStyles-title-6"
+      noWrap={true}
+      variant="h3"
+    >
+      Статус заявки
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Select))
+      fullWidth={true}
+      id="demo-simple-select-outlined"
+      onChange={[Function]}
+      value="Статус-2"
+      variant="outlined"
+    >
+      <WithStyles(ForwardRef(MenuItem))
+        id="5df25a863c1abb1cec5b2855"
+        key="0"
+        value="Статус-2"
+      >
+        Статус-2
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        id="5df25a8a3c1abb1cec5b2856"
+        key="1"
+        value="Статус-3"
+      >
+        Статус-3
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        id="5df25a8d3c1abb1cec5b2857"
+        key="2"
+        value="Статус-4"
+      >
+        Статус-4
+      </WithStyles(ForwardRef(MenuItem))>
+    </WithStyles(ForwardRef(Select))>
+    <WithStyles(ForwardRef(Divider))
+      className="makeStyles-divider-7"
+    />
+    <WithStyles(ForwardRef(Typography))
+      className="makeStyles-title-6"
+      noWrap={true}
+      variant="h3"
+    >
+      Произвольные поля
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(TextField))
+      className="makeStyles-textField-5"
+      fullWidth={true}
+      key="0"
+      label="Мобильный телефон"
+      name="Мобильный телефон"
+      onChange={[Function]}
+      type="text"
+      value=""
+      variant="outlined"
+    />
+    <WithStyles(ForwardRef(TextField))
+      className="makeStyles-textField-5"
+      fullWidth={true}
+      key="1"
+      label="Номер паспорта"
+      name="Номер паспорта"
+      onChange={[Function]}
+      type="text"
+      value=""
+      variant="outlined"
+    />
+    <WithStyles(ForwardRef(TextField))
+      className="makeStyles-textField-5"
+      fullWidth={true}
+      key="2"
+      label="Домашний телефон"
+      name="Домашний телефон"
+      onChange={[Function]}
+      type="text"
+      value=""
+      variant="outlined"
+    />
+    <WithStyles(ForwardRef(Divider))
+      className="makeStyles-divider-7"
+    />
+    <WithStyles(ForwardRef(Button))
+      disabled={true}
+      variant="contained"
+    >
+      Добавить заявку
+    </WithStyles(ForwardRef(Button))>
+  </WithStyles(ForwardRef(Container))>
+</form>
+`;

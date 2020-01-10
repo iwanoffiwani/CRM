@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import PropTypes from 'prop-types' 
 import axios from 'axios'
-import clsx from 'clsx'
+import { connect } from 'react-redux'
 import { fetchUpdateOrderList } from '../redux/actions'
-import { withStyles, makeStyles } from '@material-ui/core/styles'
+import Preloader from '../components/Preloader'
 import Layout from '../components/Layout'
-import EditOrder from './EditOrder'
-import Fab from '@material-ui/core/Fab'
-import EditIcon from '@material-ui/icons/Edit'
+import clsx from 'clsx'
+import { withStyles, makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -17,31 +16,23 @@ import TablePagination from '@material-ui/core/TablePagination'
 import TableRow from '@material-ui/core/TableRow'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
-import Preloader from '../components/Preloader'
+import Fab from '@material-ui/core/Fab'
+import EditIcon from '@material-ui/icons/Edit'
 import Drawer from '@material-ui/core/Drawer'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import Divider from '@material-ui/core/Divider'
+import EditOrder from './EditOrder'
 import green from '@material-ui/core/colors/green'
 
-const editDrawerWitdth = `70%`
-
-const StyledTableCell = withStyles(theme => ({
-  head: {
-    backgroundColor: green[500],
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell)
+const editDrawerWitdth = `75%`
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
   },
-  tableWrapper: {
+  wrapper: {
     maxHeight: 790,
     borderRadius: 4,
     overflow: 'auto',
@@ -49,14 +40,15 @@ const useStyles = makeStyles(theme => ({
   tabelCell: {
     minWidth: 60
   },
-  tabelSelect: {
-    padding: '14px 12px'
-  },
   fab: {
     width: 36,
     height: 36,
     marginTop: `-${theme.spacing(0.8)}px`,
     marginRight: theme.spacing(4)
+  },
+  editIcon: {
+    width: '.8em',
+    height: '.8em'
   },
   toolbar: {
     display: 'flex',
@@ -82,19 +74,41 @@ const useStyles = makeStyles(theme => ({
     }),
     overflowX: 'hidden',
     width: 0
-  },
-  editIcon: {
-    width: '.8em',
-    height: '.8em'
   }
 }))
 
-const OrderList = props => {
+const StyledTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor: green[500],
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell)
+
+const mapStateToProps = state => {
+  return {
+    user: state.authorization.payload,
+    columns: state.fields.payload,
+    rows: state.orders.payload,
+    search: state.search.payload,
+    statuses: state.statuses.payload
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    update: () => dispatch(fetchUpdateOrderList())
+  }
+}
+
+export const TableOrders = props => {
+
   const classes = useStyles()
 
   const initialState = {
     edit: {
-      drawer: false,
       order: false
     },
     pagination: {
@@ -105,28 +119,53 @@ const OrderList = props => {
 
   const [ state, setState ] = useState(initialState)
 
-  const editHandler = order => {
-    if (!state.edit.order) {
-      return setState({
-        ...state,
-        edit: {
-          order,
-          drawer: true
-        }
-      })
-    } else {
-      return setState({
-        ...state,
-        edit: {
-          order: false,
-          drawer: false
-        }
-      })
-    }
+  const changeStatusHandler = (e, order) => {
+
+    const { data: { login: user } } = props.user
+
+    const { _id: id, changes, status: { name } } = order
+
+    const status = e.target.value
+
+    return axios({
+      method: 'PATCH',
+      url: '/api/orders/',
+      params: {
+        id 
+      },
+      data: {
+        status: {
+          name: status
+        },
+        changes: [
+          ...changes,
+          {
+            user,
+            previousState: { // Свойство должно именоваться именно так, иначе будут серьезные проблемы
+              status: name
+            },
+            nextState: {
+              status
+            }
+          }
+        ]
+      },
+    })
+    .then(() => props.update())
   }
 
-  const handleChangePage = (e, page) => {
-    setState({
+  const openEditDrawerHandler = order => {
+    return setState({
+      ...state,
+      edit: {
+        ...state.edit,
+        order
+      }
+    })
+  }
+
+  const changePageHandler = (event, page)=> {
+    return setState({
       ...state,
       pagination: {
         ...state.pagination,
@@ -135,114 +174,45 @@ const OrderList = props => {
     })
   }
 
-  const handleChangeRowsPerPage = e => {
-    setState({
+  const changeRowsPerPagehHandler = e => {
+    return setState({
       ...state,
       pagination: {
-        page: 0,
+        ...initialState.pagination,
         rowsPerPage: +e.target.value
       }
     })
   }
 
-  const changeStatusHandler = e => {
-    // На прямую получить _id заявки нельзя,
-    // потому вытаскиваем через переданые свойства
-    const stateNode = e._targetInst.stateNode
-
-    const orderID = stateNode.dataset.order
-    
-    const data = {
-      [e.target.name]: e.target.value
-    }
-
-    axios({
-      method: 'PATCH',
-      url: `/api/orders/`,
-      params: {
-        id: orderID 
-      },
-      data,
+  const disabledEditDrawerHandler = () => {
+    return setState({
+      ...state,
+      edit: {
+        ...initialState.edit
+      }
     })
-    .then(() => props.update())
   }
 
-  const otherFields = 
-    props.fields.map(field => 
+  const otherColumns = 
+    props.columns.map((column, index) => 
       <StyledTableCell
-        key={field._id}
+        key={index}
         align='right'
         className={classes.tabelCell}
-      >{field.name}
+      >{column.name}
       </StyledTableCell>
     )
 
-  const otherStatuses = orderID => (
-    props.status.map(item => 
-      <MenuItem 
-        id={item._id}
-        key={item._id}
-        value={item.name}
-        data-order={orderID}
-      >{item.name}
-      </MenuItem>
+  if (props.rows.length === 0) 
+    return (
+      <Preloader />
     )
-  )
-
-  const otherOrderFields = fields => (
-    fields.map(field => 
-      <TableCell 
-        key={field._id}
-        align='right'
-      >{field.value}
-      </TableCell>
-    )
-  )
-
-  const orders = orders => (
-    orders.slice(
-      state.pagination.page * state.pagination.rowsPerPage, 
-      state.pagination.page * state.pagination.rowsPerPage + 
-      state.pagination.rowsPerPage
-    ).map(order => 
-      <TableRow hover role='checkbox' tabIndex={-1} key={order._id}>
-        <TableCell>
-          <Fab 
-            className={classes.fab} 
-            size='small' 
-            onClick={() => editHandler(order)}
-          >
-            <EditIcon 
-              className={classes.editIcon}
-              aria-label='edit' 
-            />
-          </Fab>
-          {order.name}
-        </TableCell>
-        <TableCell>
-          <Select
-            id="demo-simple-select-outlined"
-            value={order.status}
-            variant='outlined'
-            onChange={changeStatusHandler}
-            fullWidth={true}
-            inputProps={{ 
-              name: 'status'
-            }}
-          >{otherStatuses(order._id)}
-          </Select>
-        </TableCell>
-        {otherOrderFields(order.fields)}
-      </TableRow>
-    )
-  )
-
-  return (
-    <Layout>
-      {props.orders.length === 0 ? <Preloader /> :
+  else 
+    return (
+      <Layout>
         <Paper className={classes.root} component='section' elevation={7}>
-          <div className={classes.tableWrapper}>
-            <Table stickyHeader aria-label='sticky table'>
+          <div className={classes.wrapper}>
+            <Table>
               <TableHead>
                 <TableRow>
                   <StyledTableCell 
@@ -253,62 +223,107 @@ const OrderList = props => {
                     className={classes.tabelCell}
                   >Статус
                   </StyledTableCell>
-                  {otherFields}
+                  {otherColumns}
                 </TableRow>
               </TableHead>
               <TableBody>
-                {props.search.length === 0 ? orders(props.orders) : 
-                orders(props.search)}
+                {(() => {
+                  const { page, rowsPerPage } = state.pagination
+                  const rows = props.search.length === 0 ? props.rows : props.search
+
+                  return (
+                    rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((order, index) => {
+                      return (
+                        <TableRow hover role='checkbox' tabIndex={-1} key={index}>
+                          <TableCell>
+                            <Fab 
+                              className={classes.fab}
+                              size='small'
+                              onClick={() => openEditDrawerHandler(order)}
+                            >
+                              <EditIcon 
+                                className={classes.editIcon}
+                                aria-label='edit' 
+                              />
+                            </Fab>
+                            {order.name}
+                          </TableCell>
+                          <TableCell>
+                            <Select
+                              id='demo-simple-select-outlined'
+                              value={order.status.name}
+                              variant='outlined'
+                              onChange={e => changeStatusHandler(e, order)}
+                              fullWidth={true}
+                              inputProps={{ 
+                                name: 'status'
+                              }}
+                            >{props.statuses.map((status, index) =>
+                              <MenuItem 
+                                // id={order._id}
+                                key={index}
+                                value={status.name}
+                                data-order={order}
+                              >{status.name}
+                              </MenuItem>
+                            )}
+                            </Select>
+                          </TableCell>
+                          {order.fields.map(field => 
+                            <TableCell 
+                              key={field._id}
+                              align='right'
+                            >{field.value}
+                            </TableCell>
+                          )}
+                        </TableRow>
+                      )
+                    })
+                  )
+                })()}
               </TableBody>
             </Table>
           </div>
-          <TablePagination
+          <TablePagination 
             rowsPerPageOptions={[10, 25, 100]}
             component='div'
-            count={props.search.length === 0 ? props.orders.length : props.search.length}
+            count={props.search.length === 0 ? props.rows.length : props.search.length}
             rowsPerPage={state.pagination.rowsPerPage}
             page={state.pagination.page}
-            onChangePage={handleChangePage}
-            onChangeRowsPerPage={handleChangeRowsPerPage}
+            onChangePage={changePageHandler}
+            onChangeRowsPerPage={changeRowsPerPagehHandler}
           />
         </Paper>
-      }
-      <Drawer 
-        open={state.edit.drawer}
-        className={classes.editDrawer} 
-        classes={{
-          paper: clsx({
-            [classes.editDrawerOpen]: state.edit.drawer,
-            [classes.editDrawerClose]: !state.edit.drawer,
-          }),
-        }}>
-        <Toolbar className={classes.toolbar}>
-          <IconButton onClick={editHandler}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </Toolbar>
-        <Divider />
-        <EditOrder 
-          order={state.edit.order}
-        />
-      </Drawer>
-    </Layout>
-  )
+        <Drawer 
+          open={state.edit.order}
+          className={clsx(classes.editDrawerOpen, {
+            [classes.editDrawerOpen]: state.edit.order,
+            [classes.editDrawerClose]: !state.edit.order,
+          })}
+          classes={{
+            paper: clsx({
+              [classes.editDrawerOpen]: state.edit.order,
+              [classes.editDrawerClose]: !state.edit.order,
+            }),
+          }}
+        >
+          <Toolbar className={classes.toolbar}>
+            <IconButton onClick={disabledEditDrawerHandler}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </Toolbar>
+          <Divider />
+          <EditOrder 
+            editOrder={state.edit.order}
+          />
+        </Drawer>
+      </Layout>
+    )
 }
 
-const mapStateToProps = state => {
-  return {
-    fields: state.fields.payload,
-    status: state.status.payload,
-    orders: state.orders.payload,
-    search: state.search.payload
-  }
+TableOrders.propTypes = {
+  columns: PropTypes.array.isRequired,
+  rows: PropTypes.array.isRequired
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    update: () => dispatch(fetchUpdateOrderList())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(OrderList)
+export default connect(mapStateToProps, mapDispatchToProps)(TableOrders)

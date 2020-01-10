@@ -45,50 +45,31 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const SearchBar = props => {
+export const SearchBar = props => {
+
   const classes = useStyles()
 
-  const searchHandler = e => {
-    const value = e.target.value.toLowerCase()
-    const trim = value.trim()
+  const format = str => str.toLowerCase().trim().replace(/[^A-Za-zА-Яа-яЁё\d]/g, "")
 
-    // Убераем из строки символы такие как пробелы, "-" и т.д. Оставляем буквы и цифры.
-    // В методе .filter() будем использовать то же регулярное выражение.
-    const replace = trim.replace(/[^A-Za-zА-Яа-яЁё\d]/g, "")
+  const searchHandler = e => {
+    const str = format(e.target.value)
 
     let result = []
 
-    const names = props.orders.filter(order => {
-      const name = order.name.toLowerCase()
-        .trim().replace(/[^A-Za-zА-Яа-яЁё\d]/g, "")
-
-      return name.indexOf(replace) !== -1
-    })
+    const names = props.orders.filter(order => format(order.name).indexOf(str) !== -1)
 
     if (names.length !== 0)
       result = names
 
-    const statuses = props.orders.filter(order => {
-      const status = order.status.toLowerCase()
-        .trim().replace(/[^A-Za-zА-Яа-яЁё\d]/g, "")
-
-      return status.indexOf(replace) !== -1
-    })
+    const statuses = props.orders.filter(order => format(order.status.name).indexOf(str) !== -1)
 
     if (statuses.length !== 0)
       result = statuses
 
     const fields = props.orders.filter(order => {
-      for (let i = 0, len = order.fields.length - 1; i <= len; i++) {
-        const field = order.fields[i].value.toLowerCase()
-          .trim().replace(/[^A-Za-zА-Яа-яЁё\d]/g, "")
-
-        // Обязательная проверка условия, иначе  
-        // метод возвращает первый результат
-        if (field.indexOf(replace) !== -1) {
-          return field.indexOf(replace) !== -1
-        }
-      }
+      for (let i = 0, len = order.fields.length - 1; i <= len; i++) 
+        if (format(order.fields[i].value).indexOf(str) !== -1)
+          return format(order.fields[i].value).indexOf(str) !== -1
 
       return false
     })
@@ -96,11 +77,7 @@ const SearchBar = props => {
     if (fields.length !== 0)
       result = fields
 
-    if (value.length === 0)
-      return props.result([])
-
-    if (result.length !== 0)
-      return props.result(result)
+    return props.result(result)
   }
 
   return (

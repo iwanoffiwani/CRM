@@ -17,9 +17,7 @@ export {
   ADD_ORDER_LIST,
   FAILED_ORDER_LIST,
   UPDATE_ORDER_LIST,
-  SEARCH_ORDER,
-  EDIT_DRAWER_OPEN, 
-  EDIT_DRAWER_CLOSE
+  SEARCH_ORDER
 } from './types'
 
 export {
@@ -55,11 +53,6 @@ export {
 export {
   searchOrder
 } from './search'
-
-export {
-  editDrawerOpen,
-  editDrawerClose
-} from './edit'
 
 export {
   updateUser,
