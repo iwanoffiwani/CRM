@@ -1,28 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing the Navbar component +++ renderer component 1`] = `
-<Router
-  history={
-    Object {
-      "action": "POP",
-      "block": [Function],
-      "createHref": [Function],
-      "go": [Function],
-      "goBack": [Function],
-      "goForward": [Function],
-      "length": 1,
-      "listen": [Function],
-      "location": Object {
-        "hash": "",
-        "pathname": "/",
-        "search": "",
-        "state": undefined,
-      },
-      "push": [Function],
-      "replace": [Function],
-    }
-  }
+exports[`<NavBar /> +++ renderer component 1`] = `
+<nav
+  className="navbar"
 >
-  <NavBar />
-</Router>
+  <WithStyles(ForwardRef(List))>
+    <WithStyles(ForwardRef(ListItem))>
+      <NavLink
+        className="makeStyles-link-1"
+        to="/"
+      >
+        <WithStyles(ForwardRef(ListItemIcon))>
+          <FormatListNumberedIcon />
+        </WithStyles(ForwardRef(ListItemIcon))>
+        <WithStyles(ForwardRef(ListItemText))
+          primary="Заявки"
+        />
+      </NavLink>
+    </WithStyles(ForwardRef(ListItem))>
+    <WithStyles(ForwardRef(ListItem))>
+      <NavLink
+        className="makeStyles-link-1"
+        to="/settings"
+      >
+        <WithStyles(ForwardRef(ListItemIcon))>
+          <SettingsIcon />
+        </WithStyles(ForwardRef(ListItemIcon))>
+        <WithStyles(ForwardRef(ListItemText))
+          primary="Настройки"
+        />
+      </NavLink>
+    </WithStyles(ForwardRef(ListItem))>
+  </WithStyles(ForwardRef(List))>
+</nav>
 `;

@@ -31,6 +31,12 @@ module.exports.remove = async (req, res) => {
   try {
     await Status.deleteOne({ _id: req.query.id })
 
+    await Order.updateMany(
+      { 'status._id': req.query.id }, 
+      { '$set': { 'status': { name: '' } } }, 
+      { isDeleted: true }
+    )
+
     return res.status(200).json({ message: `Категория удалена` })
   } catch(e) {
     errorHandler(res, e)
@@ -41,7 +47,7 @@ module.exports.update = async (req, res) => {
   try {
     await Status.findOneAndUpdate(
       { _id: req.query.id },
-      { $set: { ...req.body } },
+      { $set: { name: req.body.name } },
       { new: true }
     )
 
@@ -51,7 +57,7 @@ module.exports.update = async (req, res) => {
       { isDeleted: true }
     )
 
-    return res.status(200).json('Статус успешно обновлен')
+    return res.status(200).json({ message: 'Статус успешно обновлен' })
   } catch(e) {
     errorHandler(res, e)
   }

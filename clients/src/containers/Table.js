@@ -4,7 +4,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { fetchUpdateOrderList } from '../redux/actions'
 import Preloader from '../components/Preloader'
-import Layout from '../components/Layout'
+import Layout from './Layout'
 import clsx from 'clsx'
 import { withStyles, makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -109,6 +109,7 @@ export const TableOrders = props => {
 
   const initialState = {
     edit: {
+      drawerOpen: false,
       order: false
     },
     pagination: {
@@ -120,45 +121,59 @@ export const TableOrders = props => {
   const [ state, setState ] = useState(initialState)
 
   const changeStatusHandler = (e, order) => {
+    const { 
+      data: { 
+        login: user 
+      } 
+    } = props.user // Получаем логин узера для записи в массив изменений
 
-    const { data: { login: user } } = props.user
+    const {
+      _id: orderID,
+      status: {
+        name: prevStatus
+      },
+      changes
+    } = order // Получаем id заявки, текущий статус заявки и массив изменений
 
-    const { _id: id, changes, status: { name } } = order
+    const {
+      id: statusID
+    } = e._targetInst.stateNode // Получаем id статуса
 
-    const status = e.target.value
+    const nextStatus = e.target.value 
 
     return axios({
-      method: 'PATCH',
-      url: '/api/orders/',
-      params: {
-        id 
-      },
-      data: {
-        status: {
-          name: status
+        method: 'PATCH',
+        url: '/api/orders/',
+        params: {
+          id: orderID 
         },
-        changes: [
-          ...changes,
-          {
-            user,
-            previousState: { // Свойство должно именоваться именно так, иначе будут серьезные проблемы
-              status: name
-            },
-            nextState: {
-              status
+        data: {
+          status: {
+            _id: statusID,
+            name: nextStatus // В модели перезапишется статус и _id. Это нужно для последующего редактирования
+          },
+          changes: [
+            ...changes,
+            {
+              user,
+              previousState: { // Свойство должно именоваться именно так, иначе будут серьезные проблемы
+                status: prevStatus
+              },
+              nextState: {
+                status: nextStatus
+              }
             }
-          }
-        ]
-      },
-    })
-    .then(() => props.update())
+          ]
+        },
+      })
+      .then(() => props.update())
   }
 
   const openEditDrawerHandler = order => {
     return setState({
       ...state,
       edit: {
-        ...state.edit,
+        drawerOpen: true,
         order
       }
     })
@@ -230,7 +245,7 @@ export const TableOrders = props => {
                 {(() => {
                   const { page, rowsPerPage } = state.pagination
                   const rows = props.search.length === 0 ? props.rows : props.search
-
+                  
                   return (
                     rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((order, index) => {
                       return (
@@ -255,17 +270,12 @@ export const TableOrders = props => {
                               variant='outlined'
                               onChange={e => changeStatusHandler(e, order)}
                               fullWidth={true}
-                              inputProps={{ 
-                                name: 'status'
-                              }}
                             >{props.statuses.map((status, index) =>
-                              <MenuItem 
-                                // id={order._id}
-                                key={index}
-                                value={status.name}
-                                data-order={order}
-                              >{status.name}
-                              </MenuItem>
+                            <MenuItem 
+                              id={status._id}
+                              key={index} 
+                              value={status.name}
+                            >{status.name}</MenuItem>
                             )}
                             </Select>
                           </TableCell>
@@ -295,15 +305,15 @@ export const TableOrders = props => {
           />
         </Paper>
         <Drawer 
-          open={state.edit.order}
+          open={state.edit.drawerOpen}
           className={clsx(classes.editDrawerOpen, {
-            [classes.editDrawerOpen]: state.edit.order,
-            [classes.editDrawerClose]: !state.edit.order,
+            [classes.editDrawerOpen]: state.edit.drawerOpen,
+            [classes.editDrawerClose]: !state.edit.drawerOpen,
           })}
           classes={{
             paper: clsx({
-              [classes.editDrawerOpen]: state.edit.order,
-              [classes.editDrawerClose]: !state.edit.order,
+              [classes.editDrawerOpen]: state.edit.drawerOpen,
+              [classes.editDrawerClose]: !state.edit.drawerOpen,
             }),
           }}
         >

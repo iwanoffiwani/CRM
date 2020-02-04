@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const EditOrder = props => {
+export const EditOrder = props => {
   const classes = useStyles()
 
   // Поле changes содержит объект с полем prevState в которое падаем объект с данными заявки,
@@ -100,7 +100,7 @@ const EditOrder = props => {
       ...state,
       edit: {
         ...state.edit,
-        [e.target.name]: e.target.value
+        name: e.target.value
       },
       changes: {
         ...state.changes,
@@ -113,11 +113,16 @@ const EditOrder = props => {
   }
 
   const changeStatusHandler = e => {
+    const {
+      id: _id
+    } = e._targetInst.stateNode
+    
     return setState({
       ...state,
       edit: {
         ...state.edit,
         status: {
+          _id,
           name: e.target.value
         }
       },
@@ -287,7 +292,7 @@ const EditOrder = props => {
   const changeComment = e => {
     return setState({
       ...state,
-      [e.target.name]: e.target.value 
+      comment: e.target.value 
     })
   }
 
@@ -562,7 +567,6 @@ const EditOrder = props => {
 const mapStateToProps = state => {
   return {
     user: state.authorization.payload,
-    edit: state.edit.payload,
     statuses: state.statuses.payload
   }
 }

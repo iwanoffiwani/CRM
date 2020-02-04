@@ -16,9 +16,9 @@ import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import AddIcon from '@material-ui/icons/Add'
-import CreateOrder from '../containers/CreateOrder'
-import NavBar from './NavBar'
-import SearchBar from '../containers/SearchBar'
+import CreateOrder from './CreateOrder'
+import NavBar from '../components/NavBar'
+import SearchBar from './SearchBar'
 
 const sidebarWidth = 240
 

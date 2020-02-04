@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests EditOrder component +++ renderer component 1`] = `
+<Styled(MuiBox)
+  className="makeStyles-wrapper-1"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <WithStyles(ForwardRef(Container))>
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-title-6"
+        noWrap={true}
+        variant="h2"
+      >
+        Редактирование
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(TextField))
+        className="makeStyles-textField-5"
+        fullWidth={true}
+        label="Название заявки"
+        margin="normal"
+        name="name"
+        onChange={[Function]}
+        type="text"
+        value="Новая заявка-35"
+        variant="outlined"
+      />
+      <WithStyles(ForwardRef(Divider))
+        className="makeStyles-divider-7"
+      />
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-title-6"
+        noWrap={true}
+        variant="h3"
+      >
+        Статус заявки
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Select))
+        fullWidth={true}
+        id="demo-simple-select-outlined"
+        inputProps={
+          Object {
+            "name": "status",
+          }
+        }
+        onChange={[Function]}
+        value="Статус-4"
+        variant="outlined"
+      >
+        <WithStyles(ForwardRef(MenuItem))
+          id="5e28378cfa502c1edc0e7689"
+          key="0"
+          value="Статус-1"
+        >
+          Статус-1
+        </WithStyles(ForwardRef(MenuItem))>
+        <WithStyles(ForwardRef(MenuItem))
+          id="5e283799fa502c1edc0e768b"
+          key="1"
+          value="Статус-2"
+        >
+          Статус-2
+        </WithStyles(ForwardRef(MenuItem))>
+        <WithStyles(ForwardRef(MenuItem))
+          id="5e28379ffa502c1edc0e768c"
+          key="2"
+          value="Статус-4"
+        >
+          Статус-4
+        </WithStyles(ForwardRef(MenuItem))>
+        <WithStyles(ForwardRef(MenuItem))
+          id="5e2837a5fa502c1edc0e768d"
+          key="3"
+          value="Статус-5"
+        >
+          Статус-5
+        </WithStyles(ForwardRef(MenuItem))>
+      </WithStyles(ForwardRef(Select))>
+      <WithStyles(ForwardRef(Divider))
+        className="makeStyles-divider-7"
+      />
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-title-6"
+        noWrap={true}
+        variant="h3"
+      >
+        Произвольные поля
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(TextField))
+        className="makeStyles-textField-5"
+        fullWidth={true}
+        key="0"
+        label="Мобильный телефон"
+        name="Мобильный телефон"
+        onChange={[Function]}
+        type="text"
+        value="+7 666 666 66 66"
+        variant="outlined"
+      />
+      <WithStyles(ForwardRef(TextField))
+        className="makeStyles-textField-5"
+        fullWidth={true}
+        key="1"
+        label="Номер паспорта"
+        name="Номер паспорта"
+        onChange={[Function]}
+        type="text"
+        value="79 98 666 555"
+        variant="outlined"
+      />
+      <WithStyles(ForwardRef(TextField))
+        className="makeStyles-textField-5"
+        fullWidth={true}
+        key="2"
+        label="Домашний тел"
+        name="Домашний тел"
+        onChange={[Function]}
+        type="text"
+        value="516 69 69 "
+        variant="outlined"
+      />
+      <WithStyles(ForwardRef(TextField))
+        className="makeStyles-textField-5"
+        fullWidth={true}
+        key="3"
+        label="Паспорт"
+        name="Паспорт"
+        onChange={[Function]}
+        type="text"
+        value="79 98 654 654"
+        variant="outlined"
+      />
+      <WithStyles(ForwardRef(Divider))
+        className="makeStyles-divider-7"
+      />
+      <WithStyles(ForwardRef(Button))
+        color="primary"
+        type="submit"
+        variant="contained"
+      >
+        Редактировать заявку
+      </WithStyles(ForwardRef(Button))>
+    </WithStyles(ForwardRef(Container))>
+  </form>
+  <WithStyles(ForwardRef(Container))>
+    <WithStyles(ForwardRef(Typography))
+      className="makeStyles-title-6"
+      noWrap={true}
+      variant="h2"
+    >
+      Комментарии
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(List))
+      className="makeStyles-list-10"
+    >
+      <WithStyles(ForwardRef(ListItem))
+        className="makeStyles-listItem-11"
+        key="0"
+      >
+        <WithStyles(ForwardRef(ListItemText))
+          primary="Пользователь test@test внес изменения в поле статус"
+          secondary={
+            <React.Fragment>
+              <ForwardRef(WithStyles)
+                color="textPrimary"
+                component="span"
+                variant="body2"
+              />
+               — None -&gt; Статус-2
+              <small
+                className="makeStyles-data-12"
+              >
+                2020-01-22T11:53:27.209Z
+              </small>
+            </React.Fragment>
+          }
+        />
+      </WithStyles(ForwardRef(ListItem))>
+    </WithStyles(ForwardRef(List))>
+    <form
+      className="makeStyles-comment-9"
+      onSubmit={[Function]}
+    >
+      <WithStyles(ForwardRef(TextField))
+        fullWidth={true}
+        id="name"
+        label="Комментарий"
+        margin="dense"
+        name="comment"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+      <WithStyles(ForwardRef(Divider))
+        className="makeStyles-divider-7"
+      />
+      <WithStyles(ForwardRef(Button))
+        disabled={true}
+        variant="contained"
+      >
+        Добавить
+      </WithStyles(ForwardRef(Button))>
+    </form>
+  </WithStyles(ForwardRef(Container))>
+</Styled(MuiBox)>
+`;

@@ -1,12 +1,12 @@
 import React from 'react'
-import {shallow} from 'enzyme'
+import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 
 import Preloader from '../Preloader'
 
-describe(`Testing the Preloader component`, () => {
+describe(`<Preloader />`, () => {
   it(`+++ renderer component`, () => {
     const wrapper = shallow(<Preloader />)
-    expect(toJson(wrapper)).toMatchSnapshot()
+    return expect(toJson(wrapper)).toMatchSnapshot()
   })
 })

@@ -27,8 +27,6 @@ module.exports.getById = async (req, res) => {
 
 module.exports.create = async (req, res) => {
   try {
-    console.log(req.body.status)
-
     await new Order({
       name: req.body.name,
       user: req.user.id,
@@ -36,8 +34,8 @@ module.exports.create = async (req, res) => {
       status: req.body.status
     }).save()
     
-    return res.status(201)
-      .json('Ваша заявка успешно добавлена')
+    return res.status(201).json('Ваша заявка успешно добавлена')
+    
   } catch(e) {
     errorHandler(res, e)
   }
