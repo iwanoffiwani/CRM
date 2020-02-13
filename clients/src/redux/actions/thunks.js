@@ -1,98 +1,103 @@
-import axios from 'axios'
+import axios from "axios";
 
 import {
   requireCurrentUser,
   loginCurrentUser,
   updateCurrentUser,
   failedCurrentUser
-} from './user'
+} from "./user";
 
 import {
   requireOrderFields,
   addOrderFields,
   failedOrderFields
-} from './fields'
+} from "./fields";
 
 import {
   requireOrderStatuses,
   addOrderStatuses,
   failedOrderStatuses
-} from './statuses'
+} from "./statuses";
 
 import {
   requireOrderList,
   addOrderList,
   failedOrderList,
   updateOrderList
-} from './orders'
+} from "./orders";
 
 export const updateUser = () => dispatch => {
-  const token = localStorage.getItem('jwtToken')
+  const token = localStorage.getItem("jwtToken");
 
-  if (!token) return
+  if (!token) return;
 
-  const jwtDecoded = require('jwt-decode')
-  const decoded = jwtDecoded(token)
+  const jwtDecoded = require("jwt-decode");
+  const decoded = jwtDecoded(token);
 
-  const currentTime = Date.now() / 1000
+  const currentTime = Date.now() / 1000;
 
   // Если время истекло, то с этим разберется privateRoute.
   // Здесь только обновляется состояние хранилища
-  if (decoded.exp < currentTime) return
+  if (decoded.exp < currentTime) return;
 
-  return dispatch(updateCurrentUser({ data: decoded, token }))
-}
+  return dispatch(updateCurrentUser({ data: decoded, token }));
+};
 
-export const loginUser = (user, history) => dispatch => {  
-  dispatch(requireCurrentUser(user))
+export const loginUser = (user, history) => dispatch => {
+  dispatch(requireCurrentUser(user));
 
-  axios.post('/api/auth/login', user)
+  axios
+    .post("/api/auth/login", user)
     .then(res => {
-      const { token } = res.data
+      const { token } = res.data;
 
-      const jwtDecoded = require('jwt-decode')
-      const decoded = jwtDecoded(token)
+      const jwtDecoded = require("jwt-decode");
+      const decoded = jwtDecoded(token);
 
-      dispatch(loginCurrentUser({ data: decoded, token }))
-      
-      return history.push('/')
+      dispatch(loginCurrentUser({ data: decoded, token }));
+
+      return history.push("/");
     })
     .catch(err => {
-      const { message } = err.response.data
+      const { message } = err.response.data;
 
-      dispatch(failedCurrentUser({ error: true, message }))
-      return localStorage.removeItem('jwtToken')
-    })
-}
+      dispatch(failedCurrentUser({ error: true, message }));
+      return localStorage.removeItem("jwtToken");
+    });
+};
 
 export const fetchFields = () => dispatch => {
-  dispatch(requireOrderFields())
+  dispatch(requireOrderFields());
 
-  return axios.get('/api/fields')
+  return axios
+    .get("/api/fields")
     .then(res => dispatch(addOrderFields(res.data)))
-      .catch(err => dispatch(failedOrderFields(err.response)))
-}
+    .catch(err => dispatch(failedOrderFields(err.response)));
+};
 
 export const fetchStatuses = () => dispatch => {
-  dispatch(requireOrderStatuses())
+  dispatch(requireOrderStatuses());
 
-  return axios.get('/api/statuses')
+  return axios
+    .get("/api/statuses")
     .then(res => dispatch(addOrderStatuses(res.data)))
-      .catch(err => dispatch(failedOrderStatuses(err.response)))
-}
+    .catch(err => dispatch(failedOrderStatuses(err.response)));
+};
 
 export const fetchOrderList = () => dispatch => {
-  dispatch(requireOrderList())
+  dispatch(requireOrderList());
 
-  return axios.get('/api/orders')
+  return axios
+    .get("/api/orders")
     .then(res => dispatch(addOrderList(res.data)))
-      .catch(err => dispatch(failedOrderList(err.response)))
-}
+    .catch(err => dispatch(failedOrderList(err.response)));
+};
 
 export const fetchUpdateOrderList = () => dispatch => {
-  dispatch(requireOrderList())
+  dispatch(requireOrderList());
 
-  return axios.get('/api/orders')
+  return axios
+    .get("/api/orders")
     .then(res => dispatch(updateOrderList(res.data)))
-      .catch(err => dispatch(failedOrderList(err.reponse)))
-}
+    .catch(err => dispatch(failedOrderList(err.reponse)));
+};

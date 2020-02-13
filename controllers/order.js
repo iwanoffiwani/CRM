@@ -4,8 +4,9 @@ const errorHandler = require('../utils/errorHandler')
 module.exports.getAll = async (req, res) => {
   try {
     const order = 
-      await Order.find({ user: req.user.id })
-        .sort({ data: -1 }) //Sort by Date Added DESC
+      await Order.find({ 
+        user: req.user.id 
+      }).sort({ data: -1 }) //Sort by Date Added DESC
           
     return res.status(200).json(order)
   } catch(e) {
@@ -54,12 +55,17 @@ module.exports.remove = async (req, res) => {
 module.exports.update = async (req, res) => {
   try {
     await Order.findOneAndUpdate(
-      { _id: req.query.id },
-      { $set: {
+      { 
+        _id: req.query.id 
+      },
+      { 
+        $set: {
           ...req.body
         }
       },
-      { new: true } 
+      { 
+        new: true 
+      } 
     )
 
     const update = await Order.findOne({ _id: req.query.id })

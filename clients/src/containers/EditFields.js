@@ -1,19 +1,19 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import axios from 'axios'
-import { fetchUpdateOrderList, fetchFields } from '../redux/actions/'
-import { makeStyles } from '@material-ui/core/styles'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import Fab from '@material-ui/core/Fab'
-import EditIcon from '@material-ui/icons/Edit'
-import CheckIcon from '@material-ui/icons/Check'
-import ListItemText from '@material-ui/core/ListItemText'
-import ClearIcon from '@material-ui/icons/Clear'
-import AddIcon from '@material-ui/icons/Add'
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline'
-import TextField from '@material-ui/core/TextField'
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import axios from "axios";
+import { fetchUpdateOrderList, fetchFields } from "../redux/actions/";
+import { makeStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import Fab from "@material-ui/core/Fab";
+import EditIcon from "@material-ui/icons/Edit";
+import CheckIcon from "@material-ui/icons/Check";
+import ListItemText from "@material-ui/core/ListItemText";
+import ClearIcon from "@material-ui/icons/Clear";
+import AddIcon from "@material-ui/icons/Add";
+import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -21,18 +21,17 @@ const useStyles = makeStyles(theme => ({
     height: 42,
     marginRight: theme.spacing(2)
   }
-}))
+}));
 
 const mapDispatchToProps = dispatch => {
   return {
     ordersListUpdate: () => dispatch(fetchUpdateOrderList()),
     fieldsUpdate: () => dispatch(fetchFields())
-  }
-}
+  };
+};
 
 export const EditFields = props => {
-  
-  const classes = useStyles()
+  const classes = useStyles();
 
   const initialState = {
     field: {
@@ -49,18 +48,18 @@ export const EditFields = props => {
     changes: {
       field: {
         name: {
-          value: ''
+          value: ""
         }
       },
       create: {
         name: {
-          value: ''
+          value: ""
         }
       }
     }
-  }
+  };
 
-  const [ state, setState ] = useState(initialState)
+  const [state, setState] = useState(initialState);
 
   const editFieldNameHandler = e => {
     return setState({
@@ -74,8 +73,8 @@ export const EditFields = props => {
           }
         }
       }
-    })
-  }
+    });
+  };
 
   const setFieldNameHandler = e => {
     return setState({
@@ -89,8 +88,8 @@ export const EditFields = props => {
           }
         }
       }
-    })
-  }
+    });
+  };
 
   const createHandler = () => {
     return setState({
@@ -101,9 +100,9 @@ export const EditFields = props => {
           init: true
         }
       }
-    })
-  }
-  
+    });
+  };
+
   const editHandler = (id, value) => {
     return setState({
       ...state,
@@ -121,8 +120,8 @@ export const EditFields = props => {
           }
         }
       }
-    })
-  }
+    });
+  };
 
   const deleteHandler = id => {
     return setState({
@@ -133,58 +132,48 @@ export const EditFields = props => {
           id
         }
       }
-    })
-  }
+    });
+  };
 
-  const def = () => setState({ ...initialState })
+  const def = () => setState({ ...initialState });
 
   const fetchCreateField = e => {
-    e.preventDefault()
+    e.preventDefault();
 
     const {
       create: {
-        name: {
-          value: name
-        }
+        name: { value: name }
       }
-    } = state.changes
+    } = state.changes;
 
     return axios({
-      method: 'POST',
+      method: "POST",
       url: `/api/fields/`,
       data: {
         name
       }
     })
-    .then(() => 
-      props.ordersListUpdate()
-    )
-    .then(() => 
-      props.fieldsUpdate()
-    )
-    .then(def()) 
-  }
+      .then(() => props.ordersListUpdate())
+      .then(() => props.fieldsUpdate())
+      .then(def());
+  };
 
   const fetchEditField = e => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const { 
+    const {
       field: {
-        edit: {
-          id
-        }
+        edit: { id }
       },
       changes: {
         field: {
-          name: {
-            value: name
-          }
+          name: { value: name }
         }
       }
-    } = state
+    } = state;
 
     return axios({
-      method: 'PATCH',
+      method: "PATCH",
       url: `/api/fields/`,
       params: {
         id
@@ -193,155 +182,126 @@ export const EditFields = props => {
         name
       }
     })
-    .then(() => 
-      props.fieldsUpdate()
-    )
-    .then(() => 
-      props.ordersListUpdate()
-    )
-    .then(def())
-  }
+      .then(() => props.fieldsUpdate())
+      .then(() => props.ordersListUpdate())
+      .then(def());
+  };
 
   const fetchDeleteField = e => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const { 
+    const {
       field: {
-        delete: {
-          id
-        }
+        delete: { id }
       }
-    } = state
+    } = state;
 
     return axios({
-      method: 'DELETE',
+      method: "DELETE",
       url: `/api/fields/`,
       params: {
         id
       }
     })
-    .then(() => 
-      props.fieldsUpdate()
-    )
-    .then(() => 
-      props.ordersListUpdate()
-    )
-    .then(def())
-  }
+      .then(() => props.fieldsUpdate())
+      .then(() => props.ordersListUpdate())
+      .then(def());
+  };
 
   return (
     <List>
       {(() => {
-
         const {
-          field: {
-            edit,
-            delete: del
-          },
+          field: { edit, delete: del },
           changes: {
             field: {
-              name: {
-                value
-              }
+              name: { value }
             }
           }
-        } = state
+        } = state;
 
-        if (edit.id !== null) 
-          return (
-            props.fields.map((field, index) => {
-              return (
-                edit.id !== field._id ?
-                  <ListItem disabled key={index}>
-                    <Fab className={classes.icon}>
-                      <EditIcon />
-                    </Fab>
-                    <Fab className={classes.icon}>
-                      <DeleteOutlineIcon/>
-                    </Fab>
-                    <ListItemText 
-                      primary={field.name} 
-                    />
-                  </ListItem> :
-                  <ListItem key={index}>
-                    <Fab className={classes.icon} onClick={fetchEditField}>
-                      <CheckIcon />
-                    </Fab>
-                    <Fab className={classes.icon} onClick={def}>
-                      <ClearIcon />
-                    </Fab>
-                    <TextField
-                      value={value}
-                      onChange={editFieldNameHandler}
-                      placeholder='Введите новое имя'
-                    />
-                  </ListItem>
-              )
-            })
-          )
-        else if (del.id !== null) 
-          return (
-            props.fields.map((field, index) => {
-              return (
-                del.id !== field._id ?
-                  <ListItem disabled key={index}>
-                    <Fab className={classes.icon}>
-                      <EditIcon />
-                    </Fab>
-                    <Fab className={classes.icon}>
-                      <DeleteOutlineIcon/>
-                    </Fab>
-                    <ListItemText 
-                      primary={field.name} 
-                    />
-                  </ListItem> :
-                  <ListItem key={index}>
-                    <Fab className={classes.icon} onClick={fetchDeleteField}>
-                      <CheckIcon />
-                    </Fab>
-                    <Fab className={classes.icon} onClick={def}>
-                      <ClearIcon />
-                    </Fab>
-                    <ListItemText 
-                      primary='Вы уверены, что хотите удалить это поле безвозвратно?' 
-                    />
-                  </ListItem>
-              )
-            })
-          )
-        else if (!edit.id && !del.id) 
-          return (
-            props.fields.map((field, index) => {
-              return (
-                <ListItem key={index}>
-                  <Fab className={classes.icon} onClick={() => editHandler(field._id, field.name)}>
-                    <EditIcon />
-                  </Fab>
-                  <Fab className={classes.icon} onClick={() => deleteHandler(field._id)}>
-                    <DeleteOutlineIcon/>
-                  </Fab>
-                  <ListItemText 
-                    primary={field.name} 
-                  />
-                </ListItem>
-              )
-            })
-          )
+        if (edit.id !== null)
+          return props.fields.map((field, index) => {
+            return edit.id !== field._id ? (
+              <ListItem disabled key={index}>
+                <Fab className={classes.icon}>
+                  <EditIcon />
+                </Fab>
+                <Fab className={classes.icon}>
+                  <DeleteOutlineIcon />
+                </Fab>
+                <ListItemText primary={field.name} />
+              </ListItem>
+            ) : (
+              <ListItem key={index}>
+                <Fab className={classes.icon} onClick={fetchEditField}>
+                  <CheckIcon />
+                </Fab>
+                <Fab className={classes.icon} onClick={def}>
+                  <ClearIcon />
+                </Fab>
+                <TextField
+                  value={value}
+                  onChange={editFieldNameHandler}
+                  placeholder="Введите новое имя"
+                />
+              </ListItem>
+            );
+          });
+        else if (del.id !== null)
+          return props.fields.map((field, index) => {
+            return del.id !== field._id ? (
+              <ListItem disabled key={index}>
+                <Fab className={classes.icon}>
+                  <EditIcon />
+                </Fab>
+                <Fab className={classes.icon}>
+                  <DeleteOutlineIcon />
+                </Fab>
+                <ListItemText primary={field.name} />
+              </ListItem>
+            ) : (
+              <ListItem key={index}>
+                <Fab className={classes.icon} onClick={fetchDeleteField}>
+                  <CheckIcon />
+                </Fab>
+                <Fab className={classes.icon} onClick={def}>
+                  <ClearIcon />
+                </Fab>
+                <ListItemText primary="Вы уверены, что хотите удалить это поле безвозвратно?" />
+              </ListItem>
+            );
+          });
+        else if (!edit.id && !del.id)
+          return props.fields.map((field, index) => {
+            return (
+              <ListItem key={index}>
+                <Fab
+                  className={classes.icon}
+                  onClick={() => editHandler(field._id, field.name)}
+                >
+                  <EditIcon />
+                </Fab>
+                <Fab
+                  className={classes.icon}
+                  onClick={() => deleteHandler(field._id)}
+                >
+                  <DeleteOutlineIcon />
+                </Fab>
+                <ListItemText primary={field.name} />
+              </ListItem>
+            );
+          });
       })()}
       {(() => {
-
         const {
-          field: {
-            create
-          },
+          field: { create },
           changes: {
             create: {
-              name: {
-                value
-              }
+              name: { value }
             }
           }
-        } = state
+        } = state;
 
         if (create.init)
           return (
@@ -355,28 +315,28 @@ export const EditFields = props => {
               <TextField
                 value={value}
                 onChange={setFieldNameHandler}
-                placeholder='Введите имя поля'
+                placeholder="Введите имя поля"
               />
             </ListItem>
-          )
-        else 
+          );
+        else
           return (
             <ListItem>
               <Fab className={classes.icon} onClick={createHandler}>
                 <AddIcon />
               </Fab>
-              <ListItemText 
-                primary='Добавить поле' 
-              />
+              <ListItemText primary="Добавить поле" />
             </ListItem>
-          )
+          );
       })()}
     </List>
-  )
-}
+  );
+};
 
 EditFields.propTypes = {
-  fields: PropTypes.array.isRequired
-}
+  fields: PropTypes.array.isRequired,
+  fieldsUpdate: PropTypes.func.isRequired,
+  ordersListUpdate: PropTypes.func.isRequired
+};
 
-export default connect(null, mapDispatchToProps)(EditFields)
+export default connect(null, mapDispatchToProps)(EditFields);

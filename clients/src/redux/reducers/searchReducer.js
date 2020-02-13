@@ -1,19 +1,19 @@
-import { SEARCH_ORDER } from '../actions'
+import { SEARCH_ORDER } from "../actions";
 
 const initialState = {
   payload: []
-}
+};
 
 const searchReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case SEARCH_ORDER:
       return {
         ...state,
         payload: action.payload
-      }
-    default: 
-      return state
+      };
+    default:
+      return state;
   }
-}
+};
 
-export default searchReducer
+export default searchReducer;

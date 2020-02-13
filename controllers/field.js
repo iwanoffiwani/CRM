@@ -19,7 +19,11 @@ module.exports.create = async (req, res) => {
 
     await Order.updateMany(
       {}, 
-      { '$push':  { 'fields' : field } }, 
+      { 
+        '$push': { 
+          'fields' : field
+        } 
+      }, 
       { isDeleted: true }
     )
 
@@ -38,7 +42,13 @@ module.exports.remove = async (req, res) => {
 
     await Order.updateMany(
       {}, 
-      { '$pull': { 'fields' : { '_id': req.query.id } } }, 
+      { 
+        '$pull': { 
+          'fields': { 
+            '_id': req.query.id 
+          } 
+        } 
+      }, 
       { isDeleted: true }
     )
 
@@ -51,15 +61,29 @@ module.exports.remove = async (req, res) => {
 module.exports.update = async (req, res) => {
   try {
     await Field.findOneAndUpdate(
-      { _id: req.query.id },
-      { $set: { name: req.body.name } },
-      { new: true }
+      { 
+        _id: req.query.id 
+      },
+      { 
+        $set: { 
+          name: req.body.name 
+        } 
+      },
+      { 
+        new: true 
+      }
     )
 
     await Order.updateMany(
-      { 'fields._id': req.query.id }, 
-      { 'fields.$.name': req.body.name }, 
-      { isDeleted: true }
+      { 
+        'fields._id': req.query.id 
+      }, 
+      { 
+        'fields.$.name': req.body.name 
+      }, 
+      { 
+        isDeleted: true 
+      }
     )
 
     return res.json(200).json('Поле успешно отредактировано')

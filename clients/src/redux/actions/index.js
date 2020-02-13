@@ -18,7 +18,7 @@ export {
   FAILED_ORDER_LIST,
   UPDATE_ORDER_LIST,
   SEARCH_ORDER
-} from './types'
+} from "./types";
 
 export {
   requireCurrentUser,
@@ -26,19 +26,19 @@ export {
   updateCurrentUser,
   logoutCurrentUser,
   failedCurrentUser
-} from './user'
+} from "./user";
 
 export {
   requireOrderFields,
   addOrderFields,
   failedOrderFields
-} from './fields'
+} from "./fields";
 
 export {
   requireOrderStatuses,
   addOrderStatuses,
   failedOrderStatuses
-} from './statuses'
+} from "./statuses";
 
 export {
   requireCreateOrder,
@@ -48,11 +48,9 @@ export {
   addOrderList,
   failedOrderList,
   updateOrderList
-} from './orders'
+} from "./orders";
 
-export {
-  searchOrder
-} from './search'
+export { searchOrder } from "./search";
 
 export {
   updateUser,
@@ -61,4 +59,4 @@ export {
   fetchStatuses,
   fetchOrderList,
   fetchUpdateOrderList
-} from './thunks'
+} from "./thunks";

@@ -1,0 +1,17 @@
+
+> husky@4.2.3 install C:\Users\User\Desktop\CRM\clients\node_modules\husky
+> node husky install
+
+
+> husky@4.2.3 postinstall C:\Users\User\Desktop\CRM\clients\node_modules\husky
+> opencollective-postinstall || exit 0
+
+[96m[1mThank you for using husky![96m[1m
+[0m[96mIf you rely on this package, please consider supporting our open collective:[22m[39m
+> [94mhttps://opencollective.com/husky/donate[0m
+
++ husky@4.2.3
++ lint-staged@10.0.7
+added 94 packages from 48 contributors and audited 1783112 packages in 24.379s
+found 2 moderate severity vulnerabilities
+  run `npm audit fix` to fix them, or `npm audit` for details

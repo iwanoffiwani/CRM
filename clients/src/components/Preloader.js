@@ -1,10 +1,10 @@
-import React from 'react'
-import LinearProgress from '@material-ui/core/LinearProgress';
+import React from "react";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 const Preloader = props => (
-  <div className='preloader'>
+  <div className="preloader">
     <LinearProgress />
   </div>
-)
+);
 
-export default Preloader
+export default Preloader;
