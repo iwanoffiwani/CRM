@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 /*
   Модель заявки содержит:
@@ -13,7 +13,7 @@ const Schema = mongoose.Schema
 
 const order = new Schema({
   user: {
-    ref: 'users',
+    ref: "users",
     type: Schema.Types.ObjectId
   },
   name: {
@@ -30,7 +30,7 @@ const order = new Schema({
       },
       value: {
         type: String,
-        default: ''
+        default: ""
       }
     }
   ],
@@ -63,13 +63,12 @@ const order = new Schema({
         type: Date,
         default: Date.now
       }
-    },
+    }
   ],
   data: {
     type: Date,
     default: Date.now
   }
-})
+});
 
-module.exports = mongoose.model('orders', order)
-
+module.exports = mongoose.model("orders", order);

@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const field = new Schema({
   name: {
@@ -8,8 +8,8 @@ const field = new Schema({
   },
   value: {
     type: String,
-    default: ''
+    default: ""
   }
-})
+});
 
-module.exports = mongoose.model('fields', field)
+module.exports = mongoose.model("fields", field);

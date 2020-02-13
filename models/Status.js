@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const status = new Schema({
   name: {
@@ -9,6 +9,6 @@ const status = new Schema({
   color: {
     type: String
   }
-})
+});
 
-module.exports = mongoose.model('statuses', status)
+module.exports = mongoose.model("statuses", status);
